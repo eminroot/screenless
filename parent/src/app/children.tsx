@@ -1,5 +1,5 @@
 import { Redirect, useFocusEffect, useRouter } from 'expo-router';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Pressable, RefreshControl, View, useWindowDimensions } from 'react-native';
 
 import * as api from '../api/client';
@@ -47,10 +47,22 @@ export default function Children() {
     [t, token],
   );
 
+  /**
+   * Refetched on focus, and only on focus.
+   *
+   * `children` must not be in these dependencies. It looks harmless and it is
+   * an infinite request loop: `load` writes `children`, the new value changes
+   * the callback's identity, the focus effect re-runs, and the list hammers
+   * the server until the rate limiter starts answering 429. Whether this is
+   * the first load is a ref, because it changes nothing on screen.
+   */
+  const loadedOnce = useRef(false);
+
   useFocusEffect(
     useCallback(() => {
-      void load(children !== null);
-    }, [load, children]),
+      void load(loadedOnce.current);
+      loadedOnce.current = true;
+    }, [load]),
   );
 
   const refresh = useCallback(async () => {

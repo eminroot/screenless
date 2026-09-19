@@ -449,7 +449,10 @@ export function Ring({
   return (
     <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
       <Svg width={size} height={size} style={{ position: 'absolute' }}>
-        <G rotation={-90} origin={`${size / 2}, ${size / 2}`}>
+        {/* Started at twelve o'clock. `rotation` + `origin` would be the
+            react-native-svg way and it emits an invalid `transform-origin`
+            DOM attribute on web; a plain SVG transform works on both. */}
+        <G transform={`rotate(-90 ${size / 2} ${size / 2})`}>
           <Circle
             cx={size / 2}
             cy={size / 2}

@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 /**
  * Where the hub lives.
  *
@@ -18,7 +20,24 @@ const raw = (process.env.EXPO_PUBLIC_HUB_URL ?? '').trim().replace(/\/+$/, '');
 const secure = /^https:\/\//i.test(raw);
 const localDev = __DEV__ && /^http:\/\//i.test(raw);
 
-export const HUB_URL = secure || localDev ? raw : '';
+/** What was configured, before the Android emulator rewrite below. */
+const configured = secure || localDev ? raw : '';
+
+/**
+ * `localhost` means the device the app is on, which is the emulator rather
+ * than the laptop the hub is running on. Android exposes the host machine at
+ * the fixed alias 10.0.2.2, so a development url is rewritten to reach it.
+ *
+ * Development only. A release build has an https host and gets it untouched:
+ * silently rewriting a production address would be a miserable bug to chase.
+ *
+ * A real phone on the wifi needs the laptop's LAN address in `.env`. That one
+ * cannot be guessed from in here.
+ */
+export const HUB_URL =
+  __DEV__ && Platform.OS === 'android'
+    ? configured.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)(?=[:/]|$)/i, '$110.0.2.2')
+    : configured;
 
 export const isHubConfigured = Boolean(HUB_URL);
 

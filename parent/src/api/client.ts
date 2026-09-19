@@ -1,3 +1,4 @@
+import { reachableUrl } from './host';
 import type { AgeBand, Child, ChildCard, Limits, Pairing, Parent, Summary } from './types';
 
 /**
@@ -15,7 +16,16 @@ const raw = (process.env.EXPO_PUBLIC_HUB_URL ?? '').trim().replace(/\/+$/, '');
 const secure = /^https:\/\//i.test(raw);
 const localDev = __DEV__ && /^http:\/\//i.test(raw);
 
-export const HUB_URL = secure || localDev ? raw : '';
+/** What was configured, before the Android emulator rewrite. */
+export const CONFIGURED_URL = secure || localDev ? raw : '';
+
+/**
+ * Where requests actually go.
+ *
+ * On an Android emulator in development this is not what `.env` says: see
+ * `host.ts`. Everywhere else the two are identical.
+ */
+export const HUB_URL = reachableUrl(CONFIGURED_URL);
 export const isConfigured = Boolean(HUB_URL);
 
 if (__DEV__ && raw && !HUB_URL) {
