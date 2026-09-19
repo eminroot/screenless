@@ -62,10 +62,13 @@ export const BUDDY_IDS = [
   // Three robots rather than one, each drawn in the register of an age
   // band: `robot` is round and pastel, `scout` is kitted out for going
   // somewhere, `byte` is near-black and says almost nothing. Any child can
-  // still pick any of them; the ages are who each was drawn for.
+  // still pick any of them; the ages are who each was drawn for. `sprout` is
+  // the odd one out: a white helmet with real eyes rather than glow shapes,
+  // and the only buddy in the set whose badge says what the app promises.
   'robot',
   'scout',
   'byte',
+  'sprout',
   'cat',
   'dino',
   'owl',

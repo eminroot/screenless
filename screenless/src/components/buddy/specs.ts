@@ -49,6 +49,14 @@ export const buddySpecs: Record<BuddyId, BuddySpec> = {
     shade: '#1B212A',
     affinity: ['science', 'music', 'books'],
   },
+  sprout: {
+    id: 'sprout',
+    body: '#F2F4F1',
+    light: '#FFFFFF',
+    accent: '#7FB49A',
+    shade: '#CBD4CE',
+    affinity: ['nature', 'cooking', 'books'],
+  },
   cat: {
     id: 'cat',
     body: '#B79BFF',
@@ -154,6 +162,7 @@ export const buddyOrder: BuddyId[] = [
   'robot',
   'scout',
   'byte',
+  'sprout',
   'rocket',
   'star',
 ];
@@ -168,6 +177,7 @@ export const newBuddies = new Set<BuddyId>([
   'rocket',
   'scout',
   'byte',
+  'sprout',
 ]);
 
 function affinityScore(id: BuddyId, interests: InterestId[]): number {

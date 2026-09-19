@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Fide, the fourth ScreenLess robot.
+
+  The same geometry the app draws in src/components/buddy, exported flat so it
+  can go on a poster or a slide without running React. Keep the two in step: if
+  the buddy changes in the app, re-export rather than editing this by hand.
+
+  The odd one out of the four: a white helmet with a drawn face rather than a
+  readout, and a seedling on the chest instead of a star or a bolt. The badge
+  is the app's own promise, not an eco mark — the buddy grows with every
+  mission the child finishes.
+
+  Mood here is `happy`. The `idle` face is in the comment at the bottom.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-18 -30 236 254" width="472" height="508" role="img" aria-label="Fide, the ScreenLess robot">
+  <title>Fide, the ScreenLess robot</title>
+
+  <!-- feet, with soles and toe caps -->
+  <ellipse cx="78" cy="196" rx="18" ry="11" fill="#F2F4F1" stroke="#2A2118" stroke-width="5"/>
+  <ellipse cx="122" cy="196" rx="18" ry="11" fill="#F2F4F1" stroke="#2A2118" stroke-width="5"/>
+  <path d="M60,199 A18,11 0 0 0 96,199 Z" fill="#7FB49A"/>
+  <path d="M104,199 A18,11 0 0 0 140,199 Z" fill="#7FB49A"/>
+  <circle cx="78" cy="193" r="4" fill="#FFB338"/>
+  <circle cx="122" cy="193" r="4" fill="#FFB338"/>
+
+  <!-- back arm and its mitt -->
+  <ellipse cx="56" cy="150" rx="12" ry="21" fill="#F2F4F1" stroke="#2A2118" stroke-width="5" transform="rotate(20,56,150)"/>
+  <circle cx="56" cy="172" r="7.5" fill="#7FB49A" stroke="#2A2118" stroke-width="4" transform="rotate(20,56,150)"/>
+
+  <!-- body, pack straps and the seedling badge -->
+  <g>
+    <ellipse cx="100" cy="156" rx="44" ry="41" fill="#F2F4F1" stroke="#2A2118" stroke-width="5"/>
+    <path d="M56,156 A44,41 0 0 0 144,156 Z" fill="#CBD4CE" opacity="0.55"/>
+    <path d="M68,126 Q63,152 70,176" stroke="#7FB49A" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M132,126 Q137,152 130,176" stroke="#7FB49A" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="100" cy="158" r="18" fill="#FFFFFF" stroke="#2A2118" stroke-width="4"/>
+    <path d="M100,170 L100,154" stroke="#5A907A" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M99,156 C90,156 85,150 86,143 C94,142 99,148 99,156 Z" fill="#7FB49A" stroke="#5A907A" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M101,152 C110,152 115,146 114,139 C106,138 101,144 101,152 Z" fill="#7FB49A" stroke="#5A907A" stroke-width="2" stroke-linejoin="round"/>
+  </g>
+
+  <!-- front arm and its mitt -->
+  <ellipse cx="144" cy="150" rx="12" ry="21" fill="#F2F4F1" stroke="#2A2118" stroke-width="5" transform="rotate(-20,144,150)"/>
+  <circle cx="144" cy="172" r="7.5" fill="#7FB49A" stroke="#2A2118" stroke-width="4" transform="rotate(-20,144,150)"/>
+
+  <!-- antenna -->
+  <path d="M100,30 L100,10" stroke="#2A2118" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="100" cy="4" r="11.5" fill="#FFB338" stroke="#2A2118" stroke-width="5"/>
+  <circle cx="96" cy="0" r="3.6" fill="#FFFFFF" opacity="0.8"/>
+
+  <!-- ear cups with amber lenses -->
+  <circle cx="28" cy="88" r="17" fill="#7FB49A" stroke="#2A2118" stroke-width="5"/>
+  <ellipse cx="31" cy="88" rx="8" ry="12" fill="#FFB338"/>
+  <circle cx="172" cy="88" r="17" fill="#7FB49A" stroke="#2A2118" stroke-width="5"/>
+  <ellipse cx="169" cy="88" rx="8" ry="12" fill="#FFB338"/>
+
+  <!-- helmet -->
+  <path d="M48,134 Q40,134 40,125 L40,84 C40,48 66,24 100,24 C134,24 160,48 160,84 L160,125 Q160,134 152,134 Z"
+        fill="#F2F4F1" stroke="#2A2118" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M60,50 C70,38 82,33 96,33" stroke="#FFFFFF" stroke-width="7" opacity="0.85" fill="none" stroke-linecap="round"/>
+  <rect x="86" y="21" width="28" height="11" rx="5" fill="#7FB49A" stroke="#2A2118" stroke-width="4"/>
+
+  <!-- screen -->
+  <rect x="58" y="50" width="84" height="62" rx="24" fill="#1B1710" stroke="#2A2118" stroke-width="4"/>
+  <path d="M72,57 Q100,52 128,57" stroke="#FFFFFF" stroke-width="3" opacity="0.16" fill="none" stroke-linecap="round"/>
+
+  <!-- face: happy -->
+  <path d="M68,62 Q80,53 92,59" stroke="#3FBFA0" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M132,62 Q120,53 108,59" stroke="#3FBFA0" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M69,88 Q80,71 91,88 Z" fill="#FFFFFF"/>
+  <path d="M109,88 Q120,71 131,88 Z" fill="#FFFFFF"/>
+  <ellipse cx="62" cy="99" rx="8.5" ry="5" fill="#FF9A57" opacity="0.6"/>
+  <ellipse cx="138" cy="99" rx="8.5" ry="5" fill="#FF9A57" opacity="0.6"/>
+  <path d="M88,97 Q100,113 112,97 Z" fill="#E8546B" stroke="#E8546B" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M94,105 Q100,112 106,105 Z" fill="#FF9FB0"/>
+
+  <!--
+    idle face, if you want it calmer:
+      <ellipse cx="80" cy="82" rx="13" ry="15" fill="#FFFFFF"/>
+      <ellipse cx="120" cy="82" rx="13" ry="15" fill="#FFFFFF"/>
+      <circle cx="81" cy="83" r="9" fill="#3FBFA0"/>  <circle cx="119" cy="83" r="9" fill="#3FBFA0"/>
+      <circle cx="81" cy="83" r="5.5" fill="#15201C"/> <circle cx="119" cy="83" r="5.5" fill="#15201C"/>
+      <circle cx="77" cy="77" r="4" fill="#FFFFFF"/>   <circle cx="115" cy="77" r="4" fill="#FFFFFF"/>
+      <path d="M91,98 Q100,107 109,98" stroke="#E8546B" stroke-width="5" fill="none" stroke-linecap="round"/>
+  -->
+</svg>

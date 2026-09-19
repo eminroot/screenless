@@ -237,6 +237,17 @@ export function Buddy({ id, size = 200, mood = 'idle', wearing = [], label, stil
         <Ellipse cx={78} cy={196} rx={18} ry={11} fill={limb} stroke={INK} strokeWidth={STROKE} />
         <Ellipse cx={122} cy={196} rx={18} ry={11} fill={limb} stroke={INK} strokeWidth={STROKE} />
 
+        {/* Soles and toe caps. Only the white one has them: on every other
+            buddy the foot is already a different colour from the ground. */}
+        {id === 'sprout' && (
+          <G>
+            <Path d="M60,199 A18,11 0 0 0 96,199 Z" fill={spec.accent} />
+            <Path d="M104,199 A18,11 0 0 0 140,199 Z" fill={spec.accent} />
+            <Circle cx={78} cy={193} r={4} fill={SPROUT_AMBER} />
+            <Circle cx={122} cy={193} r={4} fill={SPROUT_AMBER} />
+          </G>
+        )}
+
         {wears.has('ball') && (
           <G>
             <Circle cx={36} cy={188} r={19} fill="#FFFFFF" stroke={INK} strokeWidth={STROKE} />
@@ -263,7 +274,7 @@ export function Buddy({ id, size = 200, mood = 'idle', wearing = [], label, stil
             cx={56}
             cy={172}
             r={7.5}
-            fill={spec.shade}
+            fill={mittColor(spec)}
             stroke={INK}
             strokeWidth={4}
             transform="rotate(20, 56, 150)"
@@ -300,7 +311,7 @@ export function Buddy({ id, size = 200, mood = 'idle', wearing = [], label, stil
             cx={144}
             cy={172}
             r={7.5}
-            fill={spec.shade}
+            fill={mittColor(spec)}
             stroke={INK}
             strokeWidth={4}
             transform={armUp ? 'rotate(-58, 144, 158)' : 'rotate(-20, 144, 150)'}
@@ -561,7 +572,46 @@ export function Buddy({ id, size = 200, mood = 'idle', wearing = [], label, stil
 /* ---------------------------------------------------------------- pieces */
 
 /** Body, the shadow that gives it volume, and the belly. */
+/** The white robot's mitts read as nothing against its own pale shade. */
+function mittColor(spec: BuddySpec): string {
+  return spec.id === 'sprout' ? spec.accent : spec.shade;
+}
+
+/** Two tones the white robot needs that a `BuddySpec` has nowhere to put. */
+const SPROUT_STEM = '#5A907A';
+const SPROUT_AMBER = '#FFB338';
+
 function ChestPlate({ id, spec }: { id: BuddyId; spec: BuddySpec }) {
+  if (id === 'sprout') {
+    return (
+      <G>
+        {/* Pack straps, from the reference's little rucksack. They also give a
+            white body something to be read against. */}
+        <Path d="M68,126 Q63,152 70,176" stroke={spec.accent} strokeWidth={7} fill="none" strokeLinecap="round" />
+        <Path d="M132,126 Q137,152 130,176" stroke={spec.accent} strokeWidth={7} fill="none" strokeLinecap="round" />
+        {/* A seedling rather than a star or a bolt. It is the only badge in the
+            set that says what the app actually promises: the buddy grows with
+            every mission the child finishes. */}
+        <Circle cx={100} cy={158} r={18} fill={spec.light} stroke={INK} strokeWidth={4} />
+        <Path d="M100,170 L100,154" stroke={SPROUT_STEM} strokeWidth={3.5} strokeLinecap="round" />
+        <Path
+          d="M99,156 C90,156 85,150 86,143 C94,142 99,148 99,156 Z"
+          fill={spec.accent}
+          stroke={SPROUT_STEM}
+          strokeWidth={2}
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M101,152 C110,152 115,146 114,139 C106,138 101,144 101,152 Z"
+          fill={spec.accent}
+          stroke={SPROUT_STEM}
+          strokeWidth={2}
+          strokeLinejoin="round"
+        />
+      </G>
+    );
+  }
+
   if (id === 'byte') {
     return (
       <G>

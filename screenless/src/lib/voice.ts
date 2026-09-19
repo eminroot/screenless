@@ -21,6 +21,7 @@ export const buddyVoices: Record<BuddyId, VoiceProfile> = {
   robot: { pitch: 0.85, rate: 0.92 },
   scout: { pitch: 1.1, rate: 1.06 },
   byte: { pitch: 0.7, rate: 0.95 },
+  sprout: { pitch: 1.15, rate: 0.98 },
   cat: { pitch: 1.35, rate: 1.02 },
   dino: { pitch: 0.8, rate: 0.88 },
   owl: { pitch: 1.05, rate: 0.9 },

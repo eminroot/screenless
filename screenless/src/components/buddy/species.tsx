@@ -25,6 +25,25 @@ export const SCREEN_GLOW = '#EAFFF8';
  */
 export const TEEN_ACID = '#CDFF47';
 
+/**
+ * The white robot's own colours.
+ *
+ * It is the only buddy in the set with a face rather than a readout: real eyes
+ * with irises, brows above them and a mouth with a tongue in it. So it needs a
+ * few tones the shared `BuddySpec` has nowhere to put, and they live here next
+ * to the drawing that uses them.
+ */
+const SPROUT = {
+  sage: '#7FB49A',
+  sageDeep: '#5A907A',
+  amber: '#FFB338',
+  iris: '#3FBFA0',
+  pupil: '#15201C',
+  lip: '#E8546B',
+  tongue: '#FF9FB0',
+  blush: '#FF9A57',
+} as const;
+
 /** A soft light patch on the head, placed by hand so it never lands on a hat. */
 export type Highlight = { cx: number; cy: number; rx: number; ry: number };
 
@@ -62,6 +81,7 @@ export const faceLayouts: Record<BuddyId, FaceLayout> = {
   robot: { ...defaultFace, brows: false, cheeks: false, highlight: null },
   scout: { ...defaultFace, brows: false, cheeks: false, highlight: null },
   byte: { ...defaultFace, brows: false, cheeks: false, highlight: null },
+  sprout: { ...defaultFace, brows: false, cheeks: false, highlight: null },
   star: {
     eyeX: 84,
     eyeY: 78,
@@ -212,6 +232,7 @@ export function BackParts({ id, spec }: { id: BuddyId; spec: BuddySpec }) {
     case 'robot':
     case 'scout':
     case 'byte':
+    case 'sprout':
       return null;
 
     case 'star':
@@ -516,6 +537,41 @@ export function HeadShape({ id, spec }: { id: BuddyId; spec: BuddySpec }) {
         </G>
       );
 
+    case 'sprout':
+      return (
+        <G>
+          <Path d="M100,30 L100,10" stroke={INK} strokeWidth={6} strokeLinecap="round" />
+          <Circle cx={100} cy={4} r={11.5} fill={SPROUT.amber} stroke={INK} strokeWidth={STROKE} />
+          <Circle cx={96} cy={0} r={3.6} fill="#FFFFFF" opacity={0.8} />
+
+          {/* Ear cups with an amber lens, which is the one warm note on an
+              otherwise white and sage character. */}
+          <Circle cx={28} cy={88} r={17} fill={SPROUT.sage} stroke={INK} strokeWidth={STROKE} />
+          <Ellipse cx={31} cy={88} rx={8} ry={12} fill={SPROUT.amber} />
+          <Circle cx={172} cy={88} r={17} fill={SPROUT.sage} stroke={INK} strokeWidth={STROKE} />
+          <Ellipse cx={169} cy={88} rx={8} ry={12} fill={SPROUT.amber} />
+
+          {/* A helmet rather than a box: domed top, straight sides. Drawn as a
+              path because a Rect's corner radius applies to all four. */}
+          <Path
+            d="M48,134 Q40,134 40,125 L40,84 C40,48 66,24 100,24 C134,24 160,48 160,84 L160,125 Q160,134 152,134 Z"
+            fill={spec.body}
+            stroke={INK}
+            strokeWidth={STROKE}
+            strokeLinejoin="round"
+          />
+          <Path d="M60,50 C70,38 82,33 96,33" stroke="#FFFFFF" strokeWidth={7} opacity={0.85} fill="none" strokeLinecap="round" />
+
+          {/* The collar sits on the crown, drawn after the shell. Behind it,
+              the shell simply swallowed it. */}
+          <Rect x={86} y={21} width={28} height={11} rx={5} fill={SPROUT.sage} stroke={INK} strokeWidth={4} />
+
+          <Rect x={58} y={50} width={84} height={62} rx={24} fill={palette.night} stroke={INK} strokeWidth={4} />
+          <Path d="M72,57 Q100,52 128,57" stroke="#FFFFFF" strokeWidth={3} opacity={0.16} fill="none" strokeLinecap="round" />
+        </G>
+      );
+
+
     case 'star':
       return (
         <Path
@@ -659,7 +715,7 @@ export function HeadShape({ id, spec }: { id: BuddyId; spec: BuddySpec }) {
 /* ------------------------------------------------------------ screen faces */
 
 /** The three buddies whose expression is drawn on a screen, not on a head. */
-const SCREEN_FACED = new Set<BuddyId>(['robot', 'scout', 'byte']);
+const SCREEN_FACED = new Set<BuddyId>(['robot', 'scout', 'byte', 'sprout']);
 
 export function isScreenFaced(id: BuddyId): boolean {
   return SCREEN_FACED.has(id);
@@ -689,6 +745,88 @@ export function ScreenFace({
   closed: boolean;
   frame: number;
 }) {
+  // The white one is the exception in the exception: its screen carries a
+  // drawn face, with irises, brows and a tongue, rather than lit shapes. That
+  // is what makes it read as a toy robot instead of a device with a face on it.
+  if (id === 'sprout') {
+    const brows = (
+      <G>
+        <Path d="M68,62 Q80,54 92,60" stroke={SPROUT.iris} strokeWidth={5} fill="none" strokeLinecap="round" />
+        <Path d="M132,62 Q120,54 108,60" stroke={SPROUT.iris} strokeWidth={5} fill="none" strokeLinecap="round" />
+      </G>
+    );
+    const cheeks = (
+      <G>
+        <Ellipse cx={62} cy={99} rx={8.5} ry={5} fill={SPROUT.blush} opacity={0.6} />
+        <Ellipse cx={138} cy={99} rx={8.5} ry={5} fill={SPROUT.blush} opacity={0.6} />
+      </G>
+    );
+
+    let eyes;
+    if (closed) {
+      eyes = (
+        <G>
+          <Path d="M69,84 Q80,92 91,84" stroke="#FFFFFF" strokeWidth={6} fill="none" strokeLinecap="round" />
+          <Path d="M109,84 Q120,92 131,84" stroke="#FFFFFF" strokeWidth={6} fill="none" strokeLinecap="round" />
+        </G>
+      );
+    } else if (mood === 'happy' || mood === 'cheer') {
+      eyes = (
+        <G>
+          <Path d="M69,88 Q80,71 91,88 Z" fill="#FFFFFF" />
+          <Path d="M109,88 Q120,71 131,88 Z" fill="#FFFFFF" />
+        </G>
+      );
+    } else {
+      // Sleepy drops the lids rather than changing the eye, so the iris stays.
+      const lid = mood === 'sleepy' ? 6 : 0;
+      eyes = (
+        <G>
+          <Ellipse cx={80} cy={82} rx={13} ry={15 - lid} fill="#FFFFFF" />
+          <Ellipse cx={120} cy={82} rx={13} ry={15 - lid} fill="#FFFFFF" />
+          <Circle cx={81} cy={83} r={9 - lid} fill={SPROUT.iris} />
+          <Circle cx={119} cy={83} r={9 - lid} fill={SPROUT.iris} />
+          <Circle cx={81} cy={83} r={5.5 - lid / 2} fill={SPROUT.pupil} />
+          <Circle cx={119} cy={83} r={5.5 - lid / 2} fill={SPROUT.pupil} />
+          <Circle cx={77} cy={77 + lid} r={4 - lid / 3} fill="#FFFFFF" />
+          <Circle cx={115} cy={77 + lid} r={4 - lid / 3} fill="#FFFFFF" />
+        </G>
+      );
+    }
+
+    let mouth;
+    if (mood === 'happy' || mood === 'cheer') {
+      mouth = (
+        <G>
+          <Path d="M88,97 Q100,113 112,97 Z" fill={SPROUT.lip} stroke={SPROUT.lip} strokeWidth={3} strokeLinejoin="round" />
+          <Path d="M94,105 Q100,112 106,105 Z" fill={SPROUT.tongue} />
+        </G>
+      );
+    } else if (mood === 'talking') {
+      mouth =
+        frame === 1 ? (
+          <Ellipse cx={100} cy={101} rx={11} ry={6} fill={SPROUT.lip} />
+        ) : (
+          <Ellipse cx={100} cy={101} rx={8} ry={9} fill={SPROUT.lip} />
+        );
+    } else if (mood === 'sleepy') {
+      mouth = <Ellipse cx={100} cy={102} rx={6} ry={7} fill={SPROUT.lip} opacity={0.85} />;
+    } else {
+      mouth = (
+        <Path d="M91,98 Q100,107 109,98" stroke={SPROUT.lip} strokeWidth={5} fill="none" strokeLinecap="round" />
+      );
+    }
+
+    return (
+      <G>
+        {brows}
+        {eyes}
+        {cheeks}
+        {mouth}
+      </G>
+    );
+  }
+
   if (id === 'byte') {
     const lively = mood === 'happy' || mood === 'cheer';
     const thin = closed || mood === 'sleepy';
