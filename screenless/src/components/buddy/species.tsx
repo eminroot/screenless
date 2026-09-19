@@ -6,6 +6,15 @@ import { INK, type BuddySpec } from './specs';
 
 export const STROKE = 5;
 
+/**
+ * What the robot's face is drawn in.
+ *
+ * Its features sit on a dark screen rather than on a light head, so they are
+ * the one face in the set drawn in light on dark. Slightly cool and not quite
+ * white, which reads as a lit panel instead of paint.
+ */
+export const SCREEN_GLOW = '#EAFFF8';
+
 /** A soft light patch on the head, placed by hand so it never lands on a hat. */
 export type Highlight = { cx: number; cy: number; rx: number; ry: number };
 
@@ -183,13 +192,11 @@ export function BackParts({ id, spec }: { id: BuddyId; spec: BuddySpec }) {
         </G>
       );
 
+    // The robot used to carry a vented box out to one side here. With the ear
+    // cups, bolts, chest plate and jointed limbs it now has, that box was one
+    // shape too many and only broke the silhouette.
     case 'robot':
-      return (
-        <G>
-          <Rect x={146} y={132} width={30} height={44} rx={10} fill={spec.accent} stroke={INK} strokeWidth={STROKE} />
-          <Path d="M154,146 L168,146 M154,158 L168,158" stroke={INK} strokeWidth={4} strokeLinecap="round" />
-        </G>
-      );
+      return null;
 
     case 'star':
       return (
@@ -397,12 +404,42 @@ export function HeadShape({ id, spec }: { id: BuddyId; spec: BuddySpec }) {
     case 'robot':
       return (
         <G>
-          <Path d="M100,34 L100,6" stroke={INK} strokeWidth={6} strokeLinecap="round" />
-          <Circle cx={100} cy={0} r={11} fill={palette.coral} stroke={INK} strokeWidth={STROKE} />
-          <Rect x={44} y={36} width={112} height={98} rx={28} fill={spec.body} stroke={INK} strokeWidth={STROKE} />
-          <Rect x={62} y={62} width={76} height={46} rx={20} fill={spec.light} stroke={INK} strokeWidth={4} />
-          <Circle cx={34} cy={90} r={13} fill={spec.accent} stroke={INK} strokeWidth={STROKE} />
-          <Circle cx={166} cy={90} r={13} fill={spec.accent} stroke={INK} strokeWidth={STROKE} />
+          {/* Antenna. The bulb is the one warm colour on a cool character, so
+              the eye goes to the top of the head first. */}
+          <Path d="M100,36 L100,10" stroke={INK} strokeWidth={7} strokeLinecap="round" />
+          <Circle cx={100} cy={2} r={11.5} fill={palette.coral} stroke={INK} strokeWidth={STROKE} />
+          <Circle cx={96} cy={-2} r={3.6} fill="#FFFFFF" opacity={0.75} />
+
+          {/* Ear cups, set outside the shell so the head reads wide rather
+              than tall. They also give a hat somewhere to sit. */}
+          <Circle cx={30} cy={86} r={17} fill={spec.accent} stroke={INK} strokeWidth={STROKE} />
+          <Circle cx={30} cy={86} r={7} fill={spec.shade} />
+          <Circle cx={170} cy={86} r={17} fill={spec.accent} stroke={INK} strokeWidth={STROKE} />
+          <Circle cx={170} cy={86} r={7} fill={spec.shade} />
+
+          <Rect x={40} y={30} width={120} height={106} rx={34} fill={spec.body} stroke={INK} strokeWidth={STROKE} />
+
+          {/* Four bolts. The one detail that still says machine at the size the
+              friends board draws these. */}
+          <Circle cx={54} cy={46} r={3.4} fill={spec.shade} />
+          <Circle cx={146} cy={46} r={3.4} fill={spec.shade} />
+          <Circle cx={54} cy={124} r={3.4} fill={spec.shade} />
+          <Circle cx={146} cy={124} r={3.4} fill={spec.shade} />
+
+          {/* The screen. Dark, so the face on it reads as emitted light rather
+              than as drawn-on features: it is the whole reason this one is a
+              robot and not a blue animal with a square head. */}
+          <Rect x={56} y={54} width={88} height={62} rx={22} fill={palette.night} stroke={INK} strokeWidth={4} />
+          {/* Glass, as a hairline along the top inside edge. A diagonal wedge
+              was tried here first and read as a smudge on the screen. */}
+          <Path
+            d="M70,60 Q100,55 130,60"
+            stroke="#FFFFFF"
+            strokeWidth={3}
+            opacity={0.18}
+            fill="none"
+            strokeLinecap="round"
+          />
         </G>
       );
 
