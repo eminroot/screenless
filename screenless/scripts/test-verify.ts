@@ -626,10 +626,10 @@ section('the week long team goals');
   );
 }
 
-section('ages 10 to 14 finish where they stand');
+section('ages 10 to 13 finish where they stand');
 {
-  const base = { history: [] as Mission[], band: '10-14' as const, spotChecks: 'some' as const, now: NOW };
-  ok('three policies, one per band', reviewPolicy('3-5') === 'parent' && reviewPolicy('6-9') === 'sample' && reviewPolicy('10-14') === 'self');
+  const base = { history: [] as Mission[], band: '10-13' as const, spotChecks: 'some' as const, now: NOW };
+  ok('three policies, one per band', reviewPolicy('3-5') === 'parent' && reviewPolicy('6-9') === 'sample' && reviewPolicy('10-13') === 'self');
 
   const focus = task('teen-goal-focus');
   const backed = decideReview({

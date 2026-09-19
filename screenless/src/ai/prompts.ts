@@ -4,7 +4,7 @@ import type { AgeBand, ChildProfile, InterestId, Mission } from '../state/types'
 const ageWords: Record<AgeBand, string> = {
   '3-5': '3 to 5',
   '6-9': '6 to 9',
-  '10-14': '10 to 14',
+  '10-13': '10 to 13',
 };
 
 const interestWords: Record<InterestId, string> = {

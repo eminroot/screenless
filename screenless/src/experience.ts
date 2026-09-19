@@ -17,7 +17,7 @@ import type { AgeBand } from './state/types';
  * - Ages 6-9 get `src/junior`: an expedition on a deep indigo ground, vivid
  *   comic blocks cut out in ink and dropped on hard shadows, icons that are
  *   objects rather than symbols, and the numbers written out.
- * - Ages 10-14 get `src/teen`: near-black, hairline rules, one acid accent,
+ * - Ages 10-13 get `src/teen`: near-black, hairline rules, one acid accent,
  *   large tight numerals, and the buddy shrunk to an avatar beside a line of
  *   text. The framing shifts from a mission handed over to a log kept.
  *
@@ -35,7 +35,7 @@ export type Experience = 'little' | 'junior' | 'teen' | 'classic';
 export function experienceFor(band: AgeBand | undefined): Experience {
   if (band === '3-5') return 'little';
   if (band === '6-9') return 'junior';
-  if (band === '10-14') return 'teen';
+  if (band === '10-13') return 'teen';
   return 'classic';
 }
 

@@ -18,19 +18,25 @@ import {
 /**
  * Every age group the app has ever had, and where each one goes now.
  *
- * Two rounds of regrouping are folded in here: the July 2026 groups (4-5, 6-7,
- * 8-10) and the September 2026 ones (6-8, 9-11). A band always moves *up* when
- * it straddles a boundary, because most of its ages sit in the higher group —
- * 9-11 is two thirds 10 and 11, and 8-10 is two thirds 9 and 10. A parent can
- * change it in the parent area either way, so erring upwards only ever costs
- * one tap and never leaves an older child with a toddler interface.
+ * Three rounds of regrouping are folded in here: the July 2026 groups (4-5,
+ * 6-7, 8-10), the September 2026 ones (6-8, 9-11), and the narrowing of the
+ * top band from 10-14 to 10-13. A band always moves *up* when it straddles a
+ * boundary, because most of its ages sit in the higher group — 9-11 is two
+ * thirds 10 and 11, and 8-10 is two thirds 9 and 10. A parent can change it in
+ * the parent area either way, so erring upwards only ever costs one tap and
+ * never leaves an older child with a toddler interface.
+ *
+ * 10-14 is the one entry that moves *down*, and it is not a judgement call:
+ * there is no higher band to move to, and a fourteen year old on a phone set
+ * up before this change keeps the same interface either way.
  */
 const LEGACY_AGE_BANDS: Record<string, AgeBand> = {
   '4-5': '3-5',
   '6-7': '6-9',
-  '8-10': '10-14',
+  '8-10': '10-13',
   '6-8': '6-9',
-  '9-11': '10-14',
+  '9-11': '10-13',
+  '10-14': '10-13',
 };
 
 export function migrateAgeBand(value: unknown, fallback: AgeBand = '6-9'): AgeBand {

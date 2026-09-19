@@ -1,7 +1,7 @@
 import type { LibraryTask } from './tasks';
 
 /**
- * The 10-14 curriculum.
+ * The 10-13 curriculum.
  *
  * Emin's four strands, five each: personal goals and self-management, physical
  * wellbeing, real life projects, and contributing at home. His brief for the
@@ -40,7 +40,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 7,
     emoji: '🎯',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     partsOfDay: ['morning'],
     title: { en: 'Three goals for today', tr: 'Bugün için üç hedef', az: 'Bu gün üçün üç məqsəd' },
     body: {
@@ -67,7 +67,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 24,
     emoji: '⏳',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: { en: 'A 20 minute focus block', tr: '20 dakikalık odak bloğu', az: '20 dəqiqəlik fokus bloku' },
     body: {
       en: 'Pick one thing, put the phone face down and work on it for twenty minutes. No tabs, no checking.',
@@ -96,7 +96,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 12,
     emoji: '🗒️',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     partsOfDay: ['evening'],
     title: { en: 'Tomorrow, on paper', tr: 'Yarın, kağıt üstünde', az: 'Sabah, kağız üzərində' },
     body: {
@@ -142,7 +142,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 7,
     emoji: '📉',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     tool: 'weekGoal',
     title: {
       en: 'Set your screen free target',
@@ -182,7 +182,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 12,
     emoji: '🪫',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'The habit that eats your time',
       tr: 'Zamanını yiyen alışkanlık',
@@ -213,7 +213,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 16,
     emoji: '🚶',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: { en: 'Fifteen minutes, quick pace', tr: 'On beş dakika, hızlı tempo', az: 'On beş dəqiqə, sürətli temp' },
     body: {
       en: 'Walk for fifteen minutes at a pace you could not hold a long conversation at. Phone in your pocket.',
@@ -229,7 +229,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 16,
     emoji: '👣',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: { en: '1,500 steps', tr: '1.500 adım', az: '1.500 addım' },
     body: {
       en: 'A short target, not a big one: fifteen hundred steps, whenever it suits you today.',
@@ -245,7 +245,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 12,
     emoji: '🧘',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: { en: 'Ten minutes of stretching', tr: 'On dakika esneme', az: 'On dəqiqə dartınma' },
     body: {
       en: 'Ten slow minutes on whatever is tight. Hold each one long enough to get boring.',
@@ -273,7 +273,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 16,
     emoji: '🏀',
     interests: ['football'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     mode: 'duo',
     title: { en: 'Ball game with someone', tr: 'Biriyle top oyunu', az: 'Biri ilə top oyunu' },
     body: {
@@ -295,7 +295,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 7,
     emoji: '🔄',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: { en: 'Break the sitting', tr: 'Oturmayı böl', az: 'Oturmağı böl' },
     body: {
       en: 'You have been sitting a while. Five minutes of anything that is not sitting: stairs, a lap outside, press-ups.',
@@ -313,7 +313,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 16,
     emoji: '💰',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: { en: 'A budget that is yours', tr: 'Sana ait bir bütçe', az: 'Sənə aid büdcə' },
     body: {
       en: 'Work out your own month: what comes in, what goes out, what is left, and what the rest is for.',
@@ -355,7 +355,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 20,
     emoji: '🗂️',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     place: 'indoor',
     beforePhoto: true,
     title: { en: 'Rebuild your desk', tr: 'Masanı yeniden kur', az: 'Masanı yenidən qur' },
@@ -388,7 +388,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 20,
     emoji: '♻️',
     interests: ['science'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Something useful out of the bin',
       tr: 'Çöpten çıkan işe yarar bir şey',
@@ -429,7 +429,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 16,
     emoji: '📋',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: { en: 'A rota the family will use', tr: 'Ailenin kullanacağı bir çizelge', az: 'Ailənin istifadə edəcəyi cədvəl' },
     body: {
       en: 'Draw up the week’s jobs and who does them, then put it in front of the family and see if it survives.',
@@ -466,7 +466,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 26,
     emoji: '🍳',
     interests: ['cooking'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     place: 'indoor',
     mode: 'duo',
     title: { en: 'Cook it with an adult', tr: 'Bir yetişkinle pişir', az: 'Böyüklə birlikdə bişir' },
@@ -491,7 +491,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 13,
     emoji: '🫱',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'One job, nobody asked',
       tr: 'Kimse söylemeden bir iş',
@@ -523,7 +523,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 12,
     emoji: '🍽️',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     place: 'indoor',
     partsOfDay: ['evening'],
     title: { en: 'Clear up after the meal', tr: 'Yemekten sonra topla', az: 'Yeməkdən sonra yığışdır' },
@@ -556,7 +556,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 20,
     emoji: '📐',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Sit with a younger one',
       tr: 'Küçük biriyle otur',
@@ -588,7 +588,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 12,
     emoji: '🛏️',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     place: 'indoor',
     title: { en: 'A plan for your own room', tr: 'Kendi odan için bir plan', az: 'Öz otağın üçün plan' },
     body: {
@@ -618,7 +618,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 26,
     emoji: '📵',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     mode: 'duo',
     partsOfDay: ['evening'],
     title: {
@@ -660,7 +660,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 16,
     emoji: '⚖️',
     interests: ['books', 'science'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Two sources, one question',
       tr: 'İki kaynak, tek soru',
@@ -710,7 +710,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 20,
     emoji: '📖',
     interests: ['books'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Fifteen minutes, three ideas',
       tr: 'On beş dakika, üç fikir',
@@ -740,7 +740,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 14,
     emoji: '🔍',
     interests: ['science'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Is that actually true?',
       tr: 'Bu gerçekten doğru mu?',
@@ -783,7 +783,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 12,
     emoji: '📣',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'How the advert works on you',
       tr: 'Reklam sana nasıl çalışıyor',
@@ -826,7 +826,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 13,
     emoji: '🎭',
     interests: ['books'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Would you have done that?',
       tr: 'Sen olsan yapar mıydın?',
@@ -867,7 +867,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 20,
     emoji: '✍️',
     interests: ['books', 'drawing'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: { en: 'Write the thing', tr: 'Şu şeyi yaz', az: 'O şeyi yaz' },
     body: {
       en: 'A short story or a poem, your choice. Nobody is marking it and nobody has to read it.',
@@ -900,7 +900,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 24,
     emoji: '🗯️',
     interests: ['drawing'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     place: 'indoor',
     proof: 'photo',
     objects: ['paper', 'pencil'],
@@ -948,7 +948,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 13,
     emoji: '🥁',
     interests: ['music'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: { en: 'A rhythm with no app', tr: 'Uygulamasız bir ritim', az: 'Tətbiqsiz bir ritm' },
     body: {
       en: 'Build a rhythm out of whatever is in the room: a table, a pen, a cup, your hands. Keep it going for a minute without losing it.',
@@ -981,7 +981,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 14,
     emoji: '🪟',
     interests: ['nature', 'books'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Describe it instead of photographing it',
       tr: 'Fotoğrafını çekmek yerine anlat',
@@ -1014,7 +1014,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 24,
     emoji: '🎲',
     interests: ['building', 'science'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     place: 'indoor',
     proof: 'photo',
     objects: ['paper', 'pencil'],
@@ -1073,7 +1073,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 14,
     emoji: '🫖',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     partsOfDay: ['evening'],
     title: {
       en: 'Ten minutes, no phones',
@@ -1107,7 +1107,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 12,
     emoji: '🤙',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Ask them out to do something',
       tr: 'Bir şey yapmaya çağır',
@@ -1140,7 +1140,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 16,
     emoji: '📻',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Ask them what they were like',
       tr: 'Nasıl biri olduğunu sor',
@@ -1177,7 +1177,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 26,
     emoji: '♟️',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     place: 'indoor',
     title: {
       en: 'A game across a table',
@@ -1215,7 +1215,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 13,
     emoji: '💬',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Say it as "I felt"',
       tr: '"Ben hissettim" diye söyle',
@@ -1271,7 +1271,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 12,
     emoji: '🤔',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     partsOfDay: ['evening'],
     title: {
       en: 'Three times you picked it up',
@@ -1306,7 +1306,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 10,
     emoji: '🌀',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     partsOfDay: ['evening'],
     title: {
       en: 'What came before the long one',
@@ -1348,7 +1348,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 26,
     emoji: '⏸️',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Open it half an hour later',
       tr: 'Yarım saat sonra aç',
@@ -1385,7 +1385,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 26,
     emoji: '🔕',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Notifications off, properly',
       tr: 'Bildirimler kapalı, gerçekten',
@@ -1420,7 +1420,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 16,
     emoji: '🔁',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Swap it for something else',
       tr: 'Yerine başka bir şey koy',
@@ -1473,7 +1473,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 8,
     emoji: '🫁',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: { en: 'Three minutes of breathing', tr: 'Üç dakika nefes', az: 'Üç dəqiqə nəfəs' },
     body: {
       en: 'Three minutes. In for four, hold for four, out for six. Phone down, eyes wherever you like.',
@@ -1521,7 +1521,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 9,
     emoji: '⏱️',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: { en: 'Wait five minutes first', tr: 'Önce beş dakika bekle', az: 'Əvvəlcə beş dəqiqə gözlə' },
     body: {
       en: 'Next time your hand goes for the phone with no reason behind it, start this and wait five minutes before you open anything.',
@@ -1549,7 +1549,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 14,
     emoji: '🖤',
     interests: ['drawing'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Get it out of your head',
       tr: 'Kafandan çıkar',
@@ -1582,7 +1582,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 22,
     emoji: '🚫',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Twenty minutes, nothing buzzing',
       tr: 'Yirmi dakika, hiçbir şey titremiyor',
@@ -1634,7 +1634,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 16,
     emoji: '🚶',
     interests: ['nature'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Walk it off',
       tr: 'Yürüyerek at',
@@ -1699,7 +1699,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 20,
     emoji: '🌱',
     interests: ['nature', 'science'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'Plan one small green thing',
       tr: 'Küçük bir yeşil iş planla',
@@ -1745,7 +1745,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 28,
     emoji: '🏐',
     interests: ['football'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     place: 'outdoor',
     title: {
       en: 'Get a game going',
@@ -1781,7 +1781,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 20,
     emoji: '📦',
     interests: ['books'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     place: 'indoor',
     mode: 'duo',
     proof: 'photo',
@@ -1822,7 +1822,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 20,
     emoji: '🏙️',
     interests: ['building', 'nature'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'One thing that would fix this street',
       tr: 'Bu sokağı düzeltecek bir şey',
@@ -1860,7 +1860,7 @@ export const teenTasks: LibraryTask[] = [
     stars: 14,
     emoji: '🤝',
     interests: [],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     tool: 'weekGoal',
     title: {
       en: 'The week your group went offline',

@@ -160,8 +160,8 @@ section('every skeleton is well formed');
       `${at}: a count that makes sense`,
       !template.count || (template.count.min >= 1 && template.count.max >= template.count.min),
     );
-    // Free text is a 10-14 thing. Below that a text box is a spelling test.
-    ok(`${at}: only the oldest band writes`, !template.note || template.band === '10-14');
+    // Free text is a 10-13 thing. Below that a text box is a spelling test.
+    ok(`${at}: only the oldest band writes`, !template.note || template.band === '10-13');
 
     // Every blank must have something to put in it, or the skeleton can never
     // be used and quietly disappears from the batch.
@@ -233,7 +233,7 @@ function sweep(band: AgeBand, rounds = 60): SparkIdea[] {
  */
 const LITTLE_MAX_MINUTES = 20;
 const LITTLE_MAX_STEPS = 3;
-/** Ages 10-14, per "yaşa uyğun limitlər": nothing here escalates. */
+/** Ages 10-13, per "yaşa uyğun limitlər": nothing here escalates. */
 const TEEN_MAX_REPS = 60;
 
 section('a made mission is as well formed as a written one');
@@ -297,7 +297,7 @@ section('a made mission is as well formed as a written one');
       if (count !== null) {
         const cap = Math.min(...chosen.map((filler) => filler?.maxCount ?? Infinity));
         ok(`${at}: asks for a plausible number`, count <= cap);
-        if (band === '10-14') ok(`${at}: no escalating rep count`, count <= TEEN_MAX_REPS);
+        if (band === '10-13') ok(`${at}: no escalating rep count`, count <= TEEN_MAX_REPS);
       }
     }
   }

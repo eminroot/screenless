@@ -73,7 +73,7 @@ export const en = {
     ageLabel: 'How old are they?',
     ageBand35: '3 to 5',
     ageBand69: '6 to 9',
-    ageBand1014: '10 to 14',
+    ageBand1013: '10 to 13',
     ageBandHint: 'Missions are sized for this age.',
     validation: 'Add a name and pick an age to keep going.',
   },
@@ -1022,7 +1022,7 @@ export const en = {
     juniorTimeOnlyTitle: '{{used}} minutes on the screen',
     juniorTimeOnlyBody: 'Time for a break. {{suggestion}}',
 
-    /* 10-14: the figure, and nothing else. No mascot, no exclamation mark. */
+    /* 10-13: the figure, and nothing else. No mascot, no exclamation mark. */
     teenCheckpointTitle: '{{used}} of {{budget}} min',
     teenCheckpointBody: '{{suggestion}}',
     teenApproachingTitle: '{{left}} min left today',
@@ -1255,7 +1255,7 @@ export const en = {
     checkGrownup: 'A grown up entered the code',
     checkNote: 'Wrote their own answer',
     bySelf: 'On their word',
-    selfTitle: 'How ages 10 to 14 work',
+    selfTitle: 'How ages 10 to 13 work',
     selfBody: 'Nothing waits for you at this age. Every challenge finishes where they stand, and the phone records whether its own measurements backed it up or whether it rests on their word. You read the log here and can take any of it back.',
     selfPrivate: 'What they write in a challenge stays on their side. You see that they wrote it, not what it says.',
     checkTally: 'Missions this week: {{value}} of {{target}}',

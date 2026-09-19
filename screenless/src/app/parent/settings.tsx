@@ -185,7 +185,7 @@ export default function Settings() {
         </View>
       </Sticker>
 
-      {/* Ages 10-14: there is nothing to configure, because nothing waits for
+      {/* Ages 10-13: there is nothing to configure, because nothing waits for
           a parent. What there is instead is an explanation and the log. */}
       {reviewPolicy(data.profile?.ageBand) === 'self' ? (
         <>

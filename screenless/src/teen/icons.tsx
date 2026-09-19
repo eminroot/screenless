@@ -3,7 +3,7 @@ import Svg, { Circle, Path, Rect } from 'react-native-svg';
 import { ICON_DEFAULT } from './theme';
 
 /**
- * Icons for the 10 to 14 interface.
+ * Icons for the 10 to 13 interface.
  *
  * Thin geometric strokes on a 24 unit grid, one colour, drawn from the same
  * small vocabulary of angles so a row of them looks like one set.

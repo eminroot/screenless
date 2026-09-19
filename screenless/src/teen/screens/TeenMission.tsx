@@ -47,7 +47,7 @@ const CATEGORY_KEYS: Record<TaskContent['category'], TKey> = {
 };
 
 /**
- * Doing a challenge, for ages 10 to 14.
+ * Doing a challenge, for ages 10 to 13.
  *
  * Laid out as a list of things to tick with the clock and the count as
  * sections under it, the way any workout app lays out a session. The word

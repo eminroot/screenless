@@ -20,7 +20,7 @@ function show(kind: Kind, value: number): string {
 }
 
 /**
- * Steps or counted minutes of movement, for 10-14.
+ * Steps or counted minutes of movement, for 10-13.
  *
  * Deliberately modest numbers and no history of them: this tier shows what
  * this challenge asked for and whether it happened, and nothing anywhere

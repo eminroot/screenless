@@ -1,7 +1,7 @@
 import { useApp } from '../state/app-state';
 
 /**
- * Light and dark for the 10-14 interface.
+ * Light and dark for the 10-13 interface.
  *
  * This tier is the only one with two skins, and that is a design decision
  * rather than a technical one. The three to five year olds get a painted world

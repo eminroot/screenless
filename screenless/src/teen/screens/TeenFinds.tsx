@@ -16,7 +16,7 @@ import { border, radius, space } from '../theme';
 import { useSkin } from '../skin';
 
 /**
- * The collection, for ages 10 to 14.
+ * The collection, for ages 10 to 13.
  *
  * Three across on a dark grid, with the empty slots left visibly empty. The
  * gap is the mechanic — a set with two of twelve filled is a far better reason

@@ -8,10 +8,10 @@ import { AGE_BANDS, type AgeBand } from '../../state/types';
 import { colors, spacing } from '../../theme/tokens';
 import { useDraft } from './_layout';
 
-const ageLabels: Record<AgeBand, 'child.ageBand35' | 'child.ageBand69' | 'child.ageBand1014'> = {
+const ageLabels: Record<AgeBand, 'child.ageBand35' | 'child.ageBand69' | 'child.ageBand1013'> = {
   '3-5': 'child.ageBand35',
   '6-9': 'child.ageBand69',
-  '10-14': 'child.ageBand1014',
+  '10-13': 'child.ageBand1013',
 };
 
 export default function ChildStep() {

@@ -18,7 +18,7 @@ export const duoTasks: LibraryTask[] = [
     stars: 12,
     emoji: '🔍',
     interests: [],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     partsOfDay: ['afternoon', 'evening'],
     place: 'indoor',
     title: {
@@ -62,7 +62,7 @@ export const duoTasks: LibraryTask[] = [
     stars: 14,
     emoji: '🗼',
     interests: ['building'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     place: 'indoor',
     proof: 'photo',
     objects: ['blocks', 'box', 'cup', 'book'],
@@ -107,7 +107,7 @@ export const duoTasks: LibraryTask[] = [
     stars: 13,
     emoji: '✈️',
     interests: ['building', 'science'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     place: 'indoor',
     objects: ['paper'],
     title: {
@@ -199,7 +199,7 @@ export const duoTasks: LibraryTask[] = [
     stars: 9,
     emoji: '🪞',
     interests: ['dance'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     place: 'indoor',
     title: {
       en: 'Copy the mirror',
@@ -243,7 +243,7 @@ export const duoTasks: LibraryTask[] = [
     stars: 12,
     emoji: '📖',
     interests: ['books', 'drawing'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     partsOfDay: ['evening'],
     place: 'indoor',
     title: {
@@ -284,7 +284,7 @@ export const duoTasks: LibraryTask[] = [
     stars: 15,
     emoji: '🍽️',
     interests: ['cooking'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     partsOfDay: ['evening'],
     place: 'indoor',
     title: {
@@ -333,7 +333,7 @@ export const duoTasks: LibraryTask[] = [
     stars: 15,
     emoji: '🏁',
     interests: ['football', 'dance'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     place: 'indoor',
     proof: 'motion',
     motion: { kind: 'jump', count: 10 },

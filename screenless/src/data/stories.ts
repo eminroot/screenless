@@ -25,7 +25,7 @@ export const storyLibrary: Story[] = [
     id: 'story-ball',
     emoji: '⚽',
     minutes: 4,
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     interests: ['football', 'space'],
     title: {
       en: 'The ball that wanted to fly',
@@ -74,7 +74,7 @@ export const storyLibrary: Story[] = [
     id: 'story-sea-library',
     emoji: '🐙',
     minutes: 5,
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     interests: ['books', 'nature'],
     title: {
       en: 'The library at the bottom of the sea',
@@ -123,7 +123,7 @@ export const storyLibrary: Story[] = [
     id: 'story-comet',
     emoji: '☄️',
     minutes: 4,
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     interests: ['space', 'science'],
     title: {
       en: 'The comet who was late',
@@ -216,7 +216,7 @@ export const storyLibrary: Story[] = [
     id: 'story-seed',
     emoji: '🌱',
     minutes: 4,
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     interests: ['nature', 'animals', 'science'],
     title: {
       en: 'The seed that slept too long',

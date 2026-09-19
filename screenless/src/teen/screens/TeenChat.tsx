@@ -19,7 +19,7 @@ import { border, fontsTeen, MAX_COLUMN, radius, space } from '../theme';
 import { useSkin } from '../skin';
 
 /**
- * Talking to the buddy, for ages 10 to 14.
+ * Talking to the buddy, for ages 10 to 13.
  *
  * An ordinary messaging layout, because that is the only layout this age reads
  * as a conversation. Their own messages are acid blocks on the right; the

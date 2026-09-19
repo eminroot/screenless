@@ -209,7 +209,7 @@ section('the three tiers say different things');
   const nudge = nextNudge(cfg, used(30), NOON)!;
   ok('3-5 gets the little copy', nudgeCopyId('3-5', nudge) === 'littleCheckpoint');
   ok('6-9 gets the junior copy', nudgeCopyId('6-9', nudge) === 'juniorCheckpoint');
-  ok('10-14 gets the teen copy', nudgeCopyId('10-14', nudge) === 'teenCheckpoint');
+  ok('10-13 gets the teen copy', nudgeCopyId('10-13', nudge) === 'teenCheckpoint');
 }
 
 section('a checkpoint near the end reads as a warning');
@@ -319,7 +319,7 @@ function translator(language: Language) {
 section('every reminder is a finished sentence, in every language');
 {
   const languages: Language[] = ['en', 'tr', 'az'];
-  const bands: AgeBand[] = ['3-5', '6-9', '10-14'];
+  const bands: AgeBand[] = ['3-5', '6-9', '10-13'];
   const setups: [string, GuardConfig][] = [
     ['with a limit', config({ dailyBudgetMin: 120, nudgeEveryMin: 30 })],
     ['reminders only', config({ tier: 'off', dailyBudgetMin: 0, nudgeEveryMin: 30 })],
@@ -371,7 +371,7 @@ section('the three tiers really do say different things');
   const nudge = nextNudge(cfg, used(30), NOON)!;
   const little = nudgeText(t, '3-5', 'Tilki', nudge);
   const junior = nudgeText(t, '6-9', 'Tilki', nudge);
-  const teen = nudgeText(t, '10-14', 'Tilki', nudge);
+  const teen = nudgeText(t, '10-13', 'Tilki', nudge);
 
   ok('all three differ', new Set([little.title, junior.title, teen.title]).size === 3);
   ok('the 3-5 line names the buddy', little.title.includes('Tilki'));
@@ -379,7 +379,7 @@ section('the three tiers really do say different things');
   // anyway; the notification is really aimed at the adult holding the phone.
   ok('and carries no numbers at all', !/\d/.test(little.title) && !/\d/.test(little.body));
   ok('the 6-9 line says how long is left', junior.body.includes('90'));
-  ok('the 10-14 line is the figure and nothing else', teen.title === '30 of 120 min');
+  ok('the 10-13 line is the figure and nothing else', teen.title === '30 of 120 min');
   ok('none of them shouts', ![little, junior, teen].every((x) => x.title.includes('!')));
 }
 

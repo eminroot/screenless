@@ -26,7 +26,7 @@ export default function Checked() {
   const { t, language } = useI18n();
   const { data, takeBackMission } = useApp();
   const [open, setOpen] = useState<string | null>(null);
-  // Ages 10-14 have no queue at all, so this screen is the whole of what a
+  // Ages 10-13 have no queue at all, so this screen is the whole of what a
   // parent sees. It says so rather than calling itself a list of approvals.
   const selfReported = reviewPolicy(data.profile?.ageBand) === 'self';
 

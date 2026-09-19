@@ -1,5 +1,5 @@
 /**
- * The look of ScreenLess for ages 10 to 14.
+ * The look of ScreenLess for ages 10 to 13.
  *
  * This is the age where being seen with the app matters more than the app. A
  * twelve year old will not open something on the bus that looks like it was
@@ -18,7 +18,7 @@
  * - **Ages 3-5 (`src/little`)**: a pastel world, a huge mascot, clay buttons.
  * - **Ages 6-9 (`src/junior`)**: vivid comic blocks, ink outlines, hard
  *   sticker shadows, an expedition frame.
- * - **Ages 10-14 (here)**: near-black ground, hairline rules, one acid accent,
+ * - **Ages 10-13 (here)**: near-black ground, hairline rules, one acid accent,
  *   big tight numerals, no mascot on the main surfaces.
  *
  * The other shift is authorship. The younger tiers hand the child a mission

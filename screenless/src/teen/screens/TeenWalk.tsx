@@ -17,7 +17,7 @@ import { space } from '../theme';
 import { useSkin } from '../skin';
 
 /**
- * Steps, for ages 10 to 14.
+ * Steps, for ages 10 to 13.
  *
  * One very large figure against a goal, the week as a real chart under it, and
  * the totals below that. No ring, no mascot, no encouragement — at this age the

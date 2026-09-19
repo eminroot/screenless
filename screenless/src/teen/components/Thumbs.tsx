@@ -8,7 +8,7 @@ import { Chip } from './Button';
 import { TText } from './TText';
 
 /**
- * Thumb up, thumb down, for ages 10 to 14.
+ * Thumb up, thumb down, for ages 10 to 13.
  *
  * Framed as a control over the app rather than a question about feelings:
  * this is the switch that decides what turns up next week, and it says so.

@@ -66,7 +66,7 @@ export const tr: Copy = {
     ageLabel: 'Yaş',
     age35: '3 ile 5',
     age69: '6 ile 9',
-    age1014: '10 ile 14',
+    age1013: '10 ile 13',
     create: 'Ekle',
     creating: 'Ekleniyor',
 

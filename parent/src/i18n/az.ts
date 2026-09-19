@@ -66,7 +66,7 @@ export const az: Copy = {
     ageLabel: 'Yaş',
     age35: '3 ilə 5',
     age69: '6 ilə 9',
-    age1014: '10 ilə 14',
+    age1013: '10 ilə 13',
     create: 'Əlavə et',
     creating: 'Əlavə edilir',
 

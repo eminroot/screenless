@@ -10,7 +10,7 @@ export type TTextProps = TextProps & {
 };
 
 /**
- * Text for the 10-14 interface.
+ * Text for the 10-13 interface.
  *
  * The `label` variant is upper cased here rather than at every call site,
  * because it is only ever used one way: small, wide tracked, and shouting

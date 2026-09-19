@@ -12,7 +12,7 @@ kind of app this is in both stores.
 
 ## The headline decision
 
-ScreenLess is a Designed-for-Families app for ages 3–9 plus a 10–14 band. Screen
+ScreenLess is a Designed-for-Families app for ages 3–9 plus a 10–13 band. Screen
 Guard needs permissions that a Families-programme app is not expected to carry.
 There are three ways to ship it and only the first two are defensible:
 

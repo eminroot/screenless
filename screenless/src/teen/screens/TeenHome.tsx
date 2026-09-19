@@ -53,7 +53,7 @@ import { space } from '../theme';
 import { useSkin } from '../skin';
 
 /**
- * Today, for ages 10 to 14.
+ * Today, for ages 10 to 13.
  *
  * Opens on the child's own number, not on a greeting from a mascot. Level,
  * stars, how far to the next one — the way a running app opens on your week

@@ -15,10 +15,27 @@
  * never sent one, and this file would drop it if it did.
  */
 
-const AGE_BANDS = ['3-5', '6-9', '10-14'];
+const AGE_BANDS = ['3-5', '6-9', '10-13'];
+
 const CATEGORIES = ['move', 'outdoor', 'create', 'social', 'calm'];
 const TIERS = ['off', 'notice', 'interrupt', 'block'];
 const PLATFORMS = ['android', 'ios', 'web'];
+
+/**
+ * Bands this server still understands on the way in, and what they become.
+ *
+ * The top band was 10-14 until September 2026. A phone that was set up before
+ * that still has the old string in its profile and will keep sending it until
+ * it updates, and rejecting it would mean a child's reports stop arriving for
+ * a reason nobody at either end could see. So it is accepted and rewritten,
+ * which is also what the app does to its own stored profile on first launch
+ * after updating. Nothing is ever *stored* as a legacy band.
+ */
+const LEGACY_AGE_BANDS = { '10-14': '10-13' };
+
+function normaliseAgeBand(value) {
+  return Object.prototype.hasOwnProperty.call(LEGACY_AGE_BANDS, value) ? LEGACY_AGE_BANDS[value] : value;
+}
 
 const DAY_RE = /^\d{4}-\d{2}-\d{2}$/;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -72,7 +89,8 @@ function checkChildName(value) {
 }
 
 function checkAgeBand(value) {
-  return AGE_BANDS.includes(value) ? { ok: true, value } : { ok: false, reason: 'ageBand' };
+  const band = normaliseAgeBand(value);
+  return AGE_BANDS.includes(band) ? { ok: true, value: band } : { ok: false, reason: 'ageBand' };
 }
 
 function checkPlatform(value) {
@@ -176,7 +194,7 @@ function cleanDay(input) {
 function cleanSnapshot(input) {
   if (!input || typeof input !== 'object') return null;
   return {
-    ageBand: AGE_BANDS.includes(input.ageBand) ? input.ageBand : null,
+    ageBand: AGE_BANDS.includes(normaliseAgeBand(input.ageBand)) ? normaliseAgeBand(input.ageBand) : null,
     buddyId: typeof input.buddyId === 'string' ? input.buddyId.slice(0, 20) : null,
     level: clampInt(input.level, 1, 999),
     stars: clampInt(input.stars, 0, 1_000_000),
@@ -233,6 +251,7 @@ function daysBetween(from, to) {
 
 module.exports = {
   AGE_BANDS,
+  normaliseAgeBand,
   CATEGORIES,
   PLATFORMS,
   TIERS,

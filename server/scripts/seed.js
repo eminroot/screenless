@@ -30,7 +30,7 @@ const WEEKS = 6;
 
 const CHILDREN = [
   { name: 'Ayla', ageBand: '6-9', buddyId: 'fox', tone: { screen: 1, missions: 1.15 } },
-  { name: 'Kerem', ageBand: '10-14', buddyId: 'rocket', tone: { screen: 1.45, missions: 0.8 } },
+  { name: 'Kerem', ageBand: '10-13', buddyId: 'rocket', tone: { screen: 1.45, missions: 0.8 } },
   { name: 'Deniz', ageBand: '3-5', buddyId: 'bunny', tone: { screen: 0.55, missions: 1.3 } },
 ];
 
@@ -185,7 +185,7 @@ function main() {
         `/v1/children/${child.id}/limits`,
         {
           enabled: true,
-          tier: spec.ageBand === '10-14' ? 'notice' : 'interrupt',
+          tier: spec.ageBand === '10-13' ? 'notice' : 'interrupt',
           dailyBudgetMin: 120,
           nudgeEveryMin: 30,
           graceCount: 2,

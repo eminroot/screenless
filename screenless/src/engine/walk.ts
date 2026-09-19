@@ -32,7 +32,7 @@ export const COINS_PER_STEP = 1;
 const DAILY_GOAL: Record<AgeBand, number> = {
   '3-5': 5000,
   '6-9': 7000,
-  '10-14': 10000,
+  '10-13': 10000,
 };
 
 export function goalFor(ageBand: AgeBand): number {

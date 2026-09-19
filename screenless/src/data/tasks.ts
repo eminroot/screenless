@@ -22,7 +22,7 @@ const library: LibraryTask[] = [
     stars: 10,
     emoji: '⚽',
     interests: ['football'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'Keep it up',
       tr: 'Yere düşürme',
@@ -41,7 +41,7 @@ const library: LibraryTask[] = [
     stars: 12,
     emoji: '🥅',
     interests: ['football'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Shoe goal',
       tr: 'Ayakkabı kalesi',
@@ -60,7 +60,7 @@ const library: LibraryTask[] = [
     stars: 12,
     emoji: '🔻',
     interests: ['football', 'bike'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'Slalom run',
       tr: 'Slalom parkuru',
@@ -84,7 +84,7 @@ const library: LibraryTask[] = [
     stars: 11,
     emoji: '🤝',
     interests: ['football'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Twenty passes',
       tr: 'Yirmi pas',
@@ -105,7 +105,7 @@ const library: LibraryTask[] = [
     stars: 12,
     emoji: '🐦',
     interests: ['animals', 'nature'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Bird count',
       tr: 'Kuş sayımı',
@@ -143,7 +143,7 @@ const library: LibraryTask[] = [
     stars: 14,
     emoji: '🖍️',
     interests: ['animals', 'drawing'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Draw today’s animal',
       tr: 'Bugünün hayvanını çiz',
@@ -183,7 +183,7 @@ const library: LibraryTask[] = [
     stars: 14,
     emoji: '🪟',
     interests: ['drawing'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'What the window sees',
       tr: 'Pencerenin gördüğü',
@@ -202,7 +202,7 @@ const library: LibraryTask[] = [
     stars: 10,
     emoji: '🙈',
     interests: ['drawing'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'Draw without looking',
       tr: 'Bakmadan çiz',
@@ -240,7 +240,7 @@ const library: LibraryTask[] = [
     stars: 15,
     emoji: '🖌️',
     interests: ['drawing'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Big chalk drawing',
       tr: 'Kocaman tebeşir resmi',
@@ -285,7 +285,7 @@ const library: LibraryTask[] = [
     stars: 10,
     emoji: '⭐',
     interests: ['space', 'nature'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Star watch',
       tr: 'Yıldız izleme',
@@ -304,7 +304,7 @@ const library: LibraryTask[] = [
     stars: 18,
     emoji: '🚀',
     interests: ['space', 'building'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Build a rocket',
       tr: 'Roket yap',
@@ -323,7 +323,7 @@ const library: LibraryTask[] = [
     stars: 12,
     emoji: '🪐',
     interests: ['space', 'science'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'Planet expert',
       tr: 'Gezegen uzmanı',
@@ -344,7 +344,7 @@ const library: LibraryTask[] = [
     stars: 10,
     emoji: '🥁',
     interests: ['music'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Kitchen band',
       tr: 'Mutfak orkestrası',
@@ -363,7 +363,7 @@ const library: LibraryTask[] = [
     stars: 11,
     emoji: '🎶',
     interests: ['music', 'dance'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Freeze dance',
       tr: 'Heykel dansı',
@@ -401,7 +401,7 @@ const library: LibraryTask[] = [
     stars: 8,
     emoji: '👂',
     interests: ['music'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Five sounds',
       tr: 'Beş ses',
@@ -422,7 +422,7 @@ const library: LibraryTask[] = [
     stars: 11,
     emoji: '🕺',
     interests: ['dance'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Invent a move',
       tr: 'Bir hareket icat et',
@@ -441,7 +441,7 @@ const library: LibraryTask[] = [
     stars: 12,
     emoji: '⏱️',
     interests: ['dance'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'Sixty seconds, three times',
       tr: 'Altmış saniye, üç kez',
@@ -500,7 +500,7 @@ const library: LibraryTask[] = [
     stars: 15,
     emoji: '🗼',
     interests: ['building'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'The tallest tower',
       tr: 'En yüksek kule',
@@ -519,7 +519,7 @@ const library: LibraryTask[] = [
     stars: 15,
     emoji: '🌉',
     interests: ['building', 'science'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'A bridge that holds',
       tr: 'Dayanan bir köprü',
@@ -557,7 +557,7 @@ const library: LibraryTask[] = [
     stars: 13,
     emoji: '🔧',
     interests: ['building'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'Fix it together',
       tr: 'Birlikte tamir et',
@@ -578,7 +578,7 @@ const library: LibraryTask[] = [
     stars: 15,
     emoji: '🍃',
     interests: ['nature'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Five different leaves',
       tr: 'Beş farklı yaprak',
@@ -597,7 +597,7 @@ const library: LibraryTask[] = [
     stars: 10,
     emoji: '☁️',
     interests: ['nature', 'space'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Cloud shapes',
       tr: 'Bulut şekilleri',
@@ -635,7 +635,7 @@ const library: LibraryTask[] = [
     stars: 8,
     emoji: '💧',
     interests: ['nature', 'science'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Look after a plant',
       tr: 'Bir bitkiye bak',
@@ -656,7 +656,7 @@ const library: LibraryTask[] = [
     stars: 12,
     emoji: '📖',
     interests: ['books'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'Read out loud',
       tr: 'Sesli oku',
@@ -675,7 +675,7 @@ const library: LibraryTask[] = [
     stars: 12,
     emoji: '✨',
     interests: ['books'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'A new ending',
       tr: 'Yeni bir son',
@@ -694,7 +694,7 @@ const library: LibraryTask[] = [
     stars: 14,
     emoji: '🧩',
     interests: ['books'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'Story from five things',
       tr: 'Beş şeyden hikâye',
@@ -713,7 +713,7 @@ const library: LibraryTask[] = [
     stars: 14,
     emoji: '🪑',
     interests: ['books'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'Quiet corner',
       tr: 'Sessiz köşe',
@@ -734,7 +734,7 @@ const library: LibraryTask[] = [
     stars: 14,
     emoji: '🫧',
     interests: ['science'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Sink or float',
       tr: 'Batar mı yüzer mi',
@@ -758,7 +758,7 @@ const library: LibraryTask[] = [
     stars: 13,
     emoji: '🌞',
     interests: ['science', 'space'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'Shadow clock',
       tr: 'Gölge saati',
@@ -777,7 +777,7 @@ const library: LibraryTask[] = [
     stars: 12,
     emoji: '🧊',
     interests: ['science'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'The ice race',
       tr: 'Buz yarışı',
@@ -796,7 +796,7 @@ const library: LibraryTask[] = [
     stars: 10,
     emoji: '❓',
     interests: ['science'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Three whys',
       tr: 'Üç neden',
@@ -817,7 +817,7 @@ const library: LibraryTask[] = [
     stars: 11,
     emoji: '🍽️',
     interests: ['cooking'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Set the table',
       tr: 'Sofrayı kur',
@@ -855,7 +855,7 @@ const library: LibraryTask[] = [
     stars: 14,
     emoji: '🥄',
     interests: ['cooking'],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Kitchen helper',
       tr: 'Mutfak yardımcısı',
@@ -900,7 +900,7 @@ const library: LibraryTask[] = [
     stars: 18,
     emoji: '🚲',
     interests: ['bike'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'Ten laps',
       tr: 'On tur',
@@ -919,7 +919,7 @@ const library: LibraryTask[] = [
     stars: 13,
     emoji: '🐢',
     interests: ['bike'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'The slow race',
       tr: 'Yavaş yarış',
@@ -938,7 +938,7 @@ const library: LibraryTask[] = [
     stars: 14,
     emoji: '🧽',
     interests: ['bike'],
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     title: {
       en: 'Bike check',
       tr: 'Bisiklet bakımı',
@@ -957,7 +957,7 @@ const library: LibraryTask[] = [
     stars: 18,
     emoji: '🗺️',
     interests: ['bike', 'nature'],
-    ageBands: ['10-14'],
+    ageBands: ['10-13'],
     title: {
       en: 'A street you do not know',
       tr: 'Bilmediğin bir sokak',
@@ -978,7 +978,7 @@ const library: LibraryTask[] = [
     stars: 6,
     emoji: '🦘',
     interests: [],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Thirty jumps',
       tr: 'Otuz zıplama',
@@ -997,7 +997,7 @@ const library: LibraryTask[] = [
     stars: 6,
     emoji: '🙆',
     interests: [],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Big stretch',
       tr: 'Kocaman gerin',
@@ -1035,7 +1035,7 @@ const library: LibraryTask[] = [
     stars: 8,
     emoji: '🧺',
     interests: [],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Five things home',
       tr: 'Beş şey yerine',
@@ -1054,7 +1054,7 @@ const library: LibraryTask[] = [
     stars: 5,
     emoji: '🫁',
     interests: [],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Ten slow breaths',
       tr: 'On yavaş nefes',
@@ -1073,7 +1073,7 @@ const library: LibraryTask[] = [
     stars: 7,
     emoji: '🦩',
     interests: [],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Flamingo',
       tr: 'Flamingo',
@@ -1092,7 +1092,7 @@ const library: LibraryTask[] = [
     stars: 6,
     emoji: '💛',
     interests: [],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Say thank you',
       tr: 'Teşekkür et',
@@ -1111,7 +1111,7 @@ const library: LibraryTask[] = [
     stars: 15,
     emoji: '👟',
     interests: [],
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     title: {
       en: 'Round the block',
       tr: 'Bir tur at',

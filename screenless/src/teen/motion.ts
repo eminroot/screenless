@@ -15,7 +15,7 @@ import {
 import { motionTeen } from './theme';
 
 /**
- * Motion for the 10 to 14 interface.
+ * Motion for the 10 to 13 interface.
  *
  * Almost entirely opacity. The tier below pushes surfaces onto hard shadows
  * and the one below that squashes them, because both are buying delight; here

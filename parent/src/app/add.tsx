@@ -150,7 +150,7 @@ export default function AddChild() {
             [
               ['3-5', t('children.age35')],
               ['6-9', t('children.age69')],
-              ['10-14', t('children.age1014')],
+              ['10-13', t('children.age1013')],
             ] as [AgeBand, string][]
           ).map(([band, label]) => (
             <OptionRow

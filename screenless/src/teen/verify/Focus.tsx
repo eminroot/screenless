@@ -14,7 +14,7 @@ function clock(seconds: number): string {
 }
 
 /**
- * Screen free time, the 10-14 version.
+ * Screen free time, the 10-13 version.
  *
  * Same measurement as the tiers below (the phone flat and untouched), framed
  * as a focus block rather than as a buddy having a nap: the number is the

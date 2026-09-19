@@ -22,7 +22,7 @@ import { TText } from './TText';
 import { useSkin } from '../skin';
 
 /**
- * The tab bar for ages 10 to 14.
+ * The tab bar for ages 10 to 13.
  *
  * A hairline across the bottom of the ground, six thin icons, a two pixel
  * acid rule over the one you are on. No coloured discs, no lifting, no bounce.

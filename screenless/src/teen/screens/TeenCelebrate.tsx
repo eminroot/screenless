@@ -19,7 +19,7 @@ import { space } from '../theme';
 import { useSkin } from '../skin';
 
 /**
- * The result, for ages 10 to 14.
+ * The result, for ages 10 to 13.
  *
  * Reported, not celebrated. No confetti — the two tiers below both throw it,
  * and at this age it is the single clearest tell that an app thinks you are

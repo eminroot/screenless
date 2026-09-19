@@ -7,7 +7,7 @@
  * type error rather than as an empty chart.
  */
 
-export const AGE_BANDS = ['3-5', '6-9', '10-14'] as const;
+export const AGE_BANDS = ['3-5', '6-9', '10-13'] as const;
 export type AgeBand = (typeof AGE_BANDS)[number];
 
 export const TIERS = ['off', 'notice', 'interrupt', 'block'] as const;

@@ -237,7 +237,7 @@ section('the 6-9 self checks are well formed');
     if (task.checks) {
       ok(
         `${at}: written checks belong to one self-checking band`,
-        task.ageBands.length === 1 && (task.ageBands[0] === '6-9' || task.ageBands[0] === '10-14'),
+        task.ageBands.length === 1 && (task.ageBands[0] === '6-9' || task.ageBands[0] === '10-13'),
       );
       ok(`${at}: at least one check`, own.length > 0);
     }
@@ -250,10 +250,10 @@ section('the 6-9 self checks are well formed');
     const flat = flatChecks(checksFor(task));
     const kinds = flat.map((check) => check.kind);
 
-    // A text box is the 10-14 answer, and a spelling test below that age.
+    // A text box is the 10-13 answer, and a spelling test below that age.
     ok(
-      `${at}: notes are 10-14 only`,
-      task.note === undefined || (task.ageBands.length === 1 && task.ageBands[0] === '10-14'),
+      `${at}: notes are 10-13 only`,
+      task.note === undefined || (task.ageBands.length === 1 && task.ageBands[0] === '10-13'),
     );
     if (task.note) {
       ok(`${at}: the note prompt is in all languages`, complete(task.note.prompt));
@@ -387,7 +387,7 @@ section('the 6-9 curriculum is the one that was written');
   }
 }
 
-section('the 10-14 curriculum is the one that was written');
+section('the 10-13 curriculum is the one that was written');
 {
   // Ten strands, five each, as supplied. 3.1-3.4 first, then 3.5-3.10.
   const strands = [
@@ -423,7 +423,7 @@ section('the 10-14 curriculum is the one that was written');
 
   for (const task of teenTasks) {
     const at = `${task.id}`;
-    ok(`${at}: 10-14 only`, task.ageBands.length === 1 && task.ageBands[0] === '10-14');
+    ok(`${at}: 10-13 only`, task.ageBands.length === 1 && task.ageBands[0] === '10-13');
     ok(`${at}: five to thirty minutes`, task.minutes >= 5 && task.minutes <= 30);
     ok(`${at}: says how the phone checks it`, (task.checks ?? []).length > 0);
 

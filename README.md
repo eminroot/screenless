@@ -46,7 +46,7 @@ stops someone holding a child's phone attaching it to their own account.
 Counts. Minutes of screen time, missions finished, stars, steps, mission
 categories, reminders shown and how many led to a mission being started.
 
-Not: the child's name, mission titles, the private notes the 10-14 tier writes,
+Not: the child's name, mission titles, the private notes the 10-13 tier writes,
 photographs, chat messages, the collection, or anything a child typed or drew.
 There is no field on the server to receive any of it, and
 `screenless/scripts/test-sync.ts` posts a note, a photo path, a nickname and a

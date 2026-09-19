@@ -101,7 +101,7 @@ export type SparkTemplate = {
   proof?: 'tap' | 'photo';
   /** A number the child reports at the end, with `{{slot}}` markers allowed. */
   ask?: { question: Localized; min: number; max: number; goalFromCount?: boolean };
-  /** Ages 10-14 only: something written in their own words. */
+  /** Ages 10-13 only: something written in their own words. */
   note?: { prompt: Localized; lines?: number; minChars?: number };
   /** The number drawn for `{{count}}`. */
   count?: { min: number; max: number };
@@ -471,7 +471,7 @@ const moves: Filler[] = [
     id: 'squat',
     text: { az: 'otur-qalx', tr: 'çömel ve kalk', en: 'squat' },
     tags: ['rep'],
-    bands: ['6-9', '10-14'],
+    bands: ['6-9', '10-13'],
     emoji: '🏋️',
   },
   {
@@ -545,7 +545,7 @@ const moves: Filler[] = [
     id: 'lunge',
     text: { az: 'irəli addım at və otur', tr: 'öne adım atıp çök', en: 'do a lunge' },
     tags: ['rep'],
-    bands: ['10-14'],
+    bands: ['10-13'],
     emoji: '🦵',
   },
 ];
@@ -628,7 +628,7 @@ const twists: Filler[] = [
       en: 'oldest to newest',
     },
     tags: ['order'],
-    bands: ['6-9', '10-14'],
+    bands: ['6-9', '10-13'],
   },
 ];
 
@@ -738,7 +738,7 @@ const people: Filler[] = [
   {
     id: 'friend',
     text: { az: 'bir dostunla', tr: 'bir arkadaşınla', en: 'with a friend' },
-    bands: ['6-9', '10-14'],
+    bands: ['6-9', '10-13'],
   },
 ];
 
@@ -846,7 +846,7 @@ const subjects: Filler[] = [
     },
     tags: ['draw'],
     interests: ['bike'],
-    bands: ['6-9', '10-14'],
+    bands: ['6-9', '10-13'],
     emoji: '🚲',
   },
   {
@@ -857,7 +857,7 @@ const subjects: Filler[] = [
       en: 'a skill you want to learn',
     },
     tags: ['work'],
-    bands: ['10-14'],
+    bands: ['10-13'],
     emoji: '🎯',
   },
   {
@@ -868,7 +868,7 @@ const subjects: Filler[] = [
       en: 'something you keep putting off',
     },
     tags: ['work'],
-    bands: ['10-14'],
+    bands: ['10-13'],
     emoji: '⏳',
   },
   {
@@ -879,7 +879,7 @@ const subjects: Filler[] = [
       en: 'the subject you find hardest',
     },
     tags: ['work'],
-    bands: ['10-14'],
+    bands: ['10-13'],
     emoji: '📐',
   },
   {
@@ -890,7 +890,7 @@ const subjects: Filler[] = [
       en: 'something you started yourself',
     },
     tags: ['work'],
-    bands: ['10-14'],
+    bands: ['10-13'],
     emoji: '🧩',
   },
 ];
@@ -1286,10 +1286,10 @@ export const sparkTemplates: SparkTemplate[] = [
     },
   },
 
-  /* --------------------------------------------------------------- 10 to 14 */
+  /* --------------------------------------------------------------- 10 to 13 */
   {
     id: 't-focus',
-    band: '10-14',
+    band: '10-13',
     category: 'calm',
     minutes: 20,
     stars: 18,
@@ -1312,7 +1312,7 @@ export const sparkTemplates: SparkTemplate[] = [
   },
   {
     id: 't-move',
-    band: '10-14',
+    band: '10-13',
     category: 'move',
     minutes: 12,
     stars: 12,
@@ -1328,7 +1328,7 @@ export const sparkTemplates: SparkTemplate[] = [
   },
   {
     id: 't-make',
-    band: '10-14',
+    band: '10-13',
     category: 'create',
     minutes: 25,
     stars: 22,
@@ -1361,7 +1361,7 @@ export const sparkTemplates: SparkTemplate[] = [
   },
   {
     id: 't-home',
-    band: '10-14',
+    band: '10-13',
     category: 'social',
     minutes: 20,
     stars: 18,
@@ -1376,7 +1376,7 @@ export const sparkTemplates: SparkTemplate[] = [
   },
   {
     id: 't-outdoor',
-    band: '10-14',
+    band: '10-13',
     category: 'outdoor',
     minutes: 20,
     stars: 18,
@@ -1392,7 +1392,7 @@ export const sparkTemplates: SparkTemplate[] = [
   },
   {
     id: 't-plan',
-    band: '10-14',
+    band: '10-13',
     category: 'calm',
     minutes: 10,
     stars: 10,
@@ -1416,7 +1416,7 @@ export const sparkTemplates: SparkTemplate[] = [
   },
   {
     id: 't-teach',
-    band: '10-14',
+    band: '10-13',
     category: 'social',
     minutes: 15,
     stars: 14,
@@ -1430,7 +1430,7 @@ export const sparkTemplates: SparkTemplate[] = [
   },
   {
     id: 't-clear',
-    band: '10-14',
+    band: '10-13',
     category: 'calm',
     minutes: 15,
     stars: 14,

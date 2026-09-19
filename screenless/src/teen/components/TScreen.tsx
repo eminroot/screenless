@@ -7,7 +7,7 @@ import { MAX_COLUMN, space } from '../theme';
 import { useSkin } from '../skin';
 
 /**
- * A page in the 10-14 interface.
+ * A page in the 10-13 interface.
  *
  * A near-black ground with nothing painted on it. The two tiers below both put
  * something behind the content — a sky, a scattering of marks — because at

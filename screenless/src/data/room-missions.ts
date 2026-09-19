@@ -53,7 +53,7 @@ export const roomTemplates: RoomTemplate[] = [
     category: 'move',
     minutes: 10,
     stars: 12,
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     slots: [FLAT, FRIEND, MOVER],
     title: { en: 'Secret rescue', tr: 'Gizli kurtarma', az: 'Gizli xilasetmə' },
     body: {
@@ -90,7 +90,7 @@ export const roomTemplates: RoomTemplate[] = [
     category: 'move',
     minutes: 8,
     stars: 11,
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     slots: [ANY],
     title: { en: 'Treasure hunt', tr: 'Hazine avı', az: 'Xəzinə ovu' },
     body: {
@@ -128,7 +128,7 @@ export const roomTemplates: RoomTemplate[] = [
     category: 'create',
     minutes: 10,
     stars: 12,
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     slots: [STACK],
     proof: 'photo',
     title: { en: 'Tower of the room', tr: 'Odanın kulesi', az: 'Otağın qülləsi' },
@@ -150,7 +150,7 @@ export const roomTemplates: RoomTemplate[] = [
     category: 'move',
     minutes: 12,
     stars: 14,
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     slots: [OBSTACLE, MOVER],
     title: { en: 'Room slalom', tr: 'Oda slalomu', az: 'Otaq slalomu' },
     body: {
@@ -179,7 +179,7 @@ export const roomTemplates: RoomTemplate[] = [
     category: 'move',
     minutes: 10,
     stars: 11,
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     slots: [THROWABLE, TARGET],
     title: { en: 'Room basketball', tr: 'Oda basketbolu', az: 'Otaq basketbolu' },
     body: {
@@ -200,7 +200,7 @@ export const roomTemplates: RoomTemplate[] = [
     category: 'calm',
     minutes: 8,
     stars: 9,
-    ageBands: ['6-9', '10-14'],
+    ageBands: ['6-9', '10-13'],
     slots: [FLAT],
     title: { en: 'Head balance', tr: 'Kafada denge', az: 'Başda tarazlıq' },
     body: {
@@ -221,7 +221,7 @@ export const roomTemplates: RoomTemplate[] = [
     category: 'create',
     minutes: 10,
     stars: 11,
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     slots: [ANY, ANY, ANY],
     title: { en: 'One room museum', tr: 'Tek odalık müze', az: 'Bir otaqlıq muzey' },
     body: {
@@ -242,7 +242,7 @@ export const roomTemplates: RoomTemplate[] = [
     category: 'calm',
     minutes: 10,
     stars: 10,
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     slots: [ANY, ANY, ANY],
     title: { en: 'Three thing story', tr: 'Üç şeylik hikâye', az: 'Üç şeylik hekayə' },
     body: {
@@ -286,7 +286,7 @@ export const roomTemplates: RoomTemplate[] = [
     mode: 'duo',
     minutes: 10,
     stars: 13,
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     slots: [FRIEND, ANY],
     title: { en: 'Two things hidden', tr: 'Saklanan iki şey', az: 'Gizlədilmiş iki şey' },
     body: {
@@ -312,7 +312,7 @@ export const roomTemplates: RoomTemplate[] = [
     category: 'move',
     minutes: 6,
     stars: 10,
-    ageBands: ['3-5', '6-9', '10-14'],
+    ageBands: ['3-5', '6-9', '10-13'],
     slots: [ANY],
     proof: 'motion',
     motion: { kind: 'jump', count: 12 },

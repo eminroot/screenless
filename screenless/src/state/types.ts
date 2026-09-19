@@ -38,7 +38,7 @@ export type HubLink = {
  * goal and the way the buddy talks are all sized by it. Stored profiles from
  * before September 2026 used 4-5, 6-7 and 8-10; `migrate.ts` moves them over.
  */
-export const AGE_BANDS = ['3-5', '6-9', '10-14'] as const;
+export const AGE_BANDS = ['3-5', '6-9', '10-13'] as const;
 export type AgeBand = (typeof AGE_BANDS)[number];
 
 export const INTERESTS = [
@@ -329,7 +329,7 @@ export type MotionSpec = { kind: MotionKind; count: number };
  *   earlier in this week. It is what makes a week long team goal real: the
  *   mission is only ever handed out once the week's work is already done, so
  *   finishing it is the moment the team is told they managed it.
- * - `note`: the child wrote their own answer. Ages 10-14 only, where a plan or
+ * - `note`: the child wrote their own answer. Ages 10-13 only, where a plan or
  *   a self-assessment in their own words is the point of the task. What they
  *   write stays on their side: it is never shown in the parent area and never
  *   leaves the phone.
@@ -382,7 +382,7 @@ export type AnswerSpec = CountAnswer | SumsAnswer;
  * Something written in the child's own words: three goals, tomorrow's plan,
  * how the day actually went.
  *
- * Ages 10-14 only. Below that a text box is a spelling test rather than a
+ * Ages 10-13 only. Below that a text box is a spelling test rather than a
  * record; from ten it is the only honest way to hold a plan or a reflection,
  * and the writing is the task. What is written is theirs: the parent area
  * shows that a note exists, never what it says, and `exportPayload` leaves the
@@ -466,7 +466,7 @@ export type TaskContent = {
   answer?: AnswerSpec;
   /** A list the child ticks. */
   pick?: PickSpec;
-  /** Something written in their own words. Ages 10-14. */
+  /** Something written in their own words. Ages 10-13. */
   note?: NoteSpec;
   /** Offer a photo before the job starts, so a parent can compare. */
   beforePhoto?: boolean;
@@ -547,7 +547,7 @@ export type CheckOutcome = {
 
 export type MissionReview = {
   /**
-   * Who approved it, or `parent` while it waits for one. `self` is the 10-14
+   * Who approved it, or `parent` while it waits for one. `self` is the 10-13
    * case: the phone had nothing to go on, so it stands on what they said, and
    * says as much in the audit a parent reads later.
    */
@@ -666,7 +666,7 @@ export type Settings = {
   /** Missions that need a grown up in the room are allowed into the mix. */
   duoEnabled: boolean;
   /**
-   * Light or dark, for the 10-14 interface only. The younger tiers have one
+   * Light or dark, for the 10-13 interface only. The younger tiers have one
    * look each; by ten the phone is a personal object and which way round it
    * runs is the child's call.
    */
@@ -693,7 +693,7 @@ export type BadgeSet = {
 };
 
 /**
- * A screen free target the child set for themselves, ages 10-14.
+ * A screen free target the child set for themselves, ages 10-13.
  *
  * Their own number, not a parent's: the point of the task is choosing it. What
  * it is measured against is the screen free time the phone actually counted
@@ -817,7 +817,7 @@ export type AppData = {
   hub: HubLink | null;
   /** Treasure badges a parent set up, or null before they did. */
   badges: BadgeSet | null;
-  /** The 10-14 screen free target for this week, if they set one. */
+  /** The 10-13 screen free target for this week, if they set one. */
   weekGoal: WeekGoal | null;
   /** Thumbs on made for you ideas the child never started, newest last. */
   ideaVotes: IdeaVote[];

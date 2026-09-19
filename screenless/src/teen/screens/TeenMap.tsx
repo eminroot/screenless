@@ -21,7 +21,7 @@ import { border, radius, space } from '../theme';
 import { useSkin } from '../skin';
 
 /**
- * Progress, for ages 10 to 14.
+ * Progress, for ages 10 to 13.
  *
  * A ladder of ranks read top to bottom, with the cost of each one and what it
  * unlocks. The three to five year olds get this as an illustrated island they

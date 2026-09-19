@@ -223,7 +223,7 @@ swapped in:
 |---|---|
 | 3-5 | the buddy misses them. No numbers, no limit, no clock |
 | 6-9 | minutes left, plus one concrete thing to go and do |
-| 10-14 | the figure. No mascot, no exclamation mark |
+| 10-13 | the figure. No mascot, no exclamation mark |
 
 The notification has to arrive while the child is in *another* app, when no JavaScript
 is running. So `useGuard` renders every sentence for the rest of the day in advance and

@@ -195,7 +195,7 @@ type AppStateValue = {
   removeBadges: () => void;
   setSpotChecks: (mode: Settings['spotChecks']) => void;
   setReviewNotify: (enabled: boolean) => void;
-  /** The 10-14 screen free target for this week, set by the child themselves. */
+  /** The 10-13 screen free target for this week, set by the child themselves. */
   setWeekGoal: (minutes: number) => void;
 
   addRealReward: (input: { label: string; emoji: string; stars: number }) => void;
@@ -980,7 +980,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
             ...data.social,
             account: data.social.account ? { ...data.social.account, token: undefined } : null,
           },
-          // A 10-14 is told their own notes stay on their side, so the file
+          // A 10-13 is told their own notes stay on their side, so the file
           // that leaves the phone says a note exists and not what it said.
           missions: data.missions.map((mission) =>
             mission.note ? { ...mission, note: `[${mission.note.length} characters]` } : mission,

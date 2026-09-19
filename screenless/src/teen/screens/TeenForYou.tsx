@@ -14,7 +14,7 @@ import { useSkin } from '../skin';
 import { border, radius, space } from '../theme';
 
 /**
- * For you, ages 10 to 14.
+ * For you, ages 10 to 13.
  *
  * Same three parts as the tier below, in the register this one expects: the
  * read is a list of measured preferences with a bar next to each rather than

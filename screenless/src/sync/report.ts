@@ -18,7 +18,7 @@ import type { AppData, TaskCategory } from '../state/types';
  * ## What is deliberately not in it
  *
  * The child's name. Their nickname for the buddy. Mission titles and bodies.
- * The private notes the 10-14 tier writes. Photographs and their file paths.
+ * The private notes the 10-13 tier writes. Photographs and their file paths.
  * Chat messages. Finds. The tree. Anything a child typed, drew, said or
  * photographed stays on the phone, and the server has no field to receive it.
  *

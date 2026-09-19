@@ -237,8 +237,11 @@ async function main() {
   console.log('\n  older builds');
   check('4-5 becomes 3-5', migrate.migrateAgeBand('4-5'), '3-5');
   check('6-7 becomes 6-8', migrate.migrateAgeBand('6-7'), '6-9');
-  check('8-10 becomes 9-11', migrate.migrateAgeBand('8-10'), '10-14');
-  check('a new band is kept', migrate.migrateAgeBand('10-14'), '10-14');
+  check('8-10 becomes 9-11', migrate.migrateAgeBand('8-10'), '10-13');
+  // The top band narrowed in September 2026. A phone set up before that has
+  // '10-14' stored and must land on the teen tier, not on the 6-9 fallback.
+  check('10-14 becomes 10-13', migrate.migrateAgeBand('10-14'), '10-13');
+  check('a new band is kept', migrate.migrateAgeBand('10-13'), '10-13');
   check('junk falls back to 6-8', migrate.migrateAgeBand(42), '6-9');
   check('an old family is offline, never online by default', migrate.reconcileSocial(undefined, true).mode, 'offline');
   check('a family mid setup has not answered', migrate.reconcileSocial(undefined, false).mode, 'unset');

@@ -15,7 +15,7 @@ import { categoryColors, colors, spacing } from '../../theme/tokens';
 const ageLabels: Record<AgeBand, TKey> = {
   '3-5': 'child.ageBand35',
   '6-9': 'child.ageBand69',
-  '10-14': 'child.ageBand1014',
+  '10-13': 'child.ageBand1013',
 };
 
 const tones = [

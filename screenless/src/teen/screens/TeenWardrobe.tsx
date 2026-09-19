@@ -27,7 +27,7 @@ const SLOT_LABEL: Record<WearSlot, TKey> = {
 };
 
 /**
- * The locker, for ages 10 to 14.
+ * The locker, for ages 10 to 13.
  *
  * The same economy as the tier below, framed as an inventory rather than a toy
  * shop: a flat grid, the balance as a plain number at the top, prices in a

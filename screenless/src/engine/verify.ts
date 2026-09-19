@@ -44,7 +44,7 @@ import { readIntegrity } from './integrity';
  * - `parent` (3-5): every mission waits for a grown up, as it always has.
  * - `sample` (6-9): the phone approves what it can check and a parent sees a
  *   random share plus anything that did not pass.
- * - `self` (10-14): nothing waits for anybody. The phone records whether its
+ * - `self` (10-13): nothing waits for anybody. The phone records whether its
  *   own measurements backed the claim up or whether it is standing on the
  *   child's word, and a parent reads that log afterwards. Constant approval at
  *   this age reads as surveillance, and a teenager who feels watched stops
@@ -55,7 +55,7 @@ export type ReviewPolicy = 'parent' | 'sample' | 'self';
 const POLICIES: Record<AgeBand, ReviewPolicy> = {
   '3-5': 'parent',
   '6-9': 'sample',
-  '10-14': 'self',
+  '10-13': 'self',
 };
 
 export function reviewPolicy(band: AgeBand | undefined): ReviewPolicy {
@@ -63,7 +63,7 @@ export function reviewPolicy(band: AgeBand | undefined): ReviewPolicy {
 }
 
 /** Age bands where the phone decides rather than queueing for a parent. */
-export const SELF_CHECK_BANDS: readonly AgeBand[] = ['6-9', '10-14'];
+export const SELF_CHECK_BANDS: readonly AgeBand[] = ['6-9', '10-13'];
 
 export function selfChecks(band: AgeBand | undefined): boolean {
   return reviewPolicy(band) !== 'parent';
@@ -201,7 +201,7 @@ export function tallyProgress(
  * Screen free minutes the phone actually counted this week.
  *
  * Only time it measured itself lying face down during a mission, so it can be
- * put next to a target a 10-14 set for themselves without either number being
+ * put next to a target a 10-13 set for themselves without either number being
  * a guess.
  */
 export function screenFreeThisWeek(history: Mission[], now: number = Date.now()): number {
@@ -430,7 +430,7 @@ export function decideReview(input: ReviewInput): ReviewDecision {
   if (integrity.flags.includes('repeated')) reasons.push('repeated');
   if (integrity.flags.includes('burst')) reasons.push('burst');
 
-  // Ages 10-14 finish where they stand. What the record says is whether the
+  // Ages 10-13 finish where they stand. What the record says is whether the
   // phone's own measurements backed it up or whether it rests on their word,
   // which is what a parent reads in the audit afterwards.
   if (policy === 'self') {

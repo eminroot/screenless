@@ -80,7 +80,7 @@ export const en = {
     ageLabel: 'Age',
     age35: '3 to 5',
     age69: '6 to 9',
-    age1014: '10 to 14',
+    age1013: '10 to 13',
     create: 'Add',
     creating: 'Adding',
 

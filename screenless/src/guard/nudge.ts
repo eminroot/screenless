@@ -35,7 +35,7 @@ import type { GuardConfig, GuardDay } from './types';
  *           at the adult holding the phone.
  *   6-9     minutes left, framed as what is still possible today, plus one
  *           concrete thing to go and do.
- *   10-14   the number and nothing else. No exclamation mark, no mascot, no
+ *   10-13   the number and nothing else. No exclamation mark, no mascot, no
  *           encouragement. Respecting that they can do the arithmetic
  *           themselves is the only register that survives being read twice.
  */
