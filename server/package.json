@@ -1,0 +1,16 @@
+{
+  "name": "screenless-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Screen time and mission reports from a child's phone, and the analytics the parent app reads back.",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test \"test/**/*.test.js\"",
+    "seed": "node scripts/seed.js"
+  }
+}

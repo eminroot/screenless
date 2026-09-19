@@ -1,0 +1,14 @@
+name = "screenless-ai"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+# Optional. Bind a KV namespace to switch on the per address daily cap:
+#   npx wrangler kv namespace create RATE
+# then paste the id it prints here and uncomment.
+# [[kv_namespaces]]
+# binding = "RATE"
+# id = "paste-the-id-here"
+
+# Secrets are never written in this file. Set them with:
+#   npx wrangler secret put GEMINI_API_KEY
+#   npx wrangler secret put APP_TOKEN        # optional

@@ -1,0 +1,20 @@
+{
+  "name": "screenless-leaderboard",
+  "description": "Usernames, invite codes and the friends board for ScreenLess",
+  "private": true,
+  "main": "index.js",
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {
+    "dev": "node dev-server.js --seed",
+    "test": "node --test test/api.test.js",
+    "test:emulator": "firebase emulators:exec --config ../firebase.json --only firestore --project demo-screenless \"node --test test/api.test.js\"",
+    "deploy": "firebase deploy --config ../firebase.json --only firestore,functions:screenless-social",
+    "logs": "firebase functions:log --only leaderboard"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.0.0",
+    "firebase-functions": "^6.1.0"
+  }
+}

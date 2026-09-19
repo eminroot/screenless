@@ -1,0 +1,43 @@
+{
+  "cli": {
+    "version": ">= 12.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "development"
+    },
+    "preview": {
+      "distribution": "internal",
+      "channel": "preview",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_GEMINI_DEV_KEY": ""
+      }
+    },
+    "production": {
+      "channel": "production",
+      "autoIncrement": true,
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "env": {
+        "EXPO_PUBLIC_GEMINI_DEV_KEY": "",
+        "EXPO_PUBLIC_GEMINI_PROXY_URL": "https://europe-west1-cyberxbank-7dc0b.cloudfunctions.net/gemini",
+        "EXPO_PUBLIC_LEADERBOARD_URL": "https://europe-west1-cyberxbank-7dc0b.cloudfunctions.net/leaderboard"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "android": {
+        "track": "internal",
+        "releaseStatus": "draft"
+      }
+    }
+  }
+}

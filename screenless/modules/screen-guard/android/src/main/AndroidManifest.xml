@@ -1,0 +1,22 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <!--
+    The watcher. Declared here rather than in the app manifest so the service
+    travels with the module, but the PERMISSIONS it needs are added by
+    plugins/withScreenGuard.js and only when the feature is switched on in
+    app.json. A build with the guard off ships none of them.
+
+    specialUse is the Android 14 type for a foreground service that does not
+    fit the named categories. Google Play asks for a written justification for
+    it at submission; ours is in store/SCREEN-GUARD.md.
+  -->
+  <application>
+    <service
+      android:name=".GuardService"
+      android:exported="false"
+      android:foregroundServiceType="specialUse">
+      <property
+        android:name="android:foregroundServiceTypeSpecialUse"
+        android:value="Enforces a daily app time limit that a parent configured in the app, by watching which app is in the foreground. Required because the limit must hold while this app is closed." />
+    </service>
+  </application>
+</manifest>

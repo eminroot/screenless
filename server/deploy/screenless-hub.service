@@ -1,0 +1,46 @@
+[Unit]
+Description=ScreenLess hub
+Documentation=https://github.com/eminbakhishli/screenless
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=screenless
+Group=screenless
+WorkingDirectory=/opt/screenless-hub
+ExecStart=/usr/bin/node /opt/screenless-hub/server.js
+Restart=always
+RestartSec=2
+
+Environment=NODE_ENV=production
+Environment=PORT=8080
+# Bound to loopback: nginx in front of it holds the certificate and is the
+# only thing that should be able to reach the port.
+Environment=HOST=127.0.0.1
+Environment=DB_FILE=/var/lib/screenless/hub.db
+Environment=TRUST_PROXY=1
+
+# The service reads its own code and writes exactly one directory. Everything
+# else on the box is off limits to it, so a bug in a request handler cannot
+# reach into the rest of the machine.
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/screenless
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=no
+SystemCallArchitectures=native
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=screenless-hub
+
+[Install]
+WantedBy=multi-user.target
