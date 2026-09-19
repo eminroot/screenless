@@ -568,6 +568,8 @@ export const tr: Translation = {
   buddyNames: {
     fox: 'Pako',
     robot: 'Bibo',
+    scout: 'Zeko',
+    byte: 'Nix',
     cat: 'Miu',
     dino: 'Ruzo',
     owl: 'Uhu',
@@ -583,6 +585,8 @@ export const tr: Translation = {
   buddyTraits: {
     fox: 'Hızlı ve meraklı',
     robot: 'Her şeyi sayar',
+    scout: 'Her yere hazır',
+    byte: 'Az konuşur, çok fark eder',
     cat: 'Önce uyur, sonra koşar',
     dino: 'Kocaman ve uysal',
     owl: 'Çok şey bilir',

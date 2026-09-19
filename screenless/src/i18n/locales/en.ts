@@ -568,6 +568,8 @@ export const en = {
   buddyNames: {
     fox: 'Pako',
     robot: 'Bibo',
+    scout: 'Zeko',
+    byte: 'Nix',
     cat: 'Miu',
     dino: 'Ruzo',
     owl: 'Uhu',
@@ -583,6 +585,8 @@ export const en = {
   buddyTraits: {
     fox: 'Quick and curious',
     robot: 'Counts everything',
+    scout: 'Packed for anywhere',
+    byte: 'Says little, notices everything',
     cat: 'Sleeps, then sprints',
     dino: 'Big and gentle',
     owl: 'Knows a lot',

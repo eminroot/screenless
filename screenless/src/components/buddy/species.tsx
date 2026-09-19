@@ -1,6 +1,7 @@
 import { Circle, Ellipse, G, Path, Rect } from 'react-native-svg';
 
 import type { BuddyId } from '../../state/types';
+import type { BuddyMood } from './Buddy';
 import { palette } from '../../theme/tokens';
 import { INK, type BuddySpec } from './specs';
 
@@ -14,6 +15,15 @@ export const STROKE = 5;
  * white, which reads as a lit panel instead of paint.
  */
 export const SCREEN_GLOW = '#EAFFF8';
+
+/**
+ * The acid the 10-13 robot answers in.
+ *
+ * The same value as the teen tier's default accent in `src/teen/skin.ts`,
+ * repeated rather than imported: this file is the character set, and it should
+ * not start depending on one tier's theme to draw a buddy any age can pick.
+ */
+export const TEEN_ACID = '#CDFF47';
 
 /** A soft light patch on the head, placed by hand so it never lands on a hat. */
 export type Highlight = { cx: number; cy: number; rx: number; ry: number };
@@ -47,8 +57,11 @@ export const faceLayouts: Record<BuddyId, FaceLayout> = {
   cat: defaultFace,
   dino: { ...defaultFace, cheekY: 108 },
   owl: { ...defaultFace, highlight: { cx: 62, cy: 54, rx: 15, ry: 10 } },
-  // The screen face carries the robot's expression on its own.
+  // The three robots carry their expression on a screen, so the shared face
+  // parts are all switched off for them and `ScreenFace` draws instead.
   robot: { ...defaultFace, brows: false, cheeks: false, highlight: null },
+  scout: { ...defaultFace, brows: false, cheeks: false, highlight: null },
+  byte: { ...defaultFace, brows: false, cheeks: false, highlight: null },
   star: {
     eyeX: 84,
     eyeY: 78,
@@ -194,8 +207,11 @@ export function BackParts({ id, spec }: { id: BuddyId; spec: BuddySpec }) {
 
     // The robot used to carry a vented box out to one side here. With the ear
     // cups, bolts, chest plate and jointed limbs it now has, that box was one
-    // shape too many and only broke the silhouette.
+    // shape too many and only broke the silhouette. The other two never had
+    // one: everything that makes them read is on the head and the chest.
     case 'robot':
+    case 'scout':
+    case 'byte':
       return null;
 
     case 'star':
@@ -443,6 +459,63 @@ export function HeadShape({ id, spec }: { id: BuddyId; spec: BuddySpec }) {
         </G>
       );
 
+    case 'scout':
+      return (
+        <G>
+          {/* A headlamp rather than an antenna: this one is kitted out for
+              going somewhere, which is the junior tier's whole frame. */}
+          <Path d="M86,32 L114,32 L110,8 L90,8 Z" fill={spec.shade} stroke={INK} strokeWidth={STROKE} strokeLinejoin="round" />
+          <Ellipse cx={100} cy={8} rx={13} ry={7} fill={palette.sun} stroke={INK} strokeWidth={STROKE} />
+          <Ellipse cx={96} cy={6} rx={4} ry={2.4} fill="#FFFFFF" opacity={0.8} />
+
+          {/* One aerial, on one side, so the head is not a mirror of itself. */}
+          <Path d="M152,40 L168,16" stroke={INK} strokeWidth={5} strokeLinecap="round" />
+          <Circle cx={169} cy={13} r={6} fill={palette.coral} stroke={INK} strokeWidth={4} />
+
+          <Circle cx={30} cy={92} r={16} fill={spec.accent} stroke={INK} strokeWidth={STROKE} />
+          <Rect x={23} y={86} width={14} height={4} rx={2} fill={spec.shade} />
+          <Rect x={23} y={94} width={14} height={4} rx={2} fill={spec.shade} />
+          <Circle cx={170} cy={92} r={16} fill={spec.accent} stroke={INK} strokeWidth={STROKE} />
+          <Rect x={163} y={86} width={14} height={4} rx={2} fill={spec.shade} />
+          <Rect x={163} y={94} width={14} height={4} rx={2} fill={spec.shade} />
+
+          <Rect x={40} y={32} width={120} height={104} rx={26} fill={spec.body} stroke={INK} strokeWidth={STROKE} />
+          {/* A brow plate. It is the single thing that makes this one read as
+              older than the round one, before any other detail lands. */}
+          <Path d="M40,62 L160,62 L160,50 Q100,36 40,50 Z" fill={spec.shade} opacity={0.45} />
+          <Circle cx={52} cy={122} r={3.4} fill={spec.shade} />
+          <Circle cx={148} cy={122} r={3.4} fill={spec.shade} />
+
+          {/* Goggles: wider and shallower than the round one's screen. */}
+          <Rect x={52} y={68} width={96} height={50} rx={18} fill={palette.night} stroke={INK} strokeWidth={4} />
+          <Path d="M66,74 Q100,69 134,74" stroke="#FFFFFF" strokeWidth={3} opacity={0.16} fill="none" strokeLinecap="round" />
+        </G>
+      );
+
+    case 'byte':
+      return (
+        <G>
+          {/* A stub, not a bobbing ball. Nothing on this one waves for
+              attention: at ten to thirteen that is the fastest way to lose them. */}
+          <Path d="M100,34 L100,18" stroke={INK} strokeWidth={6} strokeLinecap="round" />
+          <Circle cx={100} cy={14} r={5.5} fill={TEEN_ACID} stroke={INK} strokeWidth={4} />
+
+          <Rect x={26} y={78} width={16} height={26} rx={6} fill={spec.accent} stroke={INK} strokeWidth={4} />
+          <Rect x={158} y={78} width={16} height={26} rx={6} fill={spec.accent} stroke={INK} strokeWidth={4} />
+
+          {/* Squarer shell and a smaller radius. The teen tier is tight
+              everywhere: hairline rules, small radii, no soft edges. */}
+          <Rect x={42} y={34} width={116} height={100} rx={20} fill={spec.body} stroke={INK} strokeWidth={STROKE} />
+          {/* Near-black loses its form against a near-black outline, so one
+              hairline puts the curve back without adding decoration. */}
+          <Path d="M56,44 Q100,38 144,44" stroke={spec.accent} strokeWidth={3} fill="none" opacity={0.7} strokeLinecap="round" />
+
+          {/* One letterbox visor rather than a face-shaped screen. */}
+          <Rect x={54} y={66} width={92} height={44} rx={14} fill={palette.night} stroke={INK} strokeWidth={4} />
+          <Path d="M66,72 Q100,68 134,72" stroke="#FFFFFF" strokeWidth={2.5} opacity={0.14} fill="none" strokeLinecap="round" />
+        </G>
+      );
+
     case 'star':
       return (
         <Path
@@ -581,4 +654,141 @@ export function HeadShape({ id, spec }: { id: BuddyId; spec: BuddySpec }) {
         </G>
       );
   }
+}
+
+/* ------------------------------------------------------------ screen faces */
+
+/** The three buddies whose expression is drawn on a screen, not on a head. */
+const SCREEN_FACED = new Set<BuddyId>(['robot', 'scout', 'byte']);
+
+export function isScreenFaced(id: BuddyId): boolean {
+  return SCREEN_FACED.has(id);
+}
+
+/**
+ * The face on a robot's screen.
+ *
+ * Kept out of the shared `Eyes`/`Mouth` because it does not work the way an
+ * animal face works. It is drawn in light on dark, its shapes change rather
+ * than its lids, and each of the three screens is a different size, so the
+ * features cannot come from one `FaceLayout` the way every other buddy's do.
+ *
+ * `byte` answers in bars rather than a face at all. That is not laziness with
+ * the geometry: the 10-13 tier's whole brief is that it has to survive a
+ * friend glancing at the screen, and a grinning cartoon is exactly what a
+ * twelve year old does not want to be seen with.
+ */
+export function ScreenFace({
+  id,
+  mood,
+  closed,
+  frame,
+}: {
+  id: BuddyId;
+  mood: BuddyMood;
+  closed: boolean;
+  frame: number;
+}) {
+  if (id === 'byte') {
+    const lively = mood === 'happy' || mood === 'cheer';
+    const thin = closed || mood === 'sleepy';
+    const mouthWidth = mood === 'cheer' ? 38 : lively ? 34 : mood === 'talking' ? 20 + frame * 8 : 28;
+    return (
+      <G>
+        <Rect x={70} y={thin ? 85 : 82} width={22} height={thin ? 3 : 9} rx={thin ? 1.5 : 4.5} fill={TEEN_ACID} />
+        <Rect x={108} y={thin ? 85 : 82} width={22} height={thin ? 3 : 9} rx={thin ? 1.5 : 4.5} fill={TEEN_ACID} />
+        <Rect
+          x={100 - mouthWidth / 2}
+          y={99}
+          width={mouthWidth}
+          height={4}
+          rx={2}
+          fill={TEEN_ACID}
+          opacity={lively ? 1 : 0.55}
+        />
+      </G>
+    );
+  }
+
+  // The round one and the kitted-out one share a face language and differ only
+  // in where it sits: the goggles are lower and shallower than the screen.
+  const eyeY = id === 'scout' ? 88 : 82;
+  const eyeDx = id === 'scout' ? 21 : 20;
+  const mouthY = id === 'scout' ? 103 : 98;
+  const left = 100 - eyeDx;
+  const right = 100 + eyeDx;
+
+  const eyes = closed ? (
+    <Path
+      d={`M${left - 9},${eyeY} L${left + 9},${eyeY} M${right - 9},${eyeY} L${right + 9},${eyeY}`}
+      stroke={SCREEN_GLOW}
+      strokeWidth={6}
+      strokeLinecap="round"
+    />
+  ) : mood === 'sleepy' ? (
+    <Path
+      d={`M${left - 9},${eyeY + 2} Q${left},${eyeY + 10} ${left + 9},${eyeY + 2} M${right - 9},${eyeY + 2} Q${right},${eyeY + 10} ${right + 9},${eyeY + 2}`}
+      stroke={SCREEN_GLOW}
+      strokeWidth={6}
+      strokeLinecap="round"
+      fill="none"
+    />
+  ) : mood === 'happy' || mood === 'cheer' ? (
+    <G>
+      <Path d={`M${left - 9},${eyeY + 3} Q${left},${eyeY + 3 - (mood === 'cheer' ? 18 : 14)} ${left + 9},${eyeY + 3} Z`} fill={SCREEN_GLOW} />
+      <Path d={`M${right - 9},${eyeY + 3} Q${right},${eyeY + 3 - (mood === 'cheer' ? 18 : 14)} ${right + 9},${eyeY + 3} Z`} fill={SCREEN_GLOW} />
+    </G>
+  ) : (
+    <G>
+      <Circle cx={left} cy={eyeY} r={9} fill={SCREEN_GLOW} />
+      <Circle cx={right} cy={eyeY} r={9} fill={SCREEN_GLOW} />
+    </G>
+  );
+
+  let mouth;
+  if (mood === 'sleepy') {
+    mouth = <Ellipse cx={100} cy={mouthY + 4} rx={7} ry={9} fill={SCREEN_GLOW} opacity={0.85} />;
+  } else if (mood === 'talking') {
+    mouth =
+      frame === 0 ? (
+        <Ellipse cx={100} cy={mouthY + 2} rx={9} ry={10} fill={SCREEN_GLOW} />
+      ) : frame === 1 ? (
+        <Ellipse cx={100} cy={mouthY + 2} rx={13} ry={6} fill={SCREEN_GLOW} />
+      ) : (
+        <Path
+          d={`M${100 - 13},${mouthY - 1} Q100,${mouthY + 10} ${100 + 13},${mouthY - 1}`}
+          stroke={SCREEN_GLOW}
+          strokeWidth={6}
+          strokeLinecap="round"
+          fill="none"
+        />
+      );
+  } else if (mood === 'happy' || mood === 'cheer') {
+    // Kept inside the glass: the animals' happy mouth opens to y+26, which on
+    // either of these runs off the bottom of the screen it is drawn on.
+    const drop = mood === 'cheer' ? 20 : 16;
+    mouth = (
+      <G>
+        <Path d={`M82,${mouthY - 4} Q100,${mouthY - 4 + drop} 118,${mouthY - 4} Z`} fill={SCREEN_GLOW} />
+        {mood === 'cheer' && <Path d={`M91,${mouthY + 5} Q100,${mouthY + 14} 109,${mouthY + 5} Z`} fill="#FF7A8A" />}
+      </G>
+    );
+  } else {
+    mouth = (
+      <Path
+        d={`M86,${mouthY} Q100,${mouthY + 12} 114,${mouthY}`}
+        stroke={SCREEN_GLOW}
+        strokeWidth={6}
+        strokeLinecap="round"
+        fill="none"
+      />
+    );
+  }
+
+  return (
+    <G>
+      {eyes}
+      {mouth}
+    </G>
+  );
 }

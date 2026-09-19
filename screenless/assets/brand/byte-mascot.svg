@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Nix, the ScreenLess assistant drawn for ages 10-13.
+
+  The same geometry the app draws in src/components/buddy, exported flat so it
+  can go on a poster or a slide without running React. Keep the two in step: if
+  the buddy changes in the app, re-export rather than editing this by hand.
+
+  Drawn in the teen tier's register: near-black, tight radii, one acid
+  accent doing all the work. No grin and no badge, because at this age a
+  grinning mascot is the fastest way to lose them.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-18 -30 236 254" width="472" height="508" role="img" aria-label="Nix, the ScreenLess robot for ages 10 to 13">
+  <title>Nix, the ScreenLess robot for ages 10 to 13</title>
+
+  <!-- feet -->
+  <ellipse cx="78" cy="196" rx="18" ry="11" fill="#2B333F" stroke="#2A2118" stroke-width="5"/>
+  <ellipse cx="122" cy="196" rx="18" ry="11" fill="#2B333F" stroke="#2A2118" stroke-width="5"/>
+
+  <!-- back arm and its mitt -->
+  <ellipse cx="56" cy="150" rx="12" ry="21" fill="#2B333F" stroke="#2A2118" stroke-width="5" transform="rotate(20,56,150)"/>
+  <circle cx="56" cy="172" r="7.5" fill="#1B212A" stroke="#2A2118" stroke-width="4" transform="rotate(20,56,150)"/>
+
+  <!-- body -->
+  <g>
+    <ellipse cx="100" cy="156" rx="44" ry="41" fill="#2B333F" stroke="#2A2118" stroke-width="5"/>
+    <path d="M56,156 A44,41 0 0 0 144,156 Z" fill="#1B212A" opacity="0.5"/>
+    <path d="M62,142 Q100,126 138,142" stroke="#59657A" stroke-width="3" fill="none" opacity="0.8" stroke-linecap="round"/>
+    <rect x="78" y="152" width="44" height="7" rx="3.5" fill="#CDFF47"/>
+    <rect x="78" y="165" width="26" height="5" rx="2.5" fill="#59657A"/>
+  </g>
+
+  <!-- front arm and its mitt -->
+  <ellipse cx="144" cy="150" rx="12" ry="21" fill="#2B333F" stroke="#2A2118" stroke-width="5" transform="rotate(-20,144,150)"/>
+  <circle cx="144" cy="172" r="7.5" fill="#1B212A" stroke="#2A2118" stroke-width="4" transform="rotate(-20,144,150)"/>
+
+  <!-- stub antenna -->
+  <path d="M100,34 L100,18" stroke="#2A2118" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="100" cy="14" r="5.5" fill="#CDFF47" stroke="#2A2118" stroke-width="4"/>
+
+  <!-- flush side plates -->
+  <rect x="26" y="78" width="16" height="26" rx="6" fill="#59657A" stroke="#2A2118" stroke-width="4"/>
+  <rect x="158" y="78" width="16" height="26" rx="6" fill="#59657A" stroke="#2A2118" stroke-width="4"/>
+
+  <!-- head shell -->
+  <rect x="42" y="34" width="116" height="100" rx="20" fill="#2B333F" stroke="#2A2118" stroke-width="5"/>
+  <path d="M56,44 Q100,38 144,44" stroke="#59657A" stroke-width="3" fill="none" opacity="0.7" stroke-linecap="round"/>
+
+  <!-- letterbox visor -->
+  <rect x="54" y="66" width="92" height="44" rx="14" fill="#1B1710" stroke="#2A2118" stroke-width="4"/>
+  <path d="M66,72 Q100,68 134,72" stroke="#FFFFFF" stroke-width="2.5" opacity="0.14" fill="none" stroke-linecap="round"/>
+
+  <!-- face: two bars and a mouth bar. That is the whole vocabulary. -->
+  <rect x="70" y="82" width="22" height="9" rx="4.5" fill="#CDFF47"/>
+  <rect x="108" y="82" width="22" height="9" rx="4.5" fill="#CDFF47"/>
+  <rect x="83" y="99" width="34" height="4" rx="2" fill="#CDFF47"/>
+</svg>

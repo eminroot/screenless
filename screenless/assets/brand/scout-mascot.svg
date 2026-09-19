@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Zeko, the ScreenLess assistant drawn for ages 6-9.
+
+  The same geometry the app draws in src/components/buddy, exported flat so it
+  can go on a poster or a slide without running React. Keep the two in step: if
+  the buddy changes in the app, re-export rather than editing this by hand.
+
+  Drawn in the junior tier's register: vivid, ink-outlined, kitted out
+  for going somewhere. Headlamp and goggles rather than an antenna and a
+  round screen, and a bolt on the chest rather than a star.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-18 -30 236 254" width="472" height="508" role="img" aria-label="Zeko, the ScreenLess robot for ages 6 to 9">
+  <title>Zeko, the ScreenLess robot for ages 6 to 9</title>
+
+  <!-- feet -->
+  <ellipse cx="78" cy="196" rx="18" ry="11" fill="#7C5CFF" stroke="#2A2118" stroke-width="5"/>
+  <ellipse cx="122" cy="196" rx="18" ry="11" fill="#7C5CFF" stroke="#2A2118" stroke-width="5"/>
+
+  <!-- back arm and its mitt -->
+  <ellipse cx="56" cy="150" rx="12" ry="21" fill="#7C5CFF" stroke="#2A2118" stroke-width="5" transform="rotate(20,56,150)"/>
+  <circle cx="56" cy="172" r="7.5" fill="#5B3FD6" stroke="#2A2118" stroke-width="4" transform="rotate(20,56,150)"/>
+
+  <!-- body -->
+  <g>
+    <ellipse cx="100" cy="156" rx="44" ry="41" fill="#7C5CFF" stroke="#2A2118" stroke-width="5"/>
+    <path d="M56,156 A44,41 0 0 0 144,156 Z" fill="#5B3FD6" opacity="0.5"/>
+    <rect x="74" y="136" width="52" height="46" rx="16" fill="#ECE6FF" stroke="#2A2118" stroke-width="4"/>
+    <path d="M104,142 L88,161 L98,161 L94,177 L112,157 L101,157 Z"
+          fill="#FFC53D" stroke="#F0A81B" stroke-width="2.5" stroke-linejoin="round"/>
+    <ellipse cx="88" cy="145" rx="8" ry="5" fill="#FFFFFF" opacity="0.45" transform="rotate(-28,88,145)"/>
+  </g>
+
+  <!-- front arm and its mitt -->
+  <ellipse cx="144" cy="150" rx="12" ry="21" fill="#7C5CFF" stroke="#2A2118" stroke-width="5" transform="rotate(-20,144,150)"/>
+  <circle cx="144" cy="172" r="7.5" fill="#5B3FD6" stroke="#2A2118" stroke-width="4" transform="rotate(-20,144,150)"/>
+
+  <!-- headlamp -->
+  <path d="M86,32 L114,32 L110,8 L90,8 Z" fill="#5B3FD6" stroke="#2A2118" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="100" cy="8" rx="13" ry="7" fill="#FFC53D" stroke="#2A2118" stroke-width="5"/>
+  <ellipse cx="96" cy="6" rx="4" ry="2.4" fill="#FFFFFF" opacity="0.8"/>
+
+  <!-- aerial, one side only -->
+  <path d="M152,40 L168,16" stroke="#2A2118" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="169" cy="13" r="6" fill="#FF6B57" stroke="#2A2118" stroke-width="4"/>
+
+  <!-- ear cups -->
+  <circle cx="30" cy="92" r="16" fill="#B9A8FF" stroke="#2A2118" stroke-width="5"/>
+  <rect x="23" y="86" width="14" height="4" rx="2" fill="#5B3FD6"/>
+  <rect x="23" y="94" width="14" height="4" rx="2" fill="#5B3FD6"/>
+  <circle cx="170" cy="92" r="16" fill="#B9A8FF" stroke="#2A2118" stroke-width="5"/>
+  <rect x="163" y="86" width="14" height="4" rx="2" fill="#5B3FD6"/>
+  <rect x="163" y="94" width="14" height="4" rx="2" fill="#5B3FD6"/>
+
+  <!-- head shell and brow plate -->
+  <rect x="40" y="32" width="120" height="104" rx="26" fill="#7C5CFF" stroke="#2A2118" stroke-width="5"/>
+  <path d="M40,62 L160,62 L160,50 Q100,36 40,50 Z" fill="#5B3FD6" opacity="0.45"/>
+  <circle cx="52" cy="122" r="3.4" fill="#5B3FD6"/>
+  <circle cx="148" cy="122" r="3.4" fill="#5B3FD6"/>
+
+  <!-- goggles -->
+  <rect x="52" y="68" width="96" height="50" rx="18" fill="#1B1710" stroke="#2A2118" stroke-width="4"/>
+  <path d="M66,74 Q100,69 134,74" stroke="#FFFFFF" stroke-width="3" opacity="0.16" fill="none" stroke-linecap="round"/>
+
+  <!-- face: happy -->
+  <path d="M70,91 Q79,77 88,91 Z" fill="#EAFFF8"/>
+  <path d="M112,91 Q121,77 130,91 Z" fill="#EAFFF8"/>
+  <path d="M82,99 Q100,115 118,99 Z" fill="#EAFFF8"/>
+</svg>

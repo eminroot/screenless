@@ -33,6 +33,22 @@ export const buddySpecs: Record<BuddyId, BuddySpec> = {
     shade: '#3A93D0',
     affinity: ['science', 'building', 'space'],
   },
+  scout: {
+    id: 'scout',
+    body: '#7C5CFF',
+    light: '#ECE6FF',
+    accent: '#B9A8FF',
+    shade: '#5B3FD6',
+    affinity: ['bike', 'nature', 'building'],
+  },
+  byte: {
+    id: 'byte',
+    body: '#2B333F',
+    light: '#3C4657',
+    accent: '#59657A',
+    shade: '#1B212A',
+    affinity: ['science', 'music', 'books'],
+  },
   cat: {
     id: 'cat',
     body: '#B79BFF',
@@ -118,7 +134,13 @@ export const buddySpecs: Record<BuddyId, BuddySpec> = {
   },
 };
 
-/** Picker order, alternating the original set with the new one. */
+/**
+ * Picker order, alternating the original set with the new one.
+ *
+ * The three robots are kept together rather than spread through the list. A
+ * child scrolling past them sees a family of three at a glance, which is the
+ * point of them: same build, drawn at three different ages.
+ */
 export const buddyOrder: BuddyId[] = [
   'fox',
   'tiger',
@@ -130,12 +152,23 @@ export const buddyOrder: BuddyId[] = [
   'panda',
   'owl',
   'robot',
+  'scout',
+  'byte',
   'rocket',
   'star',
 ];
 
 /** Buddies added after the first release, badged as new in the picker. */
-export const newBuddies = new Set<BuddyId>(['bear', 'tiger', 'bunny', 'panda', 'turtle', 'rocket']);
+export const newBuddies = new Set<BuddyId>([
+  'bear',
+  'tiger',
+  'bunny',
+  'panda',
+  'turtle',
+  'rocket',
+  'scout',
+  'byte',
+]);
 
 function affinityScore(id: BuddyId, interests: InterestId[]): number {
   return buddySpecs[id].affinity.filter((i) => interests.includes(i)).length;

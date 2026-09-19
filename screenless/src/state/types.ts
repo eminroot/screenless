@@ -59,7 +59,13 @@ export type InterestId = (typeof INTERESTS)[number];
 
 export const BUDDY_IDS = [
   'fox',
+  // Three robots rather than one, each drawn in the register of an age
+  // band: `robot` is round and pastel, `scout` is kitted out for going
+  // somewhere, `byte` is near-black and says almost nothing. Any child can
+  // still pick any of them; the ages are who each was drawn for.
   'robot',
+  'scout',
+  'byte',
   'cat',
   'dino',
   'owl',

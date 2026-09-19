@@ -12,7 +12,17 @@ import Svg, { Circle, Ellipse, G, Path, Rect } from 'react-native-svg';
 import type { BuddyId, ItemId } from '../../state/types';
 import { palette } from '../../theme/tokens';
 import { buddySpecs, INK, type BuddySpec } from './specs';
-import { BackParts, faceLayouts, HeadShape, HeldProp, limbColor, SCREEN_GLOW, STROKE } from './species';
+import {
+  BackParts,
+  faceLayouts,
+  HeadShape,
+  HeldProp,
+  isScreenFaced,
+  limbColor,
+  ScreenFace,
+  STROKE,
+  TEEN_ACID,
+} from './species';
 
 export type BuddyMood = 'idle' | 'talking' | 'happy' | 'cheer' | 'sleepy';
 
@@ -248,7 +258,7 @@ export function Buddy({ id, size = 200, mood = 'idle', wearing = [], label, stil
 
         {/* Mitts, carried on the same transform as the arm they belong to, so
             they still land at the wrist when the front arm swings up to cheer. */}
-        {id === 'robot' && (
+        {isScreenFaced(id) && (
           <Circle
             cx={56}
             cy={172}
@@ -285,7 +295,7 @@ export function Buddy({ id, size = 200, mood = 'idle', wearing = [], label, stil
           transform={armUp ? 'rotate(-58, 144, 158)' : 'rotate(-20, 144, 150)'}
         />
 
-        {id === 'robot' && (
+        {isScreenFaced(id) && (
           <Circle
             cx={144}
             cy={172}
@@ -381,19 +391,28 @@ export function Buddy({ id, size = 200, mood = 'idle', wearing = [], label, stil
             />
           )}
 
-          <Eyes id={id} eyeX={face.eyeX} eyeY={face.eyeY} closed={eyesClosed} mood={mood} />
+          {/* A robot's expression is on a screen and works nothing like a
+              face on a head, so the three of them take a different path
+              through rather than a pile of branches inside the shared parts. */}
+          {isScreenFaced(id) ? (
+            <ScreenFace id={id} mood={mood} closed={eyesClosed} frame={mouthFrame} />
+          ) : (
+            <>
+              <Eyes eyeX={face.eyeX} eyeY={face.eyeY} closed={eyesClosed} />
 
-          {face.brows && <Brows eyeX={face.eyeX} eyeY={face.eyeY} mood={mood} />}
+              {face.brows && <Brows eyeX={face.eyeX} eyeY={face.eyeY} mood={mood} />}
 
-          {face.cheeks && (
-            <G>
-              <Ellipse cx={face.cheekX} cy={face.cheekY} rx={11} ry={7} fill="#FF8FA3" opacity={0.55} />
-              <Ellipse cx={200 - face.cheekX} cy={face.cheekY} rx={11} ry={7} fill="#FF8FA3" opacity={0.55} />
-            </G>
+              {face.cheeks && (
+                <G>
+                  <Ellipse cx={face.cheekX} cy={face.cheekY} rx={11} ry={7} fill="#FF8FA3" opacity={0.55} />
+                  <Ellipse cx={200 - face.cheekX} cy={face.cheekY} rx={11} ry={7} fill="#FF8FA3" opacity={0.55} />
+                </G>
+              )}
+
+              {/* The owl's beak replaces its mouth. */}
+              {id !== 'owl' && <Mouth mood={mood} frame={mouthFrame} y={face.mouthY} />}
+            </>
           )}
-
-          {/* The owl's beak replaces its mouth. */}
-          {id !== 'owl' && <Mouth mood={mood} frame={mouthFrame} y={face.mouthY} id={id} />}
 
           {mood === 'sleepy' && (
             <G>
@@ -542,6 +561,49 @@ export function Buddy({ id, size = 200, mood = 'idle', wearing = [], label, stil
 /* ---------------------------------------------------------------- pieces */
 
 /** Body, the shadow that gives it volume, and the belly. */
+function ChestPlate({ id, spec }: { id: BuddyId; spec: BuddySpec }) {
+  if (id === 'byte') {
+    return (
+      <G>
+        <Path
+          d="M62,142 Q100,126 138,142"
+          stroke={spec.accent}
+          strokeWidth={3}
+          fill="none"
+          opacity={0.8}
+          strokeLinecap="round"
+        />
+        <Rect x={78} y={152} width={44} height={7} rx={3.5} fill={TEEN_ACID} />
+        <Rect x={78} y={165} width={26} height={5} rx={2.5} fill={spec.accent} />
+      </G>
+    );
+  }
+
+  return (
+    <G>
+      <Rect x={74} y={136} width={52} height={46} rx={16} fill={spec.light} stroke={INK} strokeWidth={4} />
+      {id === 'scout' ? (
+        <Path
+          d="M104,142 L88,161 L98,161 L94,177 L112,157 L101,157 Z"
+          fill={palette.sun}
+          stroke={palette.sunDeep}
+          strokeWidth={2.5}
+          strokeLinejoin="round"
+        />
+      ) : (
+        <Path
+          d="M100,143 L104.2,154.2 L116,154.7 L106.8,162.1 L109.8,173.5 L100,167 L90.2,173.5 L93.2,162.1 L84,154.7 L95.8,154.2 Z"
+          fill={palette.sun}
+          stroke={palette.sunDeep}
+          strokeWidth={2.5}
+          strokeLinejoin="round"
+        />
+      )}
+      <Ellipse cx={88} cy={145} rx={8} ry={5} fill="#FFFFFF" opacity={0.45} transform="rotate(-28, 88, 145)" />
+    </G>
+  );
+}
+
 function Body({ id, spec }: { id: BuddyId; spec: BuddySpec }) {
   return (
     <G>
@@ -549,21 +611,15 @@ function Body({ id, spec }: { id: BuddyId; spec: BuddySpec }) {
       {/* Lower half of the same ellipse, so the body reads as round rather than flat. */}
       <Path d="M56,156 A44,41 0 0 0 144,156 Z" fill={spec.shade} opacity={0.5} />
 
-      {id === 'robot' ? (
+      {isScreenFaced(id) ? (
         // An outlined chest plate where the animals get a belly. Drawn instead
         // of the belly circle rather than over it: laying one outlined shape on
-        // top of the other made the star read as a sticker stuck to a tummy.
-        <G>
-          <Rect x={74} y={136} width={52} height={46} rx={16} fill={spec.light} stroke={INK} strokeWidth={4} />
-          <Path
-            d="M100,143 L104.2,154.2 L116,154.7 L106.8,162.1 L109.8,173.5 L100,167 L90.2,173.5 L93.2,162.1 L84,154.7 L95.8,154.2 Z"
-            fill={palette.sun}
-            stroke={palette.sunDeep}
-            strokeWidth={2.5}
-            strokeLinejoin="round"
-          />
-          <Ellipse cx={88} cy={145} rx={8} ry={5} fill="#FFFFFF" opacity={0.45} transform="rotate(-28, 88, 145)" />
-        </G>
+        // top of the other made the badge read as a sticker stuck to a tummy.
+        //
+        // Each robot carries its own mark. `byte` carries none at all: a lit
+        // bar and a hairline, because a badge on the chest is exactly the kind
+        // of thing the 10-13 tier strips out.
+        <ChestPlate id={id} spec={spec} />
       ) : (
         <>
           <Ellipse cx={100} cy={163} rx={27} ry={27} fill={spec.light} />
@@ -575,59 +631,14 @@ function Body({ id, spec }: { id: BuddyId; spec: BuddySpec }) {
 }
 
 function Eyes({
-  id,
   eyeX,
   eyeY,
   closed,
-  mood,
 }: {
-  id: BuddyId;
   eyeX: number;
   eyeY: number;
   closed: boolean;
-  mood: BuddyMood;
 }) {
-  // The robot's eyes are lit pixels on its screen, so they are drawn in glow on
-  // dark and their shape changes rather than their lids: a screen has no lids.
-  if (id === 'robot') {
-    if (closed) {
-      return (
-        <Path
-          d="M71,82 L89,82 M111,82 L129,82"
-          stroke={SCREEN_GLOW}
-          strokeWidth={6}
-          strokeLinecap="round"
-        />
-      );
-    }
-    if (mood === 'sleepy') {
-      return (
-        <Path
-          d="M71,84 Q80,92 89,84 M111,84 Q120,92 129,84"
-          stroke={SCREEN_GLOW}
-          strokeWidth={6}
-          strokeLinecap="round"
-          fill="none"
-        />
-      );
-    }
-    if (mood === 'happy' || mood === 'cheer') {
-      const lift = mood === 'cheer' ? 18 : 14;
-      return (
-        <G>
-          <Path d={`M71,85 Q80,${85 - lift} 89,85 Z`} fill={SCREEN_GLOW} />
-          <Path d={`M111,85 Q120,${85 - lift} 129,85 Z`} fill={SCREEN_GLOW} />
-        </G>
-      );
-    }
-    return (
-      <G>
-        <Circle cx={80} cy={82} r={9} fill={SCREEN_GLOW} />
-        <Circle cx={120} cy={82} r={9} fill={SCREEN_GLOW} />
-      </G>
-    );
-  }
-
   if (closed) {
     return (
       <Path
@@ -672,45 +683,7 @@ function Brows({ eyeX, eyeY, mood }: { eyeX: number; eyeY: number; mood: BuddyMo
   );
 }
 
-function Mouth({ mood, frame, y, id }: { mood: BuddyMood; frame: number; y: number; id: BuddyId }) {
-  // Lit pixels again, and kept inside the screen box: the animals' happy mouth
-  // opens to y+26, which on the robot would run off the bottom of its screen.
-  if (id === 'robot') {
-    if (mood === 'sleepy') {
-      return <Ellipse cx={100} cy={102} rx={7} ry={9} fill={SCREEN_GLOW} opacity={0.85} />;
-    }
-    if (mood === 'talking') {
-      if (frame === 0) return <Ellipse cx={100} cy={100} rx={9} ry={10} fill={SCREEN_GLOW} />;
-      if (frame === 1) return <Ellipse cx={100} cy={100} rx={13} ry={6} fill={SCREEN_GLOW} />;
-      return (
-        <Path
-          d="M87,97 Q100,108 113,97"
-          stroke={SCREEN_GLOW}
-          strokeWidth={6}
-          strokeLinecap="round"
-          fill="none"
-        />
-      );
-    }
-    if (mood === 'cheer' || mood === 'happy') {
-      return (
-        <G>
-          <Path d={`M82,94 Q100,${mood === 'cheer' ? 118 : 114} 118,94 Z`} fill={SCREEN_GLOW} />
-          {mood === 'cheer' && <Path d="M91,106 Q100,115 109,106 Z" fill="#FF7A8A" />}
-        </G>
-      );
-    }
-    return (
-      <Path
-        d="M86,98 Q100,110 114,98"
-        stroke={SCREEN_GLOW}
-        strokeWidth={6}
-        strokeLinecap="round"
-        fill="none"
-      />
-    );
-  }
-
+function Mouth({ mood, frame, y }: { mood: BuddyMood; frame: number; y: number }) {
   if (mood === 'sleepy') {
     return <Ellipse cx={100} cy={y + 4} rx={7} ry={9} fill={INK} opacity={0.85} />;
   }

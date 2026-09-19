@@ -19,6 +19,8 @@ export type VoiceProfile = { pitch: number; rate: number };
 export const buddyVoices: Record<BuddyId, VoiceProfile> = {
   fox: { pitch: 1.25, rate: 1.0 },
   robot: { pitch: 0.85, rate: 0.92 },
+  scout: { pitch: 1.1, rate: 1.06 },
+  byte: { pitch: 0.7, rate: 0.95 },
   cat: { pitch: 1.35, rate: 1.02 },
   dino: { pitch: 0.8, rate: 0.88 },
   owl: { pitch: 1.05, rate: 0.9 },
