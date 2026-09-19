@@ -52,7 +52,6 @@ export const colors = {
   screen: '#4B4A7A',
   screenSoft: '#E7E6F1',
   active: '#2F7D5B',
-  missions: '#E8543F',
 
   /** A day the phone never reported. Drawn, but as an absence. */
   gap: '#EDE9E2',

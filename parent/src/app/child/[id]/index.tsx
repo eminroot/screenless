@@ -11,6 +11,7 @@ import {
   Ring,
   StatTile,
   WeekdayBars,
+  dayBarsMarkMissions,
 } from '../../../components/charts';
 import {
   Button,
@@ -156,6 +157,8 @@ export default function ChildDashboard() {
   const screen = splitSpan(summary.averages.screenSec);
   const reported = summary.totals.reportedDays;
   const nothingYet = reported === 0;
+  const missingDays = summary.days.filter((day) => !day.reported).length;
+  const marksMissions = dayBarsMarkMissions(summary.days.length, chartWidth);
 
   const heaviest = summary.weekdays.reduce(
     (best, entry) => (entry.screenSec > summary.weekdays[best].screenSec ? entry.weekday : best),
@@ -246,13 +249,31 @@ export default function ChildDashboard() {
             <Legend
               items={[
                 { color: colors.screen, label: t('dash.dailyLegendScreen') },
-                { color: colors.active, label: t('dash.dailyLegendMissions') },
-                { color: colors.gap, label: t('common.noData') },
+                // Coral is the loudest thing in the chart and used to go
+                // unnamed here.
+                ...(limits.enabled
+                  ? [{ color: colors.accent, label: t('dash.dailyLegendOver') }]
+                  : []),
+                ...(marksMissions
+                  ? [
+                      {
+                        color: colors.screen,
+                        dot: colors.paper,
+                        label: t('dash.dailyLegendMissions'),
+                      },
+                    ]
+                  : []),
+                ...(missingDays > 0 ? [{ color: colors.gap, label: t('common.noData') }] : []),
               ]}
             />
-            <Txt variant="tiny" color={colors.inkFaint}>
-              {t('dash.gapNote')}
-            </Txt>
+            {/* The rule this app rests on, said only when there is something to
+                say it about. On a complete stretch it was a paragraph
+                explaining an absence nobody could see. */}
+            {missingDays > 0 ? (
+              <Txt variant="tiny" color={colors.inkFaint}>
+                {t('dash.gapNote')}
+              </Txt>
+            ) : null}
           </Card>
 
           {/* ---------------------------------------------------- the limit */}
@@ -297,9 +318,6 @@ export default function ChildDashboard() {
                 })}
               </Txt>
             ) : null}
-            <Txt variant="tiny" color={colors.inkFaint}>
-              {t('dash.weekdayBody')}
-            </Txt>
           </Card>
 
           {/* ------------------------------------------ balance and nudges */}
@@ -325,7 +343,10 @@ export default function ChildDashboard() {
                   </>
                 ) : (
                   <>
-                    <Ring percent={summary.nudgeResponse} color={colors.accent} />
+                    {/* Green, not coral. Reminders being acted on is the good
+                        outcome, and coral here painted the better of the two
+                        numbers on this row as the alarm. */}
+                    <Ring percent={summary.nudgeResponse} color={colors.good} />
                     <Txt variant="tiny" color={colors.inkFaint} center numbers>
                       {t('dash.remindersBody', {
                         shown: summary.totals.nudges,

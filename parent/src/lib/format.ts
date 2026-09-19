@@ -131,6 +131,29 @@ export function dayOfMonth(dayKey: string): string {
 }
 
 /**
+ * The month alone, for an axis too long to label by day.
+ *
+ * Ninety day-of-month numbers repeat three times over — 2, 7, 12 … 2, 7, 12 —
+ * and a reader cannot tell which month any of them belongs to. Past a month of
+ * data the axis switches to naming months instead.
+ */
+export function monthShort(dayKey: string, language: Language): string {
+  const date = new Date(dayKey + 'T12:00:00Z');
+  if (Number.isNaN(date.getTime())) return dayKey;
+  const locale = language === 'en' ? 'en-GB' : language === 'tr' ? 'tr-TR' : 'az-AZ';
+  try {
+    return new Intl.DateTimeFormat(locale, { month: 'short', timeZone: 'UTC' }).format(date);
+  } catch {
+    return dayKey.slice(5, 7);
+  }
+}
+
+/** Whether a day key is the first of its month, so the axis can mark it. */
+export function startsMonth(dayKey: string): boolean {
+  return dayKey.slice(8, 10) === '01';
+}
+
+/**
  * How long ago something happened, in words.
  *
  * Coarse on purpose. A parent glancing at a list wants "this morning" or

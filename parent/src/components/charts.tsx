@@ -7,8 +7,10 @@ import {
   dayOfMonth,
   describeChange,
   formatSpan,
+  monthShort,
   niceMax,
   splitSpan,
+  startsMonth,
   weekdayShort,
 } from '../lib/format';
 import { colors, radii, spacing, type } from '../theme/tokens';
@@ -34,6 +36,42 @@ import { Txt } from './ui';
 
 /** Bars are rounded by this much. Small enough to still read as a bar. */
 const BAR_RADIUS = 3;
+
+/**
+ * Corner radius that cannot eat the bar.
+ *
+ * A flat 3px radius on a 5px bar is a lozenge, not a bar, and ninety days in
+ * a phone-width card gives bars about that wide. The radius has to be capped
+ * at half the width or the whole chart turns into a row of pills.
+ */
+function barRadius(barWidth: number): number {
+  return Math.min(BAR_RADIUS, barWidth / 2);
+}
+
+/**
+ * Room at the left and right edge for the labels that sit there.
+ *
+ * Without it the first axis label is centred on the first bar and loses its
+ * leading digit off the edge of the canvas, and the limit label anchored to
+ * the right edge loses its last letter. Both were clipped.
+ */
+const EDGE = 12;
+
+/** The width one bar gets, given how many of them have to fit. */
+function barWidthFor(dayCount: number, width: number): number {
+  const slot = Math.max(1, width - EDGE * 2) / Math.max(1, dayCount);
+  return Math.max(2, Math.min(22, slot * 0.62));
+}
+
+/**
+ * Whether `DayBars` will have room to mark missions at this size.
+ *
+ * Exported so the legend beside the chart can agree with it. A legend naming a
+ * series the chart decided not to draw is its own small lie.
+ */
+export function dayBarsMarkMissions(dayCount: number, width: number): boolean {
+  return barWidthFor(dayCount, width) >= 8;
+}
 
 /* ----------------------------------------------------------- the big tiles */
 
@@ -134,9 +172,20 @@ export function DayBars({
   // the line rather than being clipped by it.
   const top = niceMax([...minutes, budgetMin > 0 ? budgetMin * 1.1 : 0], 30);
 
-  const slot = width / Math.max(1, days.length);
-  const barWidth = Math.max(3, Math.min(22, slot * 0.62));
+  // The plot is inset so the labels pinned to either edge have somewhere to go.
+  const plotWidth = Math.max(1, width - EDGE * 2);
+  const slot = plotWidth / Math.max(1, days.length);
+  const barWidth = barWidthFor(days.length, width);
   const every = days.length <= 8 ? 1 : days.length <= 16 ? 2 : 5;
+
+  // Past a month the axis names months rather than repeating day numbers that
+  // belong to three different ones.
+  const byMonth = days.length > 31;
+
+  // A mission marker only earns its place on a bar wide enough to hold it.
+  // Below that it is a smudge sitting above a 4px bar, and ninety of them read
+  // as a scatter plot of a quantity that was never drawn.
+  const showMissions = dayBarsMarkMissions(days.length, width);
 
   const limitY = budgetMin > 0 ? plot - (budgetMin / top) * plot : null;
 
@@ -146,9 +195,9 @@ export function DayBars({
       {limitY !== null ? (
         <G>
           <Line
-            x1={0}
+            x1={EDGE}
             y1={limitY}
-            x2={width}
+            x2={width - EDGE}
             y2={limitY}
             stroke={colors.accent}
             strokeWidth={1}
@@ -168,10 +217,10 @@ export function DayBars({
         </G>
       ) : null}
 
-      <Line x1={0} y1={plot} x2={width} y2={plot} stroke={colors.rule} strokeWidth={1} />
+      <Line x1={EDGE} y1={plot} x2={width - EDGE} y2={plot} stroke={colors.rule} strokeWidth={1} />
 
       {days.map((day, index) => {
-        const x = index * slot + (slot - barWidth) / 2;
+        const x = EDGE + index * slot + (slot - barWidth) / 2;
 
         if (!day.reported) {
           // Absence, drawn as absence. A stub on the baseline, not a zero bar.
@@ -197,39 +246,50 @@ export function DayBars({
               y={plot - barHeight}
               width={barWidth}
               height={barHeight}
-              rx={BAR_RADIUS}
+              rx={barRadius(barWidth)}
               fill={day.overLimit ? colors.accent : colors.screen}
               opacity={day.overLimit ? 0.9 : 0.85}
             />
-            {/* A mission that day, marked on top of its own bar. Nothing is
-                drawn when there were none, so the row reads as a rhythm. */}
-            {day.missionsDone > 0 ? (
+            {/* A mission that day, marked *on* its own bar rather than floating
+                above it. Hovering the mark in open space put it inside the plot,
+                where its height reads as a value — and its height is nothing but
+                "six pixels clear of this bar". Sitting it just inside the cap
+                says what it means: something happened on this day. */}
+            {showMissions && day.missionsDone > 0 && barHeight > 12 ? (
               <Circle
                 cx={x + barWidth / 2}
-                cy={plot - barHeight - 6}
+                cy={plot - barHeight + 6}
                 r={2.5}
-                fill={colors.active}
+                fill={colors.paper}
+                opacity={0.95}
               />
             ) : null}
           </G>
         );
       })}
 
-      {days.map((day, index) =>
-        index % every === 0 ? (
+      {days.map((day, index) => {
+        // Months are labelled where they start; days on a fixed stride.
+        const show = byMonth ? startsMonth(day.date) : index % every === 0;
+        if (!show) return null;
+        return (
           <SvgText
             key={`label-${day.date}`}
-            x={index * slot + slot / 2}
+            x={EDGE + index * slot + slot / 2}
             y={height - 5}
             fill={colors.inkFaint}
             fontSize={10}
             fontFamily={type.tiny.fontFamily}
             textAnchor="middle"
           >
-            {days.length <= 8 ? weekdayShort(weekdayIndex(day.date), language) : dayOfMonth(day.date)}
+            {byMonth
+              ? monthShort(day.date, language)
+              : days.length <= 8
+                ? weekdayShort(weekdayIndex(day.date), language)
+                : dayOfMonth(day.date)}
           </SvgText>
-        ) : null,
-      )}
+        );
+      })}
     </Svg>
   );
 }
@@ -485,15 +545,39 @@ export function Ring({
   );
 }
 
-/** A key for whatever a chart above it just drew. */
-export function Legend({ items }: { items: { color: string; label: string }[] }) {
+/**
+ * A key for whatever a chart above it just drew.
+ *
+ * `dot` draws a smaller disc inside the swatch, for a series the chart marks
+ * *on* something else rather than drawing in its own right — the mission mark
+ * sits inside the cap of a screen-time bar, and a plain swatch would name a
+ * colour that appears nowhere on the chart.
+ */
+export function Legend({
+  items,
+}: {
+  items: { color: string; label: string; dot?: string }[];
+}) {
   return (
     <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: spacing.md }}>
       {items.map((item) => (
         <View key={item.label} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
           <View
-            style={{ width: 9, height: 9, borderRadius: radii.pill, backgroundColor: item.color }}
-          />
+            style={{
+              width: 9,
+              height: 9,
+              borderRadius: radii.pill,
+              backgroundColor: item.color,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            {item.dot ? (
+              <View
+                style={{ width: 4, height: 4, borderRadius: radii.pill, backgroundColor: item.dot }}
+              />
+            ) : null}
+          </View>
           <Txt variant="tiny" color={colors.inkSoft}>
             {item.label}
           </Txt>

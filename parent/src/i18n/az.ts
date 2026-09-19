@@ -120,6 +120,7 @@ export const az: Copy = {
     dailyLegendScreen: 'Ekran',
     dailyLegendActive: 'Hərəkət',
     dailyLegendMissions: 'Tapşırıq',
+    dailyLegendOver: 'Limitdən yuxarı',
 
     weekdayTitle: 'Həftənin günlərinə görə',
     weekdayBody: 'Əksər ailələrdə problemin hamısını bir-iki gün daşıyır.',
@@ -175,7 +176,7 @@ export const az: Copy = {
     tierBlockBody: 'Limitdən sonra siz açana və ya sabah olana qədər bağlı qalır.',
 
     nudgeLabel: 'Xatırlatma aralığı',
-    nudgeOff: 'Xatırlatma yoxdur',
+    nudgeOff: 'Söndürülüb',
     nudgeBody:
       'O tətbiqlər açıq olanda səssiz bildiriş və əvəzinə ediləcək bir iş. Yaşına görə yazılıb. Limit olsa da olmasa da işləyir.',
 

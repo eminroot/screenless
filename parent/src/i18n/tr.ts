@@ -120,6 +120,7 @@ export const tr: Copy = {
     dailyLegendScreen: 'Ekran',
     dailyLegendActive: 'Hareket',
     dailyLegendMissions: 'Görev',
+    dailyLegendOver: 'Sınırın üstünde',
 
     weekdayTitle: 'Haftanın günlerine göre',
     weekdayBody: 'Çoğu ailede sorunun tamamını bir iki gün taşır.',
@@ -175,7 +176,7 @@ export const tr: Copy = {
     tierBlockBody: 'Sınırdan sonra siz kaldırana ya da yarın olana kadar kapalı kalır.',
 
     nudgeLabel: 'Hatırlatma aralığı',
-    nudgeOff: 'Hatırlatma yok',
+    nudgeOff: 'Kapalı',
     nudgeBody:
       'O uygulamalar açıkken sessiz bir bildirim ve yerine yapılacak bir şey. Yaşına göre yazılmış. Sınır olsa da olmasa da çalışır.',
 

@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, View } from 'react-native';
 
 import * as api from '../api/client';
-import { Button, Card, Field, Notice, Screen, Txt } from '../components/ui';
+import { Button, Card, Field, Mark, Notice, Screen, Txt } from '../components/ui';
 import { useI18n, type TKey } from '../i18n';
 import { useSession } from '../state/session';
 import { colors, spacing } from '../theme/tokens';
@@ -84,7 +84,10 @@ export default function SignIn() {
     >
       <Screen>
         <View style={{ paddingTop: spacing.xxl, paddingBottom: spacing.xl }}>
-          <Txt variant="display">{t('auth.title')}</Txt>
+          <Mark height={28} />
+          <Txt variant="display" style={{ marginTop: spacing.lg }}>
+            {t('auth.title')}
+          </Txt>
           <Txt variant="body" color={colors.inkSoft} style={{ marginTop: spacing.sm }}>
             {t('auth.subtitle')}
           </Txt>

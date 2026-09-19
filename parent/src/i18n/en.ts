@@ -133,6 +133,7 @@ export const en = {
     dailyLegendScreen: 'Screen',
     dailyLegendActive: 'Active',
     dailyLegendMissions: 'Missions',
+    dailyLegendOver: 'Over the limit',
 
     weekdayTitle: 'By day of the week',
     weekdayBody: 'Most families find one or two days carry the whole problem.',
@@ -187,7 +188,7 @@ export const en = {
     tierBlockBody: 'Past the limit it stays covered until tomorrow, or until you lift it.',
 
     nudgeLabel: 'Remind them every',
-    nudgeOff: 'No reminders',
+    nudgeOff: 'Off',
     nudgeBody:
       'A quiet notification while those apps are open, with one thing to go and do instead. Written for their age. It works with or without a limit.',
 

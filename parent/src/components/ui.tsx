@@ -14,8 +14,41 @@ import {
   type ViewStyle,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Svg, { Rect } from 'react-native-svg';
 
 import { colors, radii, shadow, spacing, tabular, type } from '../theme/tokens';
+
+/**
+ * The mark: four falling bars, the leading one coral.
+ *
+ * The same shape as the launcher icon, drawn rather than shipped as an image
+ * so it takes the accent colour from the tokens and stays sharp at any size.
+ * It earns its place on the sign-in screen: a wordmark sitting alone above a
+ * sentence of grey explanation is the house style of software nobody designed.
+ */
+export function Mark({ height = 30 }: { height?: number }) {
+  const unit = height / 30;
+  const barWidth = 7 * unit;
+  const gap = 4 * unit;
+  const heights = [30, 23, 18, 11].map((value) => value * unit);
+  const width = barWidth * 4 + gap * 3;
+
+  return (
+    <Svg width={width} height={height}>
+      {heights.map((barHeight, index) => (
+        <Rect
+          key={index}
+          x={index * (barWidth + gap)}
+          y={height - barHeight}
+          width={barWidth}
+          height={barHeight}
+          rx={barWidth / 2.6}
+          fill={index === 0 ? colors.accent : colors.screen}
+        />
+      ))}
+    </Svg>
+  );
+}
 
 /**
  * The parts every screen is built from.
