@@ -54,13 +54,21 @@ export function StatRow({ children, style }: { children: ReactNode; style?: Styl
 }
 
 /**
- * A progress bar. Two pixels of acid on a dark well — enough to read across a
- * room, thin enough that it never becomes the subject of the screen.
+ * A progress bar.
+ *
+ * Thick, fully rounded, with a pale strip along the top of the fill. The strip
+ * is the one piece of decoration in the tier and it earns its place: a flat
+ * bar of colour on a flat track is the element that made the light skin read
+ * as a web page, and a highlight is what turns it back into an object.
+ *
+ * Six pixels was the old height. That is a rule, not a bar — legible enough
+ * to check and not enough to be the thing a child is working on, which on a
+ * screen whose whole job is a number going up is the wrong trade.
  */
 export function Bar({
   value,
   accent = 'acid',
-  height = 6,
+  height = 16,
   style,
   accessibilityLabel,
 }: {
@@ -80,6 +88,7 @@ export function Bar({
   }, [filled, width]);
 
   const fill = useAnimatedStyle(() => ({ width: `${width.value * 100}%` }));
+  const shine = Math.max(2, Math.round(height * 0.22));
 
   return (
     <View
@@ -89,15 +98,40 @@ export function Bar({
         {
           height,
           borderRadius: radius.pill,
-          backgroundColor: palette.sunken,
+          // `line`, not `sunken`: an empty track has to be visible as a track,
+          // and on the light skin `sunken` is four percent off the white card
+          // it sits on — a bar at zero simply disappeared.
+          backgroundColor: palette.line,
           overflow: 'hidden',
         },
         style,
       ]}
     >
       <Animated.View
-        style={[{ height: '100%', borderRadius: radius.pill, backgroundColor: accents[accent].solid }, fill]}
-      />
+        style={[
+          {
+            height: '100%',
+            borderRadius: radius.pill,
+            backgroundColor: accents[accent].solid,
+            // The highlight is inset from both ends so it follows the rounded
+            // cap rather than running off it, and it is clipped away entirely
+            // while the fill is still too narrow to hold it.
+            justifyContent: 'flex-start',
+            overflow: 'hidden',
+          },
+          fill,
+        ]}
+      >
+        <View
+          style={{
+            height: shine,
+            marginTop: Math.round(height * 0.16),
+            marginHorizontal: Math.round(height * 0.28),
+            borderRadius: radius.pill,
+            backgroundColor: 'rgba(255,255,255,0.38)',
+          }}
+        />
+      </Animated.View>
     </View>
   );
 }
@@ -150,10 +184,10 @@ export function WeekStrip({
                 <View
                   style={{
                     // Always a sliver, so a blank day still reads as a day.
-                    height: Math.max(3, (day.steps / peak) * height),
-                    borderRadius: 3,
+                    height: Math.max(6, (day.steps / peak) * height),
+                    borderRadius: 6,
                     backgroundColor: hit ? tone.solid : isToday ? tone.wash : palette.sunken,
-                    borderWidth: isToday && !hit ? border.hair : 0,
+                    borderWidth: isToday && !hit ? border.strong : 0,
                     borderColor: tone.solid,
                   }}
                 />

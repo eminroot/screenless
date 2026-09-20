@@ -17,19 +17,23 @@ import {
   StepsIcon,
   TodayIcon,
 } from '../icons';
-import { border, MAX_COLUMN, space } from '../theme';
+import { border, fontsTeen, MAX_COLUMN, radius, space } from '../theme';
 import { TText } from './TText';
 import { useSkin } from '../skin';
 
 /**
  * The tab bar for ages 10 to 13.
  *
- * A hairline across the bottom of the ground, six thin icons, a two pixel
- * acid rule over the one you are on. No coloured discs, no lifting, no bounce.
+ * Six icons, and the one you are on sits in a filled block of accent. The
+ * two pixel rule it used to have instead was the correct amount of signal for
+ * a bar nobody looks at, which is not what a tab bar is: this is the control a
+ * child uses more than any other, and it should be obvious without reading.
  *
  * The labels stay, because six abstract line icons with nothing under them is
- * a puzzle rather than a navigation bar — but they are the small wide-tracked
- * kind used everywhere else in the tier rather than a caption.
+ * a puzzle rather than a navigation bar. They are the one place in the tier
+ * that drops the wide tracking — six tracked upper case words do not fit
+ * across a phone, and the old bar shipped "PROGRE…" and "FIN…" as a
+ * result.
  *
  * The parent tab is not here. It lives behind the lock on the Today screen, so
  * the child never taps into a code pad by accident.
@@ -46,7 +50,7 @@ const LABELS: Record<TabName, TKey> = {
   chat: 'teen.tabTalk',
 };
 
-const BAR_HEIGHT = 58;
+const BAR_HEIGHT = 62;
 
 export function TeenTabBar({ state, navigation, insets }: BottomTabBarProps) {
   const { palette } = useSkin();
@@ -73,7 +77,7 @@ export function TeenTabBar({ state, navigation, insets }: BottomTabBarProps) {
     <View
       style={{
         backgroundColor: palette.ground,
-        borderTopWidth: border.hair,
+        borderTopWidth: border.strong,
         borderTopColor: palette.line,
         paddingBottom: bottom,
       }}
@@ -130,7 +134,7 @@ function TabItem({
     on.value = withTiming(focused ? 1 : 0, { duration: 160 });
   }, [focused, on]);
 
-  const rule = useAnimatedStyle(() => ({ opacity: on.value }));
+  const block = useAnimatedStyle(() => ({ opacity: on.value }));
 
   const colour = focused ? accents.acid.bright : ink.muted;
 
@@ -140,23 +144,35 @@ function TabItem({
       accessibilityState={{ selected: focused }}
       accessibilityLabel={label}
       onPress={onPress}
-      style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 5 }}
+      style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 3 }}
     >
-      <Animated.View
-        style={[
-          {
-            position: 'absolute',
-            top: 0,
-            width: 26,
-            height: 2,
-            borderRadius: 1,
-            backgroundColor: accents.acid.solid,
-          },
-          rule,
-        ]}
-      />
-      {renderIcon(colour)}
-      <TText variant="label" color={colour} numberOfLines={1} style={{ fontSize: 10 }}>
+      <View style={{ height: 32, justifyContent: 'center', alignItems: 'center' }}>
+        {/* The block sits behind the icon rather than around the whole item:
+            it has to clear the label, or a six-tab bar becomes six buttons. */}
+        <Animated.View
+          style={[
+            {
+              position: 'absolute',
+              width: 46,
+              height: 32,
+              borderRadius: radius.chip,
+              backgroundColor: accents.acid.wash,
+              borderWidth: border.strong,
+              borderColor: accents.acid.solid,
+            },
+            block,
+          ]}
+        />
+        {renderIcon(colour)}
+      </View>
+      {/* `caption` rather than `label`: the label variant upper cases its own
+          text, and six tracked capitals do not fit across a phone. */}
+      <TText
+        variant="caption"
+        color={colour}
+        numberOfLines={1}
+        style={{ fontFamily: fontsTeen.heavy, fontSize: 11, lineHeight: 14 }}
+      >
         {label}
       </TText>
     </Pressable>

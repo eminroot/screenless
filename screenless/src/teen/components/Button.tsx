@@ -3,8 +3,8 @@ import { ActivityIndicator, Pressable, View, type StyleProp, type ViewStyle } fr
 import Animated from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
 
-import { usePress } from '../motion';
-import { border, hit, radius, space, type AccentName } from '../theme';
+import { useDepthPress, usePress } from '../motion';
+import { border, depth, hit, radius, space, type AccentName } from '../theme';
 import { TText } from './TText';
 import { useSkin } from '../skin';
 
@@ -21,12 +21,18 @@ const LABEL: Record<Size, 'title' | 'bodyStrong' | 'small'> = {
 /**
  * A button.
  *
- * The solid one is a block of acid with near-black text on it — the single
- * loudest thing in the tier, and there is never more than one per screen.
- * Everything else is an outline: a hairline rectangle with the label in it.
+ * The solid one is a block of accent standing on a hard edge of the same
+ * colour in shadow. Pressing it moves the block down onto that edge, which is
+ * the whole press: no dimming, no scale, no shadow that fades. It is worth the
+ * two extra views because it is the only depth in the tier, and without it a
+ * light-skin screen is flat rectangles on a flat ground.
  *
- * Small radius on purpose. A pill button is the shape the six to nine year
- * olds get, and it is instantly readable as an app for a younger kid.
+ * `outline` gets the same construction in greys — a white face, a drawn
+ * outline, and a solid rule under it — so the secondary action is visibly the
+ * same kind of object as the primary one rather than a different species.
+ * `ghost` is a bare label and has no edge, because it is not a block.
+ *
+ * There is still only ever one `solid` on a screen.
  */
 export function Button({
   label,
@@ -55,11 +61,12 @@ export function Button({
 }) {
   const { palette, ink, accents } = useSkin();
   const tone = accents[accent];
-  const press = usePress(0.985);
+  const press = useDepthPress(depth.button);
   const off = disabled || busy;
 
-  const fill = kind === 'solid' ? tone.solid : 'transparent';
-  const edge = kind === 'solid' ? tone.solid : kind === 'outline' ? palette.lineBright : 'transparent';
+  const face = kind === 'solid' ? tone.solid : kind === 'outline' ? palette.surface : 'transparent';
+  const edge = kind === 'solid' ? tone.under : kind === 'outline' ? palette.lineBright : 'transparent';
+  const outline = kind === 'solid' ? tone.solid : kind === 'outline' ? palette.line : 'transparent';
   const text = kind === 'solid' ? tone.on : kind === 'outline' ? ink.strong : tone.bright;
 
   return (
@@ -76,39 +83,45 @@ export function Button({
       }}
       style={[full ? { alignSelf: 'stretch' } : { alignSelf: 'flex-start' }, style]}
     >
-      {/* The dimming sits outside the animated view on purpose: `usePress`
-          animates opacity, and an animated style beats a static one in the
-          same array, so a disabled opacity set in there is ignored. */}
-      <View style={{ opacity: off ? 0.38 : 1 }}>
-      <Animated.View
-        style={[
-          {
-            minHeight: HEIGHT[size],
-            borderRadius: radius.button,
-            borderWidth: kind === 'ghost' ? 0 : border.strong,
-            borderColor: edge,
-            backgroundColor: fill,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: space.sm,
-            paddingHorizontal: space.xl,
-            paddingVertical: space.sm,
-          },
-          press.style,
-        ]}
-      >
-        {busy ? <ActivityIndicator color={text} /> : icon}
-        <TText variant={LABEL[size]} color={text} center numberOfLines={2} style={{ flexShrink: 1 }}>
-          {label}
-        </TText>
-      </Animated.View>
+      {/* The dimming sits on its own view: the animated style below drives
+          transform, and mixing a static opacity into an animated style array
+          is how it silently stops applying. */}
+      <View style={{ opacity: off ? 0.45 : 1 }}>
+        {/* The edge. The face sits on top of it and the gap below the face is
+            what lets the edge show; pressing closes the gap and moves the face
+            into it, so the whole control keeps one height throughout. */}
+        <View style={{ borderRadius: radius.button, backgroundColor: edge, overflow: 'hidden' }}>
+          <Animated.View
+            style={[
+              {
+                minHeight: HEIGHT[size],
+                borderRadius: radius.button,
+                borderWidth: kind === 'ghost' ? 0 : border.strong,
+                borderColor: outline,
+                backgroundColor: face,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: space.sm,
+                paddingHorizontal: space.xl,
+                paddingVertical: space.sm,
+              },
+              press.face,
+            ]}
+          >
+            {busy ? <ActivityIndicator color={text} /> : icon}
+            <TText variant={LABEL[size]} color={text} center numberOfLines={2} style={{ flexShrink: 1 }}>
+              {label}
+            </TText>
+          </Animated.View>
+          <Animated.View style={press.gap} />
+        </View>
       </View>
     </Pressable>
   );
 }
 
-/** A square control carrying one icon. */
+/** A square control carrying one icon, built the same way. */
 export function IconButton({
   icon,
   onPress,
@@ -130,10 +143,11 @@ export function IconButton({
 }) {
   const { palette, accents } = useSkin();
   const tone = accents[accent];
-  const press = usePress(0.94);
+  const press = useDepthPress(depth.press);
 
-  const fill = kind === 'solid' ? tone.solid : palette.surface;
-  const edge = kind === 'solid' ? tone.solid : palette.line;
+  const face = kind === 'solid' ? tone.solid : palette.surface;
+  const edge = kind === 'solid' ? tone.under : palette.lineBright;
+  const outline = kind === 'solid' ? tone.solid : palette.line;
 
   return (
     <Pressable
@@ -150,33 +164,40 @@ export function IconButton({
       hitSlop={hit.iconSlop}
       style={style}
     >
-      <View style={{ opacity: disabled ? 0.38 : 1 }}>
-      <Animated.View
-        style={[
-          {
-            width: size,
-            height: size,
-            borderRadius: radius.button,
-            borderWidth: border.hair,
-            borderColor: edge,
-            backgroundColor: fill,
-            alignItems: 'center',
-            justifyContent: 'center',
-          },
-          press.style,
-        ]}
-      >
-        {icon}
-      </Animated.View>
+      <View style={{ opacity: disabled ? 0.45 : 1 }}>
+        <View style={{ borderRadius: radius.chip, backgroundColor: edge, overflow: 'hidden' }}>
+          <Animated.View
+            style={[
+              {
+                width: size,
+                height: size,
+                borderRadius: radius.chip,
+                borderWidth: border.strong,
+                borderColor: outline,
+                backgroundColor: face,
+                alignItems: 'center',
+                justifyContent: 'center',
+              },
+              press.face,
+            ]}
+          >
+            {icon}
+          </Animated.View>
+          <Animated.View style={press.gap} />
+        </View>
       </View>
     </Pressable>
   );
 }
 
 /**
- * A choice. Selected is a filled accent block; unselected is a hairline. The
- * jump between those two states is deliberately large, because these are often
- * tapped without looking.
+ * A choice. Selected is a filled accent block; unselected is an outlined white
+ * one. The jump between those two states is deliberately large, because these
+ * are often tapped without looking.
+ *
+ * Chips keep the drawn outline but not the standing edge. A row of six chips
+ * each casting its own edge is six pieces of depth competing with the one
+ * button underneath that actually commits to something.
  */
 export function Chip({
   label,
@@ -213,10 +234,10 @@ export function Chip({
       <Animated.View
         style={[
           {
-            minHeight: 42,
+            minHeight: 44,
             borderRadius: radius.chip,
-            borderWidth: border.hair,
-            borderColor: selected ? tone.solid : palette.line,
+            borderWidth: border.strong,
+            borderColor: selected ? tone.under : palette.line,
             backgroundColor: selected ? tone.solid : palette.surface,
             flexDirection: 'row',
             alignItems: 'center',
@@ -243,7 +264,7 @@ export function Chip({
   );
 }
 
-/** A read-only count: an icon and a figure, on a hairline tag. */
+/** A read-only count: an icon and a figure, on a tag. Never pressable, so no edge. */
 export function CountPill({
   icon,
   value,
@@ -264,10 +285,10 @@ export function CountPill({
         flexDirection: 'row',
         alignItems: 'center',
         gap: 6,
-        height: 34,
+        height: 36,
         paddingHorizontal: space.md,
         borderRadius: radius.pill,
-        borderWidth: border.hair,
+        borderWidth: border.strong,
         borderColor: palette.line,
         backgroundColor: palette.surface,
       }}

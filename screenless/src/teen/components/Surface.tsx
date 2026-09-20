@@ -3,22 +3,29 @@ import { Pressable, View, type StyleProp, type ViewStyle } from 'react-native';
 import Animated from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
 
-import { usePress } from '../motion';
-import { border, radius, space, type AccentName } from '../theme';
+import { useDepthPress } from '../motion';
+import { border, depth, radius, space, type AccentName } from '../theme';
 import { TText } from './TText';
 import { useSkin } from '../skin';
 
 /**
  * A panel.
  *
- * Barely lifted off the ground, separated by a one pixel rule rather than by a
- * shadow or an outline. At ages 6-9 a card is a sticker with three pixels of
- * ink around it; here the whole point is that the interface looks assembled
- * rather than assembled-out-of-shapes, and a hairline does that.
+ * A drawn box: two pixels of outline all round and four along the bottom, so
+ * it reads as a card standing on a surface rather than as a region of the
+ * page. The hairline it used to have was invisible on the light skin, where
+ * the card and the ground are both white — the separation has to come from a
+ * line somebody drew, not from a difference in lightness that is not there.
  *
- * An `accent` puts a low-alpha wash behind it and lifts the rule to the accent
- * colour — used for the one panel on a screen that is the answer to why the
- * screen exists.
+ * At ages 6-9 a card is a sticker with three pixels of ink around it and a
+ * hard offset shadow. This is the same idea with the volume down: same drawn
+ * edge, no offset, no colour in the outline unless the panel is accented.
+ *
+ * An `accent` lifts the outline and the base to the accent colour — used for
+ * the one panel on a screen that is the answer to why the screen exists. It
+ * does not fill: a panel washed edge to edge in pale accent becomes the
+ * largest coloured area on the screen, which puts it in competition with the
+ * button inside it that is the thing actually worth pressing.
  */
 export function Panel({
   children,
@@ -37,10 +44,14 @@ export function Panel({
     <View
       style={[
         {
-          backgroundColor: tone ? tone.wash : palette.surface,
+          backgroundColor: palette.surface,
           borderRadius: radius.card,
-          borderWidth: border.hair,
+          borderWidth: border.strong,
+          // The bottom is heavier than the other three. It is the whole of the
+          // depth a static panel gets, and it costs nothing to draw.
+          borderBottomWidth: border.strong + 2,
           borderColor: tone ? tone.solid : palette.line,
+          borderBottomColor: tone ? tone.under : palette.lineBright,
           padding: padded ? space.lg : 0,
         },
         style,
@@ -51,7 +62,14 @@ export function Panel({
   );
 }
 
-/** A panel that goes somewhere. Dims on press, nothing more. */
+/**
+ * A panel that goes somewhere.
+ *
+ * Built like the button rather than like the panel: it stands on a solid edge
+ * and travels down onto it when pressed. A card that only dims is
+ * indistinguishable from a card that is not pressable until you have already
+ * pressed it.
+ */
 export function PanelButton({
   children,
   onPress,
@@ -71,7 +89,7 @@ export function PanelButton({
 }) {
   const { palette, accents } = useSkin();
   const tone = accent ? accents[accent] : null;
-  const press = usePress(0.99);
+  const press = useDepthPress(depth.press);
 
   return (
     <Pressable
@@ -87,23 +105,32 @@ export function PanelButton({
       }}
       style={style}
     >
-      {/* Dimming outside the animated view: `usePress` animates opacity and
-          would otherwise overwrite a disabled opacity set alongside it. */}
-      <View style={{ opacity: disabled ? 0.4 : 1 }}>
-      <Animated.View
-        style={[
-          {
-            backgroundColor: tone ? tone.wash : palette.surface,
+      {/* Dimming on its own view: the animated style below drives transform,
+          and a static opacity mixed into an animated array stops applying. */}
+      <View style={{ opacity: disabled ? 0.45 : 1 }}>
+        <View
+          style={{
             borderRadius: radius.card,
-            borderWidth: border.hair,
-            borderColor: tone ? tone.solid : palette.line,
-            padding: padded ? space.lg : 0,
-          },
-          press.style,
-        ]}
-      >
-        {children}
-      </Animated.View>
+            backgroundColor: tone ? tone.under : palette.lineBright,
+            overflow: 'hidden',
+          }}
+        >
+          <Animated.View
+            style={[
+              {
+                backgroundColor: palette.surface,
+                borderRadius: radius.card,
+                borderWidth: border.strong,
+                borderColor: tone ? tone.solid : palette.line,
+                padding: padded ? space.lg : 0,
+              },
+              press.face,
+            ]}
+          >
+            {children}
+          </Animated.View>
+          <Animated.View style={press.gap} />
+        </View>
       </View>
     </Pressable>
   );
@@ -160,7 +187,7 @@ export function Dot({
         height: size,
         borderRadius: radius.chip,
         backgroundColor: accents[accent].wash,
-        borderWidth: border.hair,
+        borderWidth: border.strong,
         borderColor: palette.line,
         alignItems: 'center',
         justifyContent: 'center',
