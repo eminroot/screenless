@@ -55,3 +55,7 @@ yarn-error.*
 # origin, and committing it as a bare gitlink with no .gitmodules entry gives
 # GitHub an unclickable grey folder that `git clone` never fetches.
 /skills/
+
+# Editor and agent workspace. Machine-specific launch configuration that
+# belongs to whoever is sitting at the machine, not to the project.
+.claude/

@@ -13,10 +13,14 @@
  *   node tools/shots.mjs            both apps
  *   node tools/shots.mjs parent     just one
  *
- * Needs the three dev servers up. `.claude/launch.json` has all of them:
- * `screenless-web` on 8081, `parent-web` on 8082, `hub-server` on 8099.
+ * Needs the three dev servers up, on the ports below by default:
+ *
+ *   cd server     && npm start                       hub       8099
+ *   cd screenless && npm run web                     child     8081
+ *   cd parent     && npm run web                     parent    8082
+ *
  * Override with CHILD_URL / PARENT_URL / HUB_URL when they are somewhere else,
- * which they will be if the parent app is running on `parent-metro` (8083).
+ * which they will be if the parent app is running its native bundler instead.
  */
 import { spawn } from 'node:child_process';
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
