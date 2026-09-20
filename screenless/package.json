@@ -69,6 +69,7 @@
     "test:wardrobe": "node -r sucrase/register scripts/test-wardrobe.ts",
     "test:nudge": "node -r sucrase/register scripts/test-nudge.ts",
     "test:sync": "node -r sucrase/register scripts/test-sync.ts",
+    "test:chat": "node -r sucrase/register scripts/test-chat.ts",
     "test:all": "node -r sucrase/register scripts/test-all.ts"
   },
   "private": true

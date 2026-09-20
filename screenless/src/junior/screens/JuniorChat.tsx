@@ -4,7 +4,7 @@ import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BottomTabBarHeightContext } from '@react-navigation/bottom-tabs';
 
-import { chatWithBuddy } from '../../ai/gemini';
+import { thinkThenReply } from '../../chat/buddy-replies';
 import { checkChildInput } from '../../ai/safety';
 import { Buddy } from '../../components/buddy/Buddy';
 import { useI18n } from '../../i18n';
@@ -79,19 +79,15 @@ export function JuniorChat() {
       setDraft('');
       setThinking(true);
 
-      const result = await chatWithBuddy({
-        profile,
-        language,
-        mission: activeMission,
-        history: data.chat,
-        message: verdict.text,
-      });
-
-      if (result.ok) say(result.value);
-      else if (result.failure === 'blocked' || result.failure === 'unsafe') say(t('chat.blocked'));
-      else if (result.failure === 'network' || result.failure === 'unconfigured') {
-        say(t('chat.offline', { buddy: profile.buddyName }));
-      } else say(t('chat.error', { buddy: profile.buddyName }));
+      say(
+        await thinkThenReply({
+          text: verdict.text,
+          profile,
+          language,
+          mission: activeMission,
+          history: data.chat,
+        }),
+      );
 
       setThinking(false);
     },

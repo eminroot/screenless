@@ -1,7 +1,7 @@
 /**
  * Every pure-logic suite, in one go.
  *
- * There are ten of them now and running them by hand is how one of them stops
+ * There are eleven of them now and running them by hand is how one of them stops
  * being run. Each is a separate process so a crash in one does not take the
  * rest with it, and the exit code is the worst of them.
  *
@@ -20,6 +20,7 @@ const SUITES = [
   'test-walk.ts',
   'test-social.ts',
   'test-spark.ts',
+  'test-chat.ts',
 ];
 
 let failed = 0;

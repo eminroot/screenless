@@ -1,12 +1,7 @@
 import type { Language } from '../i18n/types';
 import type { ChatMessage, ChildProfile, Mission, TaskCategory, TaskContent } from '../state/types';
 import { GEMINI_API_KEY, GEMINI_PROXY_URL, geminiEndpoint, isGeminiConfigured, REQUEST_TIMEOUT_MS } from './config';
-import {
-  buddySystemPrompt,
-  coachSystemPrompt,
-  taskGenerationPrompt,
-  taskResponseSchema,
-} from './prompts';
+import { coachSystemPrompt, taskGenerationPrompt, taskResponseSchema } from './prompts';
 import { clampReply, isReplySafeForChild } from './safety';
 
 export type AiFailure = 'network' | 'blocked' | 'unsafe' | 'unconfigured' | 'error';
@@ -84,33 +79,6 @@ function toHistory(messages: ChatMessage[], limit = 8): GeminiContent[] {
     role: message.role === 'user' ? ('user' as const) : ('model' as const),
     parts: [{ text: message.text }],
   }));
-}
-
-export async function chatWithBuddy(params: {
-  profile: ChildProfile;
-  language: Language;
-  mission: Mission | null;
-  history: ChatMessage[];
-  message: string;
-}): Promise<AiResult<string>> {
-  const result = await callGemini({
-    systemInstruction: {
-      parts: [{ text: buddySystemPrompt(params.profile, params.language, params.mission) }],
-    },
-    contents: [...toHistory(params.history), { role: 'user', parts: [{ text: params.message }] }],
-    generationConfig: {
-      temperature: 0.9,
-      topP: 0.95,
-      maxOutputTokens: 220,
-      // Thinking adds seconds a child will not wait through.
-      thinkingConfig: { thinkingBudget: 0 },
-    },
-    safetySettings: SAFETY_SETTINGS,
-  });
-
-  if (!result.ok) return result;
-  if (!isReplySafeForChild(result.value)) return { ok: false, failure: 'unsafe' };
-  return { ok: true, value: clampReply(result.value) };
 }
 
 export async function askParentCoach(params: {
