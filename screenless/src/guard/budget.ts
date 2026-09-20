@@ -148,11 +148,20 @@ export function totalSeconds(samples: UsageSample[]): number {
  * the day is overwritten rather than incremented — and it only ever moves
  * forwards, because a system that under-reports after a reboot must not hand
  * the child their afternoon back.
+ *
+ * Returns the day untouched when the figure has not moved. Every function here
+ * does, but this one has to: `useGuard` decides whether to write to state by
+ * comparing identities, and Android reports a total on every single sync, most
+ * of them the same total as the sync before. A fresh object each time is a
+ * write each time, and a write feeds the effect that called this its own new
+ * day and it syncs again — a render loop that starts the moment the app opens.
  */
 export function setUsage(day: GuardDay, seconds: number): GuardDay {
   const used = Math.max(day.usedSec, Math.max(0, Math.round(seconds)));
   const spent = used - day.usedSec;
-  return { ...day, usedSec: used, graceLeftSec: Math.max(0, day.graceLeftSec - spent) };
+  const graceLeftSec = Math.max(0, day.graceLeftSec - spent);
+  if (used === day.usedSec && graceLeftSec === day.graceLeftSec) return day;
+  return { ...day, usedSec: used, graceLeftSec };
 }
 
 /**

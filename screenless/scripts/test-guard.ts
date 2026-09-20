@@ -22,6 +22,7 @@ import {
   pendingNotices,
   remainingSeconds,
   rollover,
+  setDeviceUsage,
   setUsage,
   takeGrace,
   totalSeconds,
@@ -212,6 +213,48 @@ section('the day rolling over');
   // The bug every version of this feature ships with first.
   ok('a new date cancels a parent lift', fresh.liftedByParent === false);
   ok('the same date is left alone', rollover(yesterday, '2026-09-15').usedSec === 999);
+}
+
+section('a sync that changes nothing writes nothing');
+{
+  // `useGuard` folds the native figures into the day and then writes to state
+  // only when the result is a different object from the one it started with.
+  // That check is the whole thing standing between the app and a render loop:
+  // a write hands the effect a new day, the effect syncs again, and on Android
+  // it syncs on every render because `drainState` reports a total every time,
+  // whether or not the total has moved. So a fold that changes nothing has to
+  // come back identical, not merely equal.
+  const c = config();
+  const start = day({ usedSec: 400, deviceSec: 900, graceLeftSec: 0 });
+
+  // One pass of what `sync` does, against figures that have not moved.
+  const fold = (d: GuardDay) =>
+    setDeviceUsage(setUsage(rollover(d, '2026-09-15'), 400), 900);
+
+  ok('the same figures give back the same day', fold(start) === start);
+  ok('and still do on the tenth pass', [1,2,3,4,5,6,7,8,9,10].reduce<GuardDay>((d) => fold(d), start) === start);
+
+  // The stale figures a rebooted phone reports are the same case: lower than
+  // what we already counted, so nothing moves, so nothing is written.
+  ok('a figure that rewinds writes nothing', setUsage(start, 100) === start);
+  ok('a device figure that rewinds writes nothing', setDeviceUsage(start, 100) === start);
+
+  // And a figure that really has moved still comes back changed, or the count
+  // would freeze at whatever it first saw.
+  ok('a figure that moved is taken', setUsage(start, 500) !== start);
+  ok('a figure that moved lands', setUsage(start, 500).usedSec === 500);
+  ok('grace burnt by a jump counts as a change', setUsage(day({ usedSec: 100, graceLeftSec: 200 }), 250) !== start);
+
+  // Grace left in a bad state is a change even when the seconds hold still:
+  // this clamps it, and a clamp the caller never sees is a clamp that did not
+  // happen.
+  const negative = day({ usedSec: 400, graceLeftSec: -30 });
+  ok('a negative grace is still clamped', setUsage(negative, 400).graceLeftSec === 0);
+  ok('and the clamp is handed back', setUsage(negative, 400) !== negative);
+
+  // The whole guard is off on this path too: `decide` reads the day it was
+  // given, and an unchanged day must still decide the same way.
+  ok('an unchanged day decides the same', decide(c, fold(start), 600).action === decide(c, start, 600).action);
 }
 
 section('odds and ends');
