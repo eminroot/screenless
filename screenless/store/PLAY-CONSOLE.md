@@ -153,7 +153,23 @@ permission, not a broad media permission.
 
 ## App content → Accessibility API / other sensitive declarations
 
-None used.
+**No accessibility service.** There is none in the manifest, which is deliberate —
+see `SCREEN-GUARD.md` for why usage access is used instead.
+
+Three other declarations do apply while `extra.screenGuard` is `true`, and from
+1.1.0 all three genuinely reach the shipped manifest (earlier wording here assumed
+they did; the merger had been dropping one). Confirm before each submission with
+the `grep` in `SCREEN-GUARD.md`:
+
+| Permission | Where it is declared in Play Console | Text to use |
+| --- | --- | --- |
+| `QUERY_ALL_PACKAGES` | Policy → App content → **Permissions declaration** | The paragraph in `SCREEN-GUARD.md` |
+| `FOREGROUND_SERVICE_SPECIAL_USE` | The same form, special use justification | The paragraph in `SCREEN-GUARD.md` |
+| `SYSTEM_ALERT_WINDOW` | No separate form; it is a special access the parent grants in Settings. Describe it in the listing and expect a reviewer to ask what draws over other apps | It draws the cover a parent configured, over the apps a parent chose, once the daily limit they set is spent. It never covers anything else |
+
+`PACKAGE_USAGE_STATS` is a special access with no declaration form either. A
+reviewer will still look for it, so the listing should say plainly that the app
+reads app usage times to enforce a parent's limit.
 
 ---
 

@@ -43,6 +43,26 @@ easier.
 | `FOREGROUND_SERVICE` + `FOREGROUND_SERVICE_SPECIAL_USE` | Normal | The limit has to hold while ScreenLess is closed. Android has not allowed open-ended background work since Oreo. |
 | `QUERY_ALL_PACKAGES` | **Restricted — needs a declaration** | The parent picks from the apps actually installed. A time limit a parent can only apply to a list we guessed in advance is not a time limit. |
 
+### What actually ships, and how to be sure
+
+The manifest merger has the last word, and it is quiet about it. A permission
+named both in `ANDROID_PERMISSIONS` (this plugin) and in `blockedPermissions`
+(`app.json`) is declared and then deleted: the build succeeds, the bundle signs
+and the permission is simply gone. `SYSTEM_ALERT_WINDOW` was in both until
+1.1.0, so versionCode 4 was first built able to measure screen time and unable
+to enforce it — `Settings.canDrawOverlays` can never return true for a
+permission that is not in the manifest, and the Settings toggle a parent would
+use is not offered for an app that has not declared it.
+
+`scripts/check-release.mjs` now fails the build when any of the four go missing
+from the merged manifest, but the fast way to see the truth yourself is:
+
+```bash
+grep -o 'android:name="android.permission.[A-Z_]*"'   android/app/build/intermediates/merged_manifests/release/processReleaseManifest/AndroidManifest.xml   | sort -u
+```
+
+That list, and nothing else, is what Play receives.
+
 ### Deliberately NOT used
 
 **`BIND_ACCESSIBILITY_SERVICE`.** It is the usual shortcut for knowing what is

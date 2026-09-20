@@ -202,7 +202,8 @@ const RISKY = guardBuild ? ALWAYS_RISKY : [...ALWAYS_RISKY, ...GUARD_ONLY];
 if (guardBuild) {
   warn(
     'Screen Guard is ON for this build. It ships usage access, an overlay and a foreground service, ' +
-      'so this is NOT a Designed-for-Families release. Work through store/SCREEN-GUARD.md before submitting.',
+      'so this is NOT a Designed-for-Families release. Work through store/SCREEN-GUARD.md before submitting. ' +
+      'Which of those actually survive the manifest merge is checked below, once a build exists.',
   );
 } else {
   ok('Screen Guard is off, so none of its permissions may appear');
@@ -225,6 +226,35 @@ if (existsSync(mergedManifest)) {
     fail(`Merged release manifest ships permissions this build should not: ${bad.join(', ')}. Add them to android.blockedPermissions in app.json and rebuild, or turn on extra.screenGuard if they belong to Screen Guard.`);
   } else {
     ok(`merged manifest is clean (${kept.length} permissions, none risky)`);
+  }
+
+  // The other direction, which is the one that bit. Everything above asks
+  // whether too much shipped; nothing asked whether what the feature needs
+  // survived. A permission named in both the Screen Guard plugin and
+  // `blockedPermissions` is declared and then deleted by the merger, and every
+  // other check here still passes: the build succeeds, the manifest is clean,
+  // the bundle signs. It just cannot do the thing. That is how versionCode 4
+  // was built with no SYSTEM_ALERT_WINDOW, which leaves the guard able to
+  // measure screen time and unable to enforce it, with no way for a parent to
+  // grant what is missing.
+  if (guardBuild) {
+    const NEEDED = {
+      PACKAGE_USAGE_STATS: 'read which app is in the foreground',
+      SYSTEM_ALERT_WINDOW: 'draw the cover once the limit is spent',
+      FOREGROUND_SERVICE_SPECIAL_USE: 'keep the limit running while the app is closed',
+      QUERY_ALL_PACKAGES: 'let a parent pick from the apps actually installed',
+    };
+    const missing = Object.keys(NEEDED).filter((name) => !kept.includes(name));
+    if (missing.length > 0) {
+      fail(
+        `Screen Guard is on, but the merged manifest drops ${missing.join(', ')}, so the build cannot ` +
+          missing.map((name) => NEEDED[name]).join('; ') +
+          '. Check android.blockedPermissions in app.json: a permission listed there and in the guard ' +
+          'plugin is declared and then removed by the manifest merger.',
+      );
+    } else {
+      ok('Screen Guard keeps every permission it needs through the merge');
+    }
   }
 } else {
   const declared = app.android?.permissions ?? [];

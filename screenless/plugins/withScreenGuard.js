@@ -60,12 +60,23 @@ function withGuardAndroid(config) {
     manifest['uses-permission'] = manifest['uses-permission'] || [];
 
     for (const name of ANDROID_PERMISSIONS) {
-      const already = manifest['uses-permission'].some(
+      const already = manifest['uses-permission'].find(
         (entry) => entry?.$?.['android:name'] === name,
       );
       if (!already) {
         manifest['uses-permission'].push({ $: { 'android:name': name } });
+        continue;
       }
+      // A permission this plugin owns that is *also* in `blockedPermissions`
+      // arrives here already carrying `tools:node="remove"`, and the merger
+      // honours the marker: the permission is declared, then deleted, and the
+      // build ships without it. That is how SYSTEM_ALERT_WINDOW went missing
+      // from 1.1.0 (versionCode 4) while everything still reported success —
+      // the guard measured screen time and then could not draw the cover,
+      // because `Settings.canDrawOverlays` cannot become true for a permission
+      // that is not in the manifest, and a parent has no way to grant it.
+      // The flag decides, so the flag wins.
+      delete already.$['tools:node'];
     }
 
     // PACKAGE_USAGE_STATS is flagged as not-grantable by the build tools
