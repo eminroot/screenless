@@ -68,10 +68,6 @@ export function speakable(text: string): string {
     .trim();
 }
 
-export function stopSpeaking(): void {
-  void Speech.stop();
-}
-
 export type Narrator = {
   say: (text: string) => void;
   stop: () => void;

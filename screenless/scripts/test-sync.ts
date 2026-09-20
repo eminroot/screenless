@@ -15,7 +15,20 @@ import type { HubLimits } from '../src/sync/api';
 import { applyLimits, limitsDiffer } from '../src/sync/limits';
 import { buildReport, hasSomethingToSend, signatureOf } from '../src/sync/report';
 import { isDue, retryDelayMs, SYNC_EVERY_MS } from '../src/sync/schedule';
-import { createEmptyData, type AppData, type Mission, type TaskContent } from '../src/state/types';
+import {
+  acceptFromHub,
+  MAX_REAL_REWARDS,
+  MAX_REWARD_LABEL,
+  MAX_REWARD_STARS,
+  MIN_REWARD_STARS,
+} from '../src/engine/rewards';
+import {
+  createEmptyData,
+  type AppData,
+  type Mission,
+  type RealReward,
+  type TaskContent,
+} from '../src/state/types';
 
 let failures = 0;
 let checks = 0;
@@ -348,6 +361,63 @@ section('re-applying a plan that did not change');
   ok('a real change is seen', limitsDiffer(current, limits({ dailyBudgetMin: 90 })));
   ok('so is switching it off', limitsDiffer(current, limits({ enabled: false })));
   ok('and so is dropping the curfew', limitsDiffer(current, limits({ curfewStartMin: -1, curfewEndMin: -1 })));
+}
+
+
+section('promises arriving from the hub are cut to this app’s own size');
+{
+  const reward = (n: number, over: Partial<RealReward> = {}): RealReward => ({
+    id: `r${n}`,
+    stars: 100,
+    label: `Reward ${n}`,
+    emoji: '🎁',
+    createdAt: '2026-01-01T00:00:00.000Z',
+    ...over,
+  });
+
+  // The hub stores twenty. This card is built for MAX_REAL_REWARDS, and a
+  // parent who promised a term’s worth must not push it over.
+  const many = Array.from({ length: 20 }, (_, i) => reward(i, { stars: 50 + i * 10 }));
+  ok(
+    'never more than the card holds',
+    acceptFromHub(many, MAX_REAL_REWARDS).length === MAX_REAL_REWARDS,
+  );
+  ok('and none at all when there is no room', acceptFromHub(many, 0).length === 0);
+  ok('a negative room is not a crash', acceptFromHub(many, -3).length === 0);
+
+  // Promises typed on this phone behind the PIN are kept in full, so the hub
+  // only ever gets the room they leave.
+  ok(
+    'local promises take their room first',
+    acceptFromHub(many, MAX_REAL_REWARDS - 6).length === MAX_REAL_REWARDS - 6,
+  );
+
+  // The hub accepts 1 to 100000. This app rounds onto a step of ten inside its
+  // own range, so the number on the card is one the card can draw.
+  const wild = acceptFromHub([reward(0, { stars: 100_000 }), reward(1, { stars: 1 })], 8);
+  ok('a huge target comes down to the ceiling', wild.every((r) => r.stars <= MAX_REWARD_STARS));
+  ok('and a tiny one comes up to the floor', wild.every((r) => r.stars >= MIN_REWARD_STARS));
+
+  // Sixty characters are allowed up there; forty fit down here.
+  const long = acceptFromHub([reward(0, { label: 'x'.repeat(60) })], 8);
+  ok('a long label is trimmed', long[0].label.length === MAX_REWARD_LABEL);
+
+  // What is still to be earned is the whole point of the card.
+  const mixed = acceptFromHub(
+    [
+      reward(0, { stars: 50, givenAt: '2026-01-02T00:00:00.000Z' }),
+      reward(1, { stars: 250 }),
+      reward(2, { stars: 100 }),
+    ],
+    2,
+  );
+  ok('outstanding promises are kept over handed-over ones', mixed.every((r) => !r.givenAt));
+  ok('and the nearest comes first', mixed[0].stars === 100 && mixed[1].stars === 250);
+
+  ok(
+    'everything kept is marked as the hub’s',
+    acceptFromHub(many, 8).every((r) => r.origin === 'hub'),
+  );
 }
 
 console.log(

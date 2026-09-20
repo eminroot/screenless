@@ -107,36 +107,3 @@ function Stripes({ height }: { height: number }) {
     </View>
   );
 }
-
-/**
- * The same idea broken into a fixed number of lamps, for a count a child can
- * actually hold in their head: steps of a mission, stones to the next place.
- */
-export function Lamps({
-  total,
-  lit,
-  tone = 'mint',
-  size = 14,
-}: {
-  total: number;
-  lit: number;
-  tone?: ToneName;
-  size?: number;
-}) {
-  const palette = tones[tone];
-  return (
-    <View style={{ flexDirection: 'row', gap: 6, alignItems: 'center' }}>
-      {Array.from({ length: total }, (_, i) => (
-        <View
-          key={i}
-          style={{
-            width: size,
-            height: size,
-            borderRadius: size / 2,
-            backgroundColor: i < lit ? palette.face : 'rgba(255,255,255,0.75)',
-          }}
-        />
-      ))}
-    </View>
-  );
-}

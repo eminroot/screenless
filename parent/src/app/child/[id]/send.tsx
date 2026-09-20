@@ -64,7 +64,15 @@ const REPLY_KEYS: Record<NoteReply, TKey> = {
   later: 'send.replyLater',
 };
 
-const STAR_CHOICES = [10, 25, 50, 100];
+/**
+ * The same four the child's app offers, and deliberately so.
+ *
+ * That app rounds any target onto a step of ten and refuses anything under
+ * twenty, so a ten or a twenty-five chosen here would arrive as something
+ * else. Offering values that survive the trip means the number the parent
+ * picked is the number the child sees.
+ */
+const STAR_CHOICES = [50, 100, 150, 250];
 
 export default function SendScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -136,6 +144,22 @@ export default function SendScreen() {
       },
     );
   }, [token, id, rewardLabel, rewardStars, run, load]);
+
+  /**
+   * Dropping a promise.
+   *
+   * Here because the cap is on rows, not on outstanding promises: twenty
+   * rewards is twenty rewards whether or not they have been handed over, so
+   * without this a parent who used the feature for a term reached a wall that
+   * ticking things off did not move.
+   */
+  const onDropReward = useCallback(
+    (rewardId: string) => {
+      if (!token || !id) return;
+      void run(() => api.deleteReward(token, id, rewardId), load);
+    },
+    [token, id, run, load],
+  );
 
   const onAssign = useCallback(
     (taskId: string | null) => {
@@ -254,32 +278,55 @@ export default function SendScreen() {
           </Txt>
         ) : (
           <View style={{ gap: spacing.md }}>
+            {/* The promise reads on one line and its two actions sit under it,
+                rather than all three sharing a row. Side by side there is no
+                width left for the label at phone size: "Mark as given" is
+                "Verildi olarak işaretle" in Turkish, and next to a delete
+                control it squeezes the thing the parent is actually reading
+                down to a couple of characters a line. */}
             {rewards.map((reward) => (
-              <View key={reward.id} style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.md }}>
-                <Txt variant="body">{reward.emoji}</Txt>
-                <View style={{ flex: 1 }}>
-                  <Txt variant="body">{reward.label}</Txt>
-                  <Txt variant="tiny" color={colors.inkFaint}>
-                    {reward.stars}
-                  </Txt>
+              <View key={reward.id} style={{ gap: spacing.sm }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.md }}>
+                  <Txt variant="body">{reward.emoji}</Txt>
+                  <View style={{ flex: 1 }}>
+                    <Txt variant="body">{reward.label}</Txt>
+                    <Txt variant="tiny" color={colors.inkFaint}>
+                      {reward.stars}
+                    </Txt>
+                  </View>
+                  {reward.givenAt ? (
+                    <Txt variant="tiny" color={colors.good}>
+                      {t('send.rewardGiven')}
+                    </Txt>
+                  ) : null}
                 </View>
-                {reward.givenAt ? (
-                  <Txt variant="tiny" color={colors.good}>
-                    {t('send.rewardGiven')}
-                  </Txt>
-                ) : (
+                <View style={{ flexDirection: 'row', gap: spacing.sm }}>
+                  {reward.givenAt ? null : (
+                    <Button
+                      label={t('send.rewardMarkGiven')}
+                      size="sm"
+                      tone="quiet"
+                      disabled={busy}
+                      style={{ flex: 1 }}
+                      onPress={() =>
+                        token && id
+                          ? void run(() => api.markRewardGiven(token, id, reward.id, true), load)
+                          : undefined
+                      }
+                    />
+                  )}
+                  {/* Offered on every row, including one already handed over:
+                      the ceiling counts rows, so a given reward still holds a
+                      slot and this is the only way to free it. */}
                   <Button
-                    label={t('send.rewardMarkGiven')}
+                    label={t('common.delete')}
                     size="sm"
-                    tone="quiet"
+                    tone="danger"
                     disabled={busy}
-                    onPress={() =>
-                      token && id
-                        ? void run(() => api.markRewardGiven(token, id, reward.id, true), load)
-                        : undefined
-                    }
+                    style={{ flex: reward.givenAt ? 1 : 0 }}
+                    onPress={() => onDropReward(reward.id)}
                   />
-                )}
+                </View>
               </View>
             ))}
           </View>

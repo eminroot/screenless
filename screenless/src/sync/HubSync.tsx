@@ -141,7 +141,13 @@ export function HubSync() {
         const report = buildReport(current.data, appVersion);
         const today = report.days.at(-1) ?? null;
         if (!force && !hasSomethingToSend(report, link.lastSentDay, lastSignature.current)) {
-          current.patchHub({ failures: 0 });
+          // Only a pass that actually reached the hub counts as a success.
+          // Clearing the count unconditionally here was a quiet bug: on a
+          // phone with nothing new to say, a failed config fetch was recorded
+          // as a good sync, so a hub that had been unreachable since breakfast
+          // was asked every ten minutes all day instead of backing off.
+          if (config.ok) current.patchHub({ failures: 0 });
+          else current.patchHub({ failures: Math.min(20, link.failures + 1) });
           return;
         }
 

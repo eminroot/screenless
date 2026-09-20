@@ -125,8 +125,6 @@ export const SHOP_ITEM_IDS = [
   'wings',
 ] as const;
 export type ShopItemId = (typeof SHOP_ITEM_IDS)[number];
-
-export const ITEM_IDS = [...REWARD_IDS, ...SHOP_ITEM_IDS] as const;
 export type ItemId = RewardId | ShopItemId;
 
 /**
@@ -142,8 +140,6 @@ export type Wardrobe = {
   /** At most one per slot. Order is not meaningful. */
   worn: ItemId[];
 };
-
-export const emptyWardrobe: Wardrobe = { owned: [], worn: [] };
 
 /**
  * Everyday things a room scan can recognise. Deliberately short: each one has

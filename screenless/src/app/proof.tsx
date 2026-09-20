@@ -6,7 +6,7 @@ import * as Haptics from 'expo-haptics';
 
 import { Buddy } from '../components/buddy/Buddy';
 import { Button, Screen, SpeechBubble, Sticker, TopBar, Txt } from '../components/ui';
-import { objectName, roomObjectMeta } from '../data/room-objects';
+import { objectName } from '../data/room-objects';
 import { selfChecks } from '../engine/verify';
 import { useI18n } from '../i18n';
 import { useApp } from '../state/app-state';
@@ -235,37 +235,5 @@ export default function Proof() {
         <Button label={t('proof.skipPhoto')} tone="neutral" size="md" onPress={send} />
       </View>
     </Screen>
-  );
-}
-
-/** Objects a photo mission is looking for, shown as a hint before the shutter. */
-export function ExpectedObjects({ objects }: { objects: RoomObjectId[] }) {
-  const { pick } = useI18n();
-  return (
-    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm }}>
-      {objects.map((id) => {
-        const meta = roomObjectMeta.get(id);
-        if (!meta) return null;
-        return (
-          <View
-            key={id}
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: spacing.xs,
-              backgroundColor: colors.surface,
-              borderRadius: radii.pill,
-              borderWidth: borderWidth.hair,
-              borderColor: colors.border,
-              paddingHorizontal: spacing.md,
-              paddingVertical: 3,
-            }}
-          >
-            <Txt variant="small">{meta.emoji}</Txt>
-            <Txt variant="tiny">{pick(meta.name)}</Txt>
-          </View>
-        );
-      })}
-    </View>
   );
 }

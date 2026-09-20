@@ -444,8 +444,3 @@ function capitalise(text: string, language: keyof typeof languageMeta): string {
   const locale = languageMeta[language].locale;
   return text[0].toLocaleUpperCase(locale) + text.slice(1);
 }
-
-/** True for a mission this engine made, rather than one out of the library. */
-export function isSpark(task: { id: string; source?: string }): boolean {
-  return task.source === 'spark' || task.id.startsWith('spark-');
-}

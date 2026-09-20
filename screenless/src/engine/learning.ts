@@ -148,14 +148,3 @@ function partOfDayOf(mission: Mission): PartOfDay | null {
   const date = new Date(stamp);
   return Number.isNaN(date.getTime()) ? null : partOfDay(date);
 }
-
-/**
- * How long the next mission should be, given how fast the child gets through
- * them. Only ever a nudge of a few minutes in either direction.
- */
-export function preferredMinutes(learned: Learned, base: number): number {
-  if (learned.pace === null || learned.sample < MIN_SAMPLE) return base;
-  if (learned.pace < 0.6) return base + 4;
-  if (learned.pace > 1.4) return Math.max(5, base - 3);
-  return base;
-}

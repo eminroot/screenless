@@ -134,15 +134,6 @@ export async function readPhoto(uri: string): Promise<PhotoRead> {
   }
 }
 
-/** Runs several frames and keeps everything any of them saw. */
-export async function detectAcrossFrames(uris: string[]): Promise<RoomObjectId[]> {
-  const found = new Set<RoomObjectId>();
-  for (const uri of uris) {
-    for (const object of await detectObjects(uri)) found.add(object);
-  }
-  return [...found];
-}
-
 /** Removes a temporary image. Failing to delete a cache file is not worth an error. */
 export function discard(uri: string | null | undefined): void {
   if (!uri) return;

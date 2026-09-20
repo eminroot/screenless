@@ -65,6 +65,18 @@ export default function SendToChild() {
   const noteWaiting = data.inbox.note;
   const name = profile.nickname;
 
+  /**
+   * Taking it back also takes the confirmation back.
+   *
+   * Without this the green "it is on their home screen now" stayed on screen
+   * after the thing it referred to had been withdrawn, which is the one
+   * sentence on this screen a parent has to be able to trust.
+   */
+  const takeBack = (what: 'mission' | 'note') => {
+    withdrawLocal(what);
+    setSent((was) => (was === what ? null : was));
+  };
+
   const send = (task: TaskContent) => {
     sendLocalMission(task.id);
     setSent('mission');
@@ -100,7 +112,7 @@ export default function SendToChild() {
                 label={t('send.takeBackMission')}
                 tone="ghost"
                 size="sm"
-                onPress={() => withdrawLocal('mission')}
+                onPress={() => takeBack('mission')}
               />
             </View>
           ) : null}
@@ -113,7 +125,7 @@ export default function SendToChild() {
                 label={t('send.takeBackNote')}
                 tone="ghost"
                 size="sm"
-                onPress={() => withdrawLocal('note')}
+                onPress={() => takeBack('note')}
               />
             </View>
           ) : null}

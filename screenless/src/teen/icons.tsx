@@ -97,14 +97,6 @@ export function StarIcon({ size = 20, color = ICON_DEFAULT, strokeWidth = SW }: 
   );
 }
 
-export function StarOutlineIcon({ size = 20, color = ICON_DEFAULT, strokeWidth = SW }: IconProps) {
-  return (
-    <Svg {...box(size)}>
-      <Path d="M12 3.2 14.7 9l6.3.8-4.6 4.4 1.2 6.2L12 17.4 6.4 20.4l1.2-6.2L3 9.8 9.3 9Z" {...line(color, strokeWidth)} />
-    </Svg>
-  );
-}
-
 export function FlameIcon({ size = 20, color = ICON_DEFAULT, strokeWidth = SW }: IconProps) {
   return (
     <Svg {...box(size)}>

@@ -37,7 +37,6 @@ export const CONFIGURED_URL = secure || localDev ? raw : '';
  * `host.ts`. Everywhere else the two are identical.
  */
 export const HUB_URL = reachableUrl(CONFIGURED_URL);
-export const isConfigured = Boolean(HUB_URL);
 
 if (__DEV__ && raw && !HUB_URL) {
   console.warn('[hub] url ignored, it has to start with https:// or http://');
@@ -135,10 +134,6 @@ export function signOut(token: string): Promise<Result<{ ok: boolean }>> {
   return request('DELETE', '/v1/parents/session', { token });
 }
 
-export function whoAmI(token: string): Promise<Result<{ parent: Parent; children: ChildCard[] }>> {
-  return request('GET', '/v1/parents/me', { token });
-}
-
 export function deleteAccount(token: string, password: string): Promise<Result<{ deleted: boolean }>> {
   return request('DELETE', '/v1/parents/me', { token, body: { password } });
 }
@@ -154,14 +149,6 @@ export function addChild(
   input: { name: string; ageBand: AgeBand },
 ): Promise<Result<{ child: Child; pairing: Pairing }>> {
   return request('POST', '/v1/children', { token, body: input });
-}
-
-export function editChild(
-  token: string,
-  id: string,
-  input: { name?: string; ageBand?: AgeBand },
-): Promise<Result<{ child: Child }>> {
-  return request('PATCH', `/v1/children/${encodeURIComponent(id)}`, { token, body: input });
 }
 
 export function removeChild(token: string, id: string): Promise<Result<{ deleted: boolean }>> {

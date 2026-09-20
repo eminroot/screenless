@@ -36,9 +36,22 @@ const { createLimiter } = require('./rate-limit');
  *   GET    /v1/children/:id/summary        analytics                 ?from=&to=  or ?range=week|month
  *   GET    /v1/children/:id/limits
  *   PUT    /v1/children/:id/limits         set the daily budget and the nudges
+ *
+ * and the other direction, what a parent leaves for a child to collect:
+ *
+ *   GET    /v1/children/:id/assignment     the mission waiting, if any
+ *   PUT    /v1/children/:id/assignment     set it, or `{ taskId: null }` to withdraw
+ *   GET    /v1/children/:id/rewards
+ *   POST   /v1/children/:id/rewards        promise one              { stars, label, emoji? }
+ *   PATCH  /v1/children/:id/rewards/:rid   tick it off              { given }
+ *   DELETE /v1/children/:id/rewards/:rid   drop it, and free a slot
+ *   GET    /v1/children/:id/notes          the thread, newest first
+ *   POST   /v1/children/:id/notes          leave a line             { text }
+ *
  *   POST   /v1/devices                     pair a phone              { code, platform }
  *   GET    /v1/devices/me                  the current plan, by revision
  *   POST   /v1/devices/me/reports          push days                 { days: [...], snapshot }
+ *   POST   /v1/devices/me/ack              what landed   { tookTaskId?, note?: { id, reply } }
  *   DELETE /v1/devices/me                  unpair this phone
  *
  * What a child's phone may send is fixed by `rules.cleanReport`, and it is

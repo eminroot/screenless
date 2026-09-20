@@ -29,14 +29,3 @@ export function reachableUrl(url: string): string {
   if (!__DEV__ || Platform.OS !== 'android') return url;
   return url.replace(/^(https?:\/\/)(localhost|127\.0\.0\.1)(?=[:/]|$)/i, `$1${ANDROID_EMULATOR_HOST}`);
 }
-
-/**
- * Whether the url was rewritten, so a screen can say so.
- *
- * Worth surfacing rather than hiding: someone testing on a *physical* Android
- * phone gets the emulator alias, which will not resolve, and "could not reach
- * the server" with no explanation sends them looking at the server.
- */
-export function wasRewritten(original: string): boolean {
-  return reachableUrl(original) !== original;
-}

@@ -282,7 +282,7 @@ const MAX_REWARDS = 20;
 function cleanText(value, max) {
   if (typeof value !== 'string') return '';
   return value
-    .replace(/[ -]/g, ' ')
+    .replace(/[\x00-\x1f\x7f]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
     .slice(0, max);

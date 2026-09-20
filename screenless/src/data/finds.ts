@@ -1506,6 +1506,3 @@ export function findKind(id: FindKindId): FindKind {
 export function isFindKind(value: string): value is FindKindId {
   return (FIND_KINDS as readonly string[]).includes(value);
 }
-
-/** Every fact in the app, so the collection can show how much is left to learn. */
-export const totalFacts = findKinds.reduce((sum, kind) => sum + kind.facts.length, 0);

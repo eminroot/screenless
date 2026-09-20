@@ -93,19 +93,6 @@ export async function presentNudge(input: {
   }
 }
 
-/** Asks for permission. Called from the parent's screen time setup. */
-export async function allowScreenNudges(): Promise<boolean> {
-  if (!available) return false;
-  try {
-    const Notifications = await load();
-    const { status } = await Notifications.requestPermissionsAsync();
-    return status === 'granted';
-  } catch (error) {
-    if (__DEV__) console.warn('[screen-nudge] permission failed', error);
-    return false;
-  }
-}
-
 /** True for a notification this file posted, so other cancels leave it alone. */
 export function isScreenNudge(identifier: string): boolean {
   return identifier.startsWith(PREFIX);

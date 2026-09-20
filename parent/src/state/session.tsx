@@ -125,16 +125,3 @@ export function useSession(): SessionValue {
   if (!value) throw new Error('useSession outside SessionProvider');
   return value;
 }
-
-/**
- * The token, for a screen that cannot render without one.
- *
- * Throws rather than returning null, because every screen behind the sign-in
- * gate is only mounted once there is a session and a null check in each of
- * them would be noise that hides the one place it could actually happen.
- */
-export function useToken(): string {
-  const { token } = useSession();
-  if (!token) throw new Error('signed out');
-  return token;
-}

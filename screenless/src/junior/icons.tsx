@@ -472,31 +472,3 @@ export function ClueIcon({ size = 24 }: IconProps) {
     </Svg>
   );
 }
-
-/** Grouped so a screen can pull one by name without a long import list. */
-export const Glyph = {
-  Home: HomeIcon,
-  Route: RouteIcon,
-  Search: SearchIcon,
-  Shoe: ShoeIcon,
-  Chat: ChatIcon,
-  Star: StarFilledIcon,
-  Flame: FlameIcon,
-  Coin: CoinIcon,
-  Bolt: BoltIcon,
-  Trophy: TrophyIcon,
-  Lock: LockIcon,
-  Bulb: BulbIcon,
-  Camera: CameraIcon,
-  Book: BookIcon,
-  Gift: GiftIcon,
-  Tree: TreeIcon,
-  Leaf: LeafIcon,
-  Spark: SparkIcon,
-  Clock: ClockIcon,
-  Target: TargetIcon,
-  Party: PartyIcon,
-  Flag: FlagIcon,
-  Pack: PackIcon,
-  House: HouseIcon,
-} as const;

@@ -302,8 +302,6 @@ export const storyLibrary: Story[] = [
   },
 ];
 
-export const storyById = new Map(storyLibrary.map((story) => [story.id, story]));
-
 /** Stories that fit the child, best match first, ones they have not heard first. */
 export function rankStories(
   ageBand: AgeBand,

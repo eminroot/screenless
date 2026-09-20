@@ -53,11 +53,6 @@ export function factsKnown(collection: Find[]): Set<string> {
   return known;
 }
 
-/** How many facts are still waiting, for the "keep looking" line. */
-export function factsLeft(kind: FindKindId, known: ReadonlySet<string>): number {
-  return findKind(kind).facts.filter((fact) => !known.has(fact.id)).length;
-}
-
 /* --------------------------------------------------------------- variants */
 
 /** The question whose answer names the sub kind, if the kind has one. */

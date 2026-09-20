@@ -3,21 +3,13 @@ import type { Copy } from './en';
 export const az: Copy = {
   common: {
     appName: 'ScreenLess Valideyn',
-    continue: 'Davam',
     cancel: 'İmtina',
-    save: 'Yadda saxla',
     saved: 'Yadda saxlanıldı',
     back: 'Geri',
-    retry: 'Yenidən cəhd et',
     loading: 'Bir saniyə',
-    close: 'Bağla',
     delete: 'Sil',
     remove: 'Çıxar',
-    done: 'Hazırdır',
-    today: 'Bu gün',
     noData: 'Hələ məlumat yoxdur',
-    hoursMinutes: '{{hours}}s {{minutes}}dəq',
-    minutesOnly: '{{minutes}}dəq',
     minutesShort: '{{count}} dəq',
   },
 
@@ -163,7 +155,6 @@ export const az: Copy = {
     notePlaceholder: 'Nənə beşdə gəlir',
     noteHint: 'Bir sətir. Yazaraq yox, düymə ilə cavab verirlər.',
     noteSend: 'Qeydi göndər',
-    noteSent: 'Göndərildi',
     noteWaiting: 'Oxumaları gözlənilir',
     replyOk: 'Oldu dedi',
     replyDone: 'Etdim dedi',
@@ -177,7 +168,7 @@ export const az: Copy = {
     rewardGiven: 'Verildi',
     rewardMarkGiven: 'Verildi kimi işarələ',
     rewardNone: 'Hələ vəd edilən bir şey yoxdur.',
-    rewardFull: 'Bir uşaq eyni anda bundan çoxunu saxlaya bilməz.',
+    rewardFull: 'Bir uşaq eyni anda bundan çoxunu saxlaya bilməz. Yer açmaq üçün birini silin.',
 
     missionLabel: 'Tapşırıq seç',
     missionSearch: 'Tapşırıqlarda axtar',
@@ -185,7 +176,6 @@ export const az: Copy = {
     missionTaken: 'Siyahısına əlavə etdi',
     missionClear: 'Geri al',
     missionDuo: 'Sənin də otaqda olman lazımdır',
-    missionNone: 'Göndərilmiş tapşırıq yoxdur.',
   },
   limits: {
     title: 'Günlük limit',
@@ -215,7 +205,6 @@ export const az: Copy = {
 
     curfewLabel: 'Sakit saatlar',
     curfewNone: 'Yoxdur',
-    curfewSet: '{{start}} - {{end}}',
     curfewBody: 'Bu aralıqda, vaxtdan nə qalmasından asılı olmayaraq həmişə tətbiq olunur.',
     curfewFrom: 'Başlanğıc',
     curfewTo: 'Son',
@@ -240,7 +229,6 @@ export const az: Copy = {
       'Hər uşaq, tarixçənin hər günü və hər limit silinir. Telefonları məlumat göndərməyi dayandırır. Telefonların özünə toxunulmur.',
     deleteConfirm: 'Təsdiq üçün şifrənizi yazın',
     deleteAction: 'Hər şeyi sil',
-    deleted: 'Hesab silindi',
 
     aboutTitle: 'Bu tətbiq nəyi görə bilər',
     aboutBody:

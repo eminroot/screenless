@@ -17,21 +17,13 @@
 export const en = {
   common: {
     appName: 'ScreenLess Parent',
-    continue: 'Continue',
     cancel: 'Cancel',
-    save: 'Save',
     saved: 'Saved',
     back: 'Back',
-    retry: 'Try again',
     loading: 'One moment',
-    close: 'Close',
     delete: 'Delete',
     remove: 'Remove',
-    done: 'Done',
-    today: 'Today',
     noData: 'Nothing reported yet',
-    hoursMinutes: '{{hours}}h {{minutes}}m',
-    minutesOnly: '{{minutes}}m',
     minutesShort: '{{count}} min',
   },
 
@@ -176,7 +168,6 @@ export const en = {
     notePlaceholder: 'Granny is coming at five',
     noteHint: 'One line. They answer with a button, not by typing.',
     noteSend: 'Send the note',
-    noteSent: 'Sent',
     noteWaiting: 'Waiting for them to read it',
     replyOk: 'They said okay',
     replyDone: 'They said done',
@@ -190,7 +181,7 @@ export const en = {
     rewardGiven: 'Given',
     rewardMarkGiven: 'Mark as given',
     rewardNone: 'Nothing promised yet.',
-    rewardFull: 'That is as many as one child can have at once.',
+    rewardFull: 'That is as many as one child can have at once. Delete one to make room.',
 
     missionLabel: 'Pick a mission',
     missionSearch: 'Search the missions',
@@ -198,7 +189,6 @@ export const en = {
     missionTaken: 'They added it to their list',
     missionClear: 'Take it back',
     missionDuo: 'Needs you in the room',
-    missionNone: 'No mission sent.',
   },
   limits: {
     title: 'Daily limit',
@@ -227,7 +217,6 @@ export const en = {
 
     curfewLabel: 'Quiet hours',
     curfewNone: 'None',
-    curfewSet: '{{start}} to {{end}}',
     curfewBody: 'Always enforced inside this window, whatever is left of the budget.',
     curfewFrom: 'From',
     curfewTo: 'To',
@@ -252,7 +241,6 @@ export const en = {
       'Every child, every day of history and every limit is deleted. Their phones stop reporting. Nothing on the phones themselves is touched.',
     deleteConfirm: 'Type your password to confirm',
     deleteAction: 'Delete everything',
-    deleted: 'Account deleted',
 
     aboutTitle: 'What this app can see',
     aboutBody:

@@ -20,7 +20,6 @@ export type Point = { x: number; y: number };
 export const MAP_W = 390;
 export const SECTION_H = 440;
 export const SECTIONS = MAX_LEVEL;
-export const MAP_H = SECTION_H * SECTIONS;
 
 /** Stones between two places. */
 export const STONES_PER_LEG = 5;

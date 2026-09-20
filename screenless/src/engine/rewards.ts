@@ -81,6 +81,38 @@ export function starsLeft(reward: RealReward, stars: number): number {
   return Math.max(0, reward.stars - stars);
 }
 
+/**
+ * What to keep of the promises the hub is holding.
+ *
+ * The two ends do not agree about size and they do not have to. The hub stores
+ * up to twenty rewards with any star target and a sixty character label,
+ * because those are the widest values worth keeping; this app is built for
+ * `MAX_REAL_REWARDS`, its own star range and shorter text. This end is the one
+ * that cannot renegotiate, so it cuts things down rather than trusting the
+ * wire and overflowing a card in front of a child.
+ *
+ * `room` is what is left after the promises a grown up typed on this phone,
+ * which are kept in full: someone stood here behind the PIN and entered them.
+ *
+ * Outstanding promises are kept ahead of handed-over ones, then the nearest
+ * first. What is still to be earned is the whole point of the card, and a
+ * term of already-given rewards should not push it off the bottom.
+ */
+export function acceptFromHub(rewards: RealReward[], room: number): RealReward[] {
+  if (room <= 0) return [];
+  return [...rewards]
+    .map((reward) => ({
+      ...reward,
+      stars: clampRewardStars(reward.stars),
+      label: reward.label.slice(0, MAX_REWARD_LABEL),
+      origin: 'hub' as const,
+    }))
+    .sort(
+      (a, b) => Number(Boolean(a.givenAt)) - Number(Boolean(b.givenAt)) || a.stars - b.stars,
+    )
+    .slice(0, room);
+}
+
 /** Rounds a typed or stepped target into range and onto the step. */
 export function clampRewardStars(value: number): number {
   const rounded = Math.round(value / REWARD_STAR_STEP) * REWARD_STAR_STEP;

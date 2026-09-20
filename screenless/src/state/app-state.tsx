@@ -16,7 +16,13 @@ import { partOfDay } from '../engine/context';
 import { seasonOf } from '../engine/find-engine';
 import { applyCompletion, dayKey, decayStreak, revokeCompletion, type ProgressDelta } from '../engine/progress';
 import { addSteps, decayGoalStreak, type WalkDelta } from '../engine/walk';
-import { clampRewardStars, MAX_REAL_REWARDS, MAX_REWARD_LABEL, rewardsCrossed } from '../engine/rewards';
+import {
+  acceptFromHub,
+  clampRewardStars,
+  MAX_REAL_REWARDS,
+  MAX_REWARD_LABEL,
+  rewardsCrossed,
+} from '../engine/rewards';
 import { GUARD_HISTORY_DAYS, type GuardConfig, type GuardDay } from '../guard/types';
 import { creditNudge } from '../guard/nudge';
 import {
@@ -474,9 +480,20 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         // here is the one thing that is not about the inbox: a parent's
         // promises arrive from two places, and the hub's copy must not take
         // the local ones with it.
-        const inbox = receiveInbox(d.inbox, incoming);
+        //
+        // Everything from the hub is also cut down to this app's own limits on
+        // the way in — the hub's ceilings are wider than this screen's, and
+        // this is the end that cannot renegotiate. The reward rules live in
+        // `engine/rewards.ts` so they can be tested; the note is one line.
+        const inbox = receiveInbox(d.inbox, {
+          assignment: incoming.assignment,
+          note: incoming.note
+            ? { ...incoming.note, text: incoming.note.text.slice(0, MAX_NOTE_TEXT) }
+            : null,
+        });
+
         const local = d.realRewards.filter((r) => r.origin !== 'hub');
-        const fromHub = incoming.rewards.map((r) => ({ ...r, origin: 'hub' as const }));
+        const fromHub = acceptFromHub(incoming.rewards, MAX_REAL_REWARDS - local.length);
 
         return { ...d, inbox, realRewards: [...local, ...fromHub] };
       });

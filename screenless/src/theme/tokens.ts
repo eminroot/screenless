@@ -113,9 +113,3 @@ export const type = {
 
 /** Offset of the solid ink shadow that gives cards their sticker feel. */
 export const stickerOffset = 5;
-
-export const durations = {
-  quick: 140,
-  base: 240,
-  slow: 420,
-} as const;

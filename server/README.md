@@ -96,11 +96,27 @@ GET    /v1/children/:id/summary    ?range=week|month|quarter  or ?from=&to=
 GET    /v1/children/:id/limits
 PUT    /v1/children/:id/limits     the daily budget, the tier, the nudges
 
+GET    /v1/children/:id/assignment       the mission waiting, if any
+PUT    /v1/children/:id/assignment       { taskId } or { taskId: null } to withdraw
+GET    /v1/children/:id/rewards
+POST   /v1/children/:id/rewards          { stars, label, emoji? }
+PATCH  /v1/children/:id/rewards/:rid     { given }
+DELETE /v1/children/:id/rewards/:rid     drop it, and free a slot
+GET    /v1/children/:id/notes            the thread, newest first
+POST   /v1/children/:id/notes            { text }
+
 POST   /v1/devices                 { code, platform }         -> device token
 GET    /v1/devices/me              the current plan, with a revision
 POST   /v1/devices/me/reports      { days: [...], snapshot }
+POST   /v1/devices/me/ack          { tookTaskId?, note?: { id, reply } }
 DELETE /v1/devices/me              unpair
 ```
+
+The eight routes in the middle block are the other direction: what a parent
+leaves for a child to collect on their next sync. Nothing there reaches a
+phone on its own — the hub cannot wake a device — and what comes back up is
+`/v1/devices/me/ack`, which carries ids this server issued and one of four
+fixed replies. There is no column a phone can put free text into.
 
 ### Three decisions worth knowing about
 

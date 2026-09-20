@@ -61,20 +61,6 @@ export type RoomMissionOptions = {
   exclude?: string[];
 };
 
-/** Every template this room could currently produce, for the parent's view. */
-export function eligibleRoomTemplates(
-  objects: RoomObjectId[],
-  profile: ChildProfile,
-  allowDuo = true,
-): RoomTemplate[] {
-  return roomTemplates.filter(
-    (template) =>
-      template.ageBands.includes(profile.ageBand) &&
-      (allowDuo || template.mode !== 'duo') &&
-      fillSlots(template, objects) !== null,
-  );
-}
-
 /**
  * Builds a mission out of what the camera actually found.
  *

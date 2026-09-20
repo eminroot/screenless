@@ -841,6 +841,32 @@ test('a reward needs words and the list has a ceiling', async () => {
     token,
   });
   assert.equal(overflow.status, 409);
+
+  // The ceiling counts rows, not outstanding promises, so ticking one off
+  // does not free its slot. Deleting is the only way back under the cap, and
+  // for a while the parent app had no control that called this — which made
+  // the cap a one way door for anyone who used the feature for a term.
+  const list = await h.call('GET', `/v1/children/${child.id}/rewards`, { token });
+  const first = list.body.rewards[0];
+
+  const ticked = await h.call('PATCH', `/v1/children/${child.id}/rewards/${first.id}`, {
+    body: { given: true },
+    token,
+  });
+  assert.equal(ticked.status, 200);
+  const stillFull = await h.call('POST', `/v1/children/${child.id}/rewards`, {
+    body: { stars: 10, label: 'Still too many', emoji: '🎁' },
+    token,
+  });
+  assert.equal(stillFull.status, 409);
+
+  const dropped = await h.call('DELETE', `/v1/children/${child.id}/rewards/${first.id}`, { token });
+  assert.equal(dropped.status, 200);
+  const room = await h.call('POST', `/v1/children/${child.id}/rewards`, {
+    body: { stars: 10, label: 'Room again', emoji: '🎁' },
+    token,
+  });
+  assert.equal(room.status, 201);
 });
 
 test('a note goes down and one of four replies comes back', async () => {

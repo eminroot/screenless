@@ -62,9 +62,6 @@ export function reviewPolicy(band: AgeBand | undefined): ReviewPolicy {
   return band === undefined ? 'parent' : POLICIES[band];
 }
 
-/** Age bands where the phone decides rather than queueing for a parent. */
-export const SELF_CHECK_BANDS: readonly AgeBand[] = ['6-9', '10-13'];
-
 export function selfChecks(band: AgeBand | undefined): boolean {
   return reviewPolicy(band) !== 'parent';
 }

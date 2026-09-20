@@ -3,21 +3,13 @@ import type { Copy } from './en';
 export const tr: Copy = {
   common: {
     appName: 'ScreenLess Ebeveyn',
-    continue: 'Devam',
     cancel: 'Vazgeç',
-    save: 'Kaydet',
     saved: 'Kaydedildi',
     back: 'Geri',
-    retry: 'Tekrar dene',
     loading: 'Bir saniye',
-    close: 'Kapat',
     delete: 'Sil',
     remove: 'Kaldır',
-    done: 'Tamam',
-    today: 'Bugün',
     noData: 'Henüz veri yok',
-    hoursMinutes: '{{hours}}sa {{minutes}}dk',
-    minutesOnly: '{{minutes}}dk',
     minutesShort: '{{count}} dk',
   },
 
@@ -163,7 +155,6 @@ export const tr: Copy = {
     notePlaceholder: 'Babaanne beşte geliyor',
     noteHint: 'Tek satır. Yazarak değil, bir düğmeyle cevap veriyorlar.',
     noteSend: 'Notu gönder',
-    noteSent: 'Gönderildi',
     noteWaiting: 'Okumaları bekleniyor',
     replyOk: 'Tamam dedi',
     replyDone: 'Yaptım dedi',
@@ -177,7 +168,7 @@ export const tr: Copy = {
     rewardGiven: 'Verildi',
     rewardMarkGiven: 'Verildi olarak işaretle',
     rewardNone: 'Henüz söz verilmiş bir şey yok.',
-    rewardFull: 'Bir çocuk aynı anda bundan fazlasını tutamaz.',
+    rewardFull: 'Bir çocuk aynı anda bundan fazlasını tutamaz. Yer açmak için birini silin.',
 
     missionLabel: 'Bir görev seç',
     missionSearch: 'Görevlerde ara',
@@ -185,7 +176,6 @@ export const tr: Copy = {
     missionTaken: 'Listesine ekledi',
     missionClear: 'Geri al',
     missionDuo: 'Senin de odada olman gerek',
-    missionNone: 'Gönderilmiş görev yok.',
   },
   limits: {
     title: 'Günlük sınır',
@@ -215,7 +205,6 @@ export const tr: Copy = {
 
     curfewLabel: 'Sessiz saatler',
     curfewNone: 'Yok',
-    curfewSet: '{{start}} - {{end}}',
     curfewBody: 'Bu aralıkta, süreden ne kalmış olursa olsun her zaman uygulanır.',
     curfewFrom: 'Başlangıç',
     curfewTo: 'Bitiş',
@@ -240,7 +229,6 @@ export const tr: Copy = {
       'Her çocuk, geçmişin her günü ve her sınır silinir. Telefonları bildirmeyi bırakır. Telefonların kendisine dokunulmaz.',
     deleteConfirm: 'Onaylamak için şifrenizi yazın',
     deleteAction: 'Her şeyi sil',
-    deleted: 'Hesap silindi',
 
     aboutTitle: 'Bu uygulama neyi görebilir',
     aboutBody:

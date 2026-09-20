@@ -1,5 +1,5 @@
 import type { Localized } from '../i18n/types';
-import { ROOM_OBJECTS, type RoomObjectId } from '../state/types';
+import { type RoomObjectId } from '../state/types';
 
 export type RoomObjectMeta = {
   id: RoomObjectId;
@@ -152,8 +152,4 @@ export function objectEmoji(id: RoomObjectId): string {
 
 export function objectName(id: RoomObjectId): Localized {
   return roomObjectMeta.get(id)?.name ?? { en: id, tr: id, az: id };
-}
-
-export function isRoomObject(value: string): value is RoomObjectId {
-  return (ROOM_OBJECTS as readonly string[]).includes(value);
 }

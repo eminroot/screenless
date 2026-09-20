@@ -192,10 +192,6 @@ export function rankBuddies(interests: InterestId[]): BuddyId[] {
   return [...buddyOrder].sort((a, b) => affinityScore(b, interests) - affinityScore(a, interests));
 }
 
-export function suggestBuddy(interests: InterestId[]): BuddyId {
-  return rankBuddies(interests)[0];
-}
-
 /** True when this buddy shares at least two interests with the child. */
 export function isStrongMatch(id: BuddyId, interests: InterestId[]): boolean {
   return affinityScore(id, interests) >= 2;
