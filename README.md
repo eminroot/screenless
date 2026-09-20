@@ -46,7 +46,7 @@ ebeveyne kanıtıyla birlikte gösteren üç parçalı bir sistem.
 
 <br>
 
-![CANLI](https://img.shields.io/badge/CANLI-eminbaxishli.online-2F7D5B?style=flat-square)
+[![CANLI](https://img.shields.io/badge/CANLI-eminbaxishli.online-2F7D5B?style=flat-square)](https://eminbaxishli.online)
 
 </div>
 
@@ -208,6 +208,8 @@ cd screenless && npm install  && npm run web # :8081
 ```
 
 Demo hesabı: `demo@screenless.app` / `screenless-demo-2026`
+
+<sub>Bu hesap yalnızca yerelde `npm run seed` ile oluşturulan veritabanında vardır. Canlı sunucuda karşılığı yoktur.</sub>
 
 Telefonu bağlamak: ebeveyn uygulamasında çocuk ekleyin, çıkan altı karakterli
 kodu çocuğun telefonunda **Veli bölümü → Ebeveyn paneli** ekranına girin. Kod
