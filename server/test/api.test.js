@@ -700,3 +700,282 @@ test('duplicate dates in one report collapse to the first', () => {
   assert.equal(report.days.length, 1);
   assert.equal(report.days[0].missionsDone, 3);
 });
+
+/* ------------------------------------------- what a parent sends down */
+
+/**
+ * The other direction.
+ *
+ * Everything above this point is a phone reporting counts upwards. These are
+ * the three things a parent can send the other way: a mission they picked, a
+ * reward they promised, and a line they typed. The last block is the one that
+ * matters most — it checks that none of it opens a way for a child's own words
+ * to arrive here, which is the whole reason the report contract is as narrow
+ * as it is.
+ */
+
+test('a parent picks a mission and the phone collects it once', async () => {
+  const h = harness();
+  const token = await signedUpParent(h);
+  const { child, deviceToken } = await pairedChild(h, token);
+
+  // Nothing waiting to begin with.
+  const empty = await h.call('GET', '/v1/devices/me', { token: deviceToken });
+  assert.equal(empty.body.assignment, null);
+
+  const put = await h.call('PUT', `/v1/children/${child.id}/assignment`, {
+    body: { taskId: 'duo-hide' },
+    token,
+  });
+  assert.equal(put.status, 200);
+  assert.equal(put.body.assignment.taskId, 'duo-hide');
+
+  const config = await h.call('GET', '/v1/devices/me', { token: deviceToken });
+  assert.equal(config.body.assignment.taskId, 'duo-hide');
+
+  // The phone says it landed, and stops being handed the same mission.
+  const ack = await h.call('POST', '/v1/devices/me/ack', {
+    body: { tookTaskId: 'duo-hide' },
+    token: deviceToken,
+  });
+  assert.equal(ack.body.took, true);
+
+  const after = await h.call('GET', '/v1/devices/me', { token: deviceToken });
+  assert.equal(after.body.assignment, null);
+
+  // The parent can still see what they picked and when it was taken.
+  const read = await h.call('GET', `/v1/children/${child.id}/assignment`, { token });
+  assert.equal(read.body.assignment.taskId, 'duo-hide');
+  assert.ok(read.body.assignment.takenAt);
+});
+
+test('acknowledging a mission the parent already replaced changes nothing', async () => {
+  const h = harness();
+  const token = await signedUpParent(h);
+  const { child, deviceToken } = await pairedChild(h, token);
+
+  await h.call('PUT', `/v1/children/${child.id}/assignment`, { body: { taskId: 'old-one' }, token });
+  await h.call('PUT', `/v1/children/${child.id}/assignment`, { body: { taskId: 'new-one' }, token });
+
+  const ack = await h.call('POST', '/v1/devices/me/ack', {
+    body: { tookTaskId: 'old-one' },
+    token: deviceToken,
+  });
+  assert.equal(ack.body.took, false);
+
+  // The new one is still waiting, which is the point.
+  const config = await h.call('GET', '/v1/devices/me', { token: deviceToken });
+  assert.equal(config.body.assignment.taskId, 'new-one');
+});
+
+test('a mission id has to look like a library key', async () => {
+  const h = harness();
+  const token = await signedUpParent(h);
+  const { child } = await pairedChild(h, token);
+
+  for (const taskId of ['../secrets', 'a space', '', 'x'.repeat(80), 42]) {
+    const res = await h.call('PUT', `/v1/children/${child.id}/assignment`, { body: { taskId }, token });
+    assert.equal(res.status, 400, `accepted ${JSON.stringify(taskId)}`);
+  }
+
+  // Null is how a parent takes the mission back.
+  const cleared = await h.call('PUT', `/v1/children/${child.id}/assignment`, {
+    body: { taskId: null },
+    token,
+  });
+  assert.equal(cleared.status, 200);
+  assert.equal(cleared.body.assignment, null);
+});
+
+test('a promised reward reaches the phone and comes back marked given', async () => {
+  const h = harness();
+  const token = await signedUpParent(h);
+  const { child, deviceToken } = await pairedChild(h, token);
+
+  const made = await h.call('POST', `/v1/children/${child.id}/rewards`, {
+    body: { stars: 50, label: 'Cinema on Saturday', emoji: '🎬' },
+    token,
+  });
+  assert.equal(made.status, 201);
+  assert.equal(made.body.reward.stars, 50);
+  assert.equal(made.body.reward.givenAt, null);
+
+  const config = await h.call('GET', '/v1/devices/me', { token: deviceToken });
+  assert.equal(config.body.rewards.length, 1);
+  assert.equal(config.body.rewards[0].label, 'Cinema on Saturday');
+
+  const given = await h.call('PATCH', `/v1/children/${child.id}/rewards/${made.body.reward.id}`, {
+    body: { given: true },
+    token,
+  });
+  assert.equal(given.status, 200);
+  assert.ok(given.body.reward.givenAt);
+
+  const removed = await h.call('DELETE', `/v1/children/${child.id}/rewards/${made.body.reward.id}`, {
+    token,
+  });
+  assert.equal(removed.status, 200);
+  assert.equal((await h.call('GET', `/v1/children/${child.id}/rewards`, { token })).body.rewards.length, 0);
+});
+
+test('a reward needs words and the list has a ceiling', async () => {
+  const h = harness();
+  const token = await signedUpParent(h);
+  const { child } = await pairedChild(h, token);
+
+  const blank = await h.call('POST', `/v1/children/${child.id}/rewards`, {
+    body: { stars: 10, label: '   ', emoji: '🎁' },
+    token,
+  });
+  assert.equal(blank.status, 400);
+
+  for (let i = 0; i < rules.MAX_REWARDS; i += 1) {
+    const res = await h.call('POST', `/v1/children/${child.id}/rewards`, {
+      body: { stars: 10, label: `Reward ${i}`, emoji: '🎁' },
+      token,
+    });
+    assert.equal(res.status, 201);
+  }
+  const overflow = await h.call('POST', `/v1/children/${child.id}/rewards`, {
+    body: { stars: 10, label: 'One too many', emoji: '🎁' },
+    token,
+  });
+  assert.equal(overflow.status, 409);
+});
+
+test('a note goes down and one of four replies comes back', async () => {
+  const h = harness();
+  const token = await signedUpParent(h);
+  const { child, deviceToken } = await pairedChild(h, token);
+
+  const line = 'Granny is coming at five, tidy the front room first';
+  const sent = await h.call('POST', `/v1/children/${child.id}/notes`, { body: { text: line }, token });
+  assert.equal(sent.status, 201);
+
+  const config = await h.call('GET', '/v1/devices/me', { token: deviceToken });
+  assert.equal(config.body.note.text, line);
+
+  const ack = await h.call('POST', '/v1/devices/me/ack', {
+    body: { note: { id: config.body.note.id, reply: 'done' } },
+    token: deviceToken,
+  });
+  assert.equal(ack.body.answered, true);
+
+  // Answered notes stop being handed down.
+  assert.equal((await h.call('GET', '/v1/devices/me', { token: deviceToken })).body.note, null);
+
+  // And the parent sees which of the four came back.
+  const notes = await h.call('GET', `/v1/children/${child.id}/notes`, { token });
+  assert.equal(notes.body.notes[0].reply, 'done');
+  assert.ok(notes.body.notes[0].repliedAt);
+});
+
+test('a note cannot be answered twice', async () => {
+  const h = harness();
+  const token = await signedUpParent(h);
+  const { child, deviceToken } = await pairedChild(h, token);
+
+  await h.call('POST', `/v1/children/${child.id}/notes`, { body: { text: 'Bins out please' }, token });
+  const { id } = (await h.call('GET', '/v1/devices/me', { token: deviceToken })).body.note;
+
+  const first = await h.call('POST', '/v1/devices/me/ack', {
+    body: { note: { id, reply: 'ok' } },
+    token: deviceToken,
+  });
+  assert.equal(first.body.answered, true);
+
+  const second = await h.call('POST', '/v1/devices/me/ack', {
+    body: { note: { id, reply: 'later' } },
+    token: deviceToken,
+  });
+  assert.equal(second.body.answered, false);
+
+  assert.equal((await h.call('GET', `/v1/children/${child.id}/notes`, { token })).body.notes[0].reply, 'ok');
+});
+
+test('a note is a line, not a page', async () => {
+  const h = harness();
+  const token = await signedUpParent(h);
+  const { child, deviceToken } = await pairedChild(h, token);
+
+  const blank = await h.call('POST', `/v1/children/${child.id}/notes`, { body: { text: '   ' }, token });
+  assert.equal(blank.status, 400);
+
+  await h.call('POST', `/v1/children/${child.id}/notes`, {
+    body: { text: `a${'b'.repeat(500)}\n\n\nc` },
+    token,
+  });
+  const note = (await h.call('GET', '/v1/devices/me', { token: deviceToken })).body.note;
+  assert.equal(note.text.length, 200);
+  assert.ok(!note.text.includes('\n'), 'newlines are flattened');
+});
+
+test('none of this lets a child put their own words on the server', async () => {
+  const h = harness();
+  const token = await signedUpParent(h);
+  const { child, deviceToken } = await pairedChild(h, token);
+
+  await h.call('PUT', `/v1/children/${child.id}/assignment`, { body: { taskId: 'duo-hide' }, token });
+  await h.call('POST', `/v1/children/${child.id}/notes`, { body: { text: 'How was school?' }, token });
+  const noteId = (await h.call('GET', '/v1/devices/me', { token: deviceToken })).body.note.id;
+
+  // A phone trying every field it can see, with a sentence in each.
+  const ack = await h.call('POST', '/v1/devices/me/ack', {
+    body: {
+      tookTaskId: 'I sat next to Mira today and she said',
+      note: { id: noteId, reply: 'It was bad, Mr Yilmaz shouted at me' },
+      text: 'my address is 14 Green Lane',
+      nickname: 'Emin',
+      message: 'please tell mum',
+    },
+    token: deviceToken,
+  });
+  assert.equal(ack.status, 200);
+  assert.equal(ack.body.took, false, 'a sentence is not a task id');
+  assert.equal(ack.body.answered, false, 'a sentence is not one of the four replies');
+
+  // Nothing landed anywhere a parent could read it back.
+  const notes = await h.call('GET', `/v1/children/${child.id}/notes`, { token });
+  assert.equal(notes.body.notes[0].reply, null);
+  assert.equal(notes.body.notes[0].text, 'How was school?');
+
+  const assignment = await h.call('GET', `/v1/children/${child.id}/assignment`, { token });
+  assert.equal(assignment.body.assignment.taskId, 'duo-hide');
+  assert.equal(assignment.body.assignment.takenAt, null);
+
+  // And the whole of this child's half of the database holds none of those
+  // sentences, in any column.
+  const dump = JSON.stringify([
+    h.store.listNotes(child.id),
+    h.store.listRewards(child.id),
+    h.store.getAssignment(child.id),
+  ]);
+  for (const leak of ['Mira', 'Yilmaz', 'Green Lane', 'Emin', 'tell mum']) {
+    assert.ok(!dump.includes(leak), `${leak} reached the database`);
+  }
+});
+
+test('a parent cannot send anything to a child who is not theirs', async () => {
+  const h = harness();
+  const mine = await signedUpParent(h, 'mine@example.com');
+  const theirs = await signedUpParent(h, 'theirs@example.com');
+  const { child } = await pairedChild(h, theirs);
+
+  const assign = await h.call('PUT', `/v1/children/${child.id}/assignment`, {
+    body: { taskId: 'duo-hide' },
+    token: mine,
+  });
+  assert.equal(assign.status, 404);
+
+  const note = await h.call('POST', `/v1/children/${child.id}/notes`, {
+    body: { text: 'hello' },
+    token: mine,
+  });
+  assert.equal(note.status, 404);
+
+  const reward = await h.call('POST', `/v1/children/${child.id}/rewards`, {
+    body: { stars: 5, label: 'Sweets', emoji: '🎁' },
+    token: mine,
+  });
+  assert.equal(reward.status, 404);
+});

@@ -1,5 +1,16 @@
 import { reachableUrl } from './host';
-import type { AgeBand, Child, ChildCard, Limits, Pairing, Parent, Summary } from './types';
+import type {
+  AgeBand,
+  Assignment,
+  Child,
+  ChildCard,
+  Limits,
+  Note,
+  Pairing,
+  Parent,
+  Reward,
+  Summary,
+} from './types';
 
 /**
  * Every call this app makes to the hub.
@@ -185,4 +196,73 @@ export function saveLimits(
   },
 ): Promise<Result<{ limits: Limits }>> {
   return request('PUT', `/v1/children/${encodeURIComponent(id)}/limits`, { token, body: limits });
+}
+
+/* ------------------------------------------- what a parent sends down */
+
+/**
+ * The four calls below write into the other half of the hub.
+ *
+ * None of them reaches a phone directly. The hub has no way to wake a device,
+ * so everything written here waits until the child's app next syncs — a
+ * foreground event or a ten minute timer. A note sent now is read when the
+ * child next opens the app, and the screen that sends one says so.
+ */
+
+export function fetchAssignment(token: string, id: string): Promise<Result<{ assignment: Assignment | null }>> {
+  return request('GET', `/v1/children/${encodeURIComponent(id)}/assignment`, { token });
+}
+
+/** `null` takes the mission back before the child has collected it. */
+export function assignMission(
+  token: string,
+  id: string,
+  taskId: string | null,
+): Promise<Result<{ assignment: Assignment | null }>> {
+  return request('PUT', `/v1/children/${encodeURIComponent(id)}/assignment`, {
+    token,
+    body: { taskId },
+  });
+}
+
+export function fetchRewards(token: string, id: string): Promise<Result<{ rewards: Reward[] }>> {
+  return request('GET', `/v1/children/${encodeURIComponent(id)}/rewards`, { token });
+}
+
+export function promiseReward(
+  token: string,
+  id: string,
+  reward: { stars: number; label: string; emoji: string },
+): Promise<Result<{ reward: Reward }>> {
+  return request('POST', `/v1/children/${encodeURIComponent(id)}/rewards`, { token, body: reward });
+}
+
+export function markRewardGiven(
+  token: string,
+  id: string,
+  rewardId: string,
+  given: boolean,
+): Promise<Result<{ reward: Reward }>> {
+  return request('PATCH', `/v1/children/${encodeURIComponent(id)}/rewards/${encodeURIComponent(rewardId)}`, {
+    token,
+    body: { given },
+  });
+}
+
+export function deleteReward(
+  token: string,
+  id: string,
+  rewardId: string,
+): Promise<Result<{ deleted: boolean }>> {
+  return request('DELETE', `/v1/children/${encodeURIComponent(id)}/rewards/${encodeURIComponent(rewardId)}`, {
+    token,
+  });
+}
+
+export function fetchNotes(token: string, id: string): Promise<Result<{ notes: Note[] }>> {
+  return request('GET', `/v1/children/${encodeURIComponent(id)}/notes`, { token });
+}
+
+export function sendNote(token: string, id: string, text: string): Promise<Result<{ note: Note }>> {
+  return request('POST', `/v1/children/${encodeURIComponent(id)}/notes`, { token, body: { text } });
 }

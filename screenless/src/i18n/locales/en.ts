@@ -416,6 +416,54 @@ export const en = {
     toNextZone: '{{count}} stars until the next place opens',
   },
 
+  inbox: {
+    title: 'From your grown up',
+    replyOk: 'Okay',
+    replyDone: 'Done',
+    replyThanks: 'Thank you',
+    replyLater: 'Not now',
+    missionTitle: 'They picked this for you',
+    take: 'Add it to my list',
+    minutes: '{{minutes}} min',
+    stars: '{{stars}} stars',
+  },
+
+  /**
+   * Leaving something for the child from this phone.
+   *
+   * Written for a grown up, and deliberately clear that nothing is forced: the
+   * child is offered it and can leave it.
+   */
+  send: {
+    title: 'Leave something for {{name}}',
+    subtitle: 'It appears on {{name}}’s home screen. They choose whether to take it.',
+
+    waitingTitle: 'Waiting for them now',
+    waitingMission: 'A mission you picked.',
+    takeBackMission: 'Take the mission back',
+    takeBackNote: 'Take the note back',
+    sentMission: 'Left for {{name}}. It is on their home screen now.',
+    sentNote: 'Left for {{name}}.',
+
+    noteTitle: 'A line for them',
+    noteBody: 'They can answer with one of four taps. They cannot type back, so nothing they write ends up anywhere.',
+    notePlaceholder: 'Back by six, then the park',
+    leaveNote: 'Leave the note',
+
+    missionTitle: 'A mission',
+    missionBody: 'Shortest first. {{name}} still has to accept it, and it does not start on its own.',
+    minutes: '{{minutes}} min',
+    stars: '{{stars}} stars',
+    footnote: 'This stays on this phone. Nothing here is sent anywhere, and it works with or without a parent dashboard.',
+
+    catAll: 'Anything',
+    catMove: 'Moving',
+    catOutdoor: 'Outdoors',
+    catCreate: 'Making',
+    catSocial: 'With people',
+    catCalm: 'Quiet',
+  },
+
   chat: {
     title: 'Talk to {{buddy}}',
     placeholder: 'Say something',

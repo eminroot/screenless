@@ -161,3 +161,49 @@ export type Pairing = {
   pretty: string;
   expiresAt: string;
 };
+
+/* ------------------------------------------- what a parent sends down */
+
+/**
+ * A mission this parent picked, as a library key.
+ *
+ * The title is not here. Both apps ship the same mission library, so the hub
+ * carries the key and each app looks the words up in its own language — which
+ * also means the hub never holds a line of mission text. `parent/src/data/
+ * catalogue.json` is this app's copy, generated from the child app's library
+ * by `screenless/scripts/export-catalogue.ts`.
+ */
+export type Assignment = {
+  taskId: string;
+  assignedAt: number;
+  /** Set once the child's phone has collected it. Null means still waiting. */
+  takenAt: number | null;
+};
+
+/** Something promised in the real world, in the parent's own words. */
+export type Reward = {
+  id: string;
+  stars: number;
+  label: string;
+  emoji: string;
+  createdAt: number;
+  givenAt: number | null;
+};
+
+/** One of the four things a child can answer a note with. */
+export type NoteReply = 'ok' | 'done' | 'thanks' | 'later';
+
+/**
+ * A line sent to a child, and which of the four replies came back.
+ *
+ * A child cannot type an answer, by design: a typed reply would put a child's
+ * own words on the server, and the whole sync contract exists to keep them off
+ * it. Four buttons put an enum there instead.
+ */
+export type Note = {
+  id: string;
+  text: string;
+  createdAt: number;
+  reply: NoteReply | null;
+  repliedAt: number | null;
+};

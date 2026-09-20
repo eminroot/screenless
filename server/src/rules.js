@@ -249,8 +249,90 @@ function daysBetween(from, to) {
   return out;
 }
 
+/* ------------------------------------------- what a parent sends down */
+
+/**
+ * The four things a child can say back to a note.
+ *
+ * A fixed set rather than a text box, and that is the whole design. A child
+ * typing a reply would put a child's sentence on this server, which is the one
+ * thing the report contract exists to prevent; four buttons put an enum on it
+ * instead. `later` is in the list on purpose — a set of canned replies with no
+ * way to decline is not a conversation, it is a receipt.
+ */
+const NOTE_REPLIES = ['ok', 'done', 'thanks', 'later'];
+
+/** Library keys such as `duo-hide` or `spark-4f2`. Never free text. */
+const TASK_ID_RE = /^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$/;
+
+const NOTE_MAX = 200;
+const LABEL_MAX = 60;
+const EMOJI_MAX = 8;
+/** Enough for a wall chart, few enough that nobody can fill a table with them. */
+const MAX_REWARDS = 20;
+
+/**
+ * Trims a line a parent typed.
+ *
+ * Control characters go, including the newlines that would let one note take
+ * over the child's screen, and the length is capped. Nothing else is touched:
+ * these are a parent's own words to their own child, and a filter that
+ * rewrites them would be both rude and useless.
+ */
+function cleanText(value, max) {
+  if (typeof value !== 'string') return '';
+  return value
+    .replace(/[ -]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, max);
+}
+
+function checkTaskId(value) {
+  return typeof value === 'string' && TASK_ID_RE.test(value);
+}
+
+function cleanNoteText(value) {
+  return cleanText(value, NOTE_MAX);
+}
+
+function cleanReward(input) {
+  const body = input && typeof input === 'object' ? input : {};
+  return {
+    stars: clampInt(body.stars, 1, 100_000),
+    label: cleanText(body.label, LABEL_MAX),
+    emoji: cleanText(body.emoji, EMOJI_MAX),
+  };
+}
+
+/**
+ * What a child's phone is allowed to say about any of it.
+ *
+ * This is the counterpart to `cleanReport`, and it is short for the same
+ * reason. A phone may report which mission it took and which of the four
+ * replies was tapped. Both are looked up against rows this server already
+ * wrote, so nothing here can introduce a string the parent did not.
+ */
+function cleanAck(input) {
+  const body = input && typeof input === 'object' ? input : {};
+  const note = body.note && typeof body.note === 'object' ? body.note : null;
+  return {
+    tookTaskId: checkTaskId(body.tookTaskId) ? body.tookTaskId : null,
+    note:
+      note && checkTaskId(note.id) && NOTE_REPLIES.includes(note.reply)
+        ? { id: note.id, reply: note.reply }
+        : null,
+  };
+}
+
 module.exports = {
   AGE_BANDS,
+  MAX_REWARDS,
+  NOTE_REPLIES,
+  checkTaskId,
+  cleanAck,
+  cleanNoteText,
+  cleanReward,
   normaliseAgeBand,
   CATEGORIES,
   PLATFORMS,

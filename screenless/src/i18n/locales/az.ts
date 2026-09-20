@@ -418,6 +418,48 @@ export const az: Translation = {
     toNextZone: 'Növbəti yerin açılmasına {{count}} ulduz',
   },
 
+  inbox: {
+    title: 'Böyüyündən',
+    replyOk: 'Oldu',
+    replyDone: 'Etdim',
+    replyThanks: 'Təşəkkür',
+    replyLater: 'İndi yox',
+    missionTitle: 'Bunu sənin üçün seçdi',
+    take: 'Siyahıma əlavə et',
+    minutes: '{{minutes}} dəq',
+    stars: '{{stars}} ulduz',
+  },
+
+  send: {
+    title: '{{name}} üçün bir şey qoy',
+    subtitle: '{{name}} ana ekranında görünəcək. Götürmək istəyib-istəmədiyinə özü qərar verir.',
+
+    waitingTitle: 'İndi onu gözləyir',
+    waitingMission: 'Seçdiyiniz bir tapşırıq.',
+    takeBackMission: 'Tapşırığı geri götür',
+    takeBackNote: 'Qeydi geri götür',
+    sentMission: '{{name}} üçün qoyuldu. İndi ana ekranındadır.',
+    sentNote: '{{name}} üçün qoyuldu.',
+
+    noteTitle: 'Ona bir sətir',
+    noteBody: 'Dörd toxunuşdan biri ilə cavab verə bilər. Yazı yaza bilmir, ona görə yazdığı heç nə heç yerə getmir.',
+    notePlaceholder: 'Altıda evdə ol, sonra parka gedərik',
+    leaveNote: 'Qeydi qoy',
+
+    missionTitle: 'Bir tapşırıq',
+    missionBody: 'Əvvəlcə qısalar. {{name}} yenə də qəbul etməlidir; tapşırıq özü başlamır.',
+    minutes: '{{minutes}} dəq',
+    stars: '{{stars}} ulduz',
+    footnote: 'Bu telefonda qalır. Buradan heç yerə heç nə göndərilmir və valideyn paneli olsa da olmasa da işləyir.',
+
+    catAll: 'Hamısı',
+    catMove: 'Hərəkət',
+    catOutdoor: 'Çöldə',
+    catCreate: 'Düzəltmə',
+    catSocial: 'İnsanlarla',
+    catCalm: 'Sakit',
+  },
+
   chat: {
     title: '{{buddy}} ilə danış',
     placeholder: 'Bir şey de',

@@ -19,6 +19,7 @@ import { ClayButton, ClayCard, ClayIconButton, ClayTile } from '../components/Cl
 import { Bubble } from '../components/Bubble';
 import { LittleScreen } from '../components/LittleScreen';
 import { LText } from '../components/LText';
+import { InboxCard } from '../components/InboxCard';
 import { Mascot } from '../components/Mascot';
 import { RewardCard } from '../components/RewardCard';
 import { StatStrip } from '../components/StatStrip';
@@ -174,6 +175,9 @@ export function LittleHome() {
         style={{ marginTop: space.sm }}
         onSpeak={data.settings.voiceEnabled ? () => narrator.say(line) : undefined}
       />
+
+      {/* ------------------------------------------ what a grown up sent down */}
+      <InboxCard />
 
       {/* ------------------------------------------------- the one big button */}
       <View style={{ marginTop: space.lg, gap: space.md }}>

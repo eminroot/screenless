@@ -7,13 +7,16 @@ import { emptyGuardDay, GUARD_HISTORY_DAYS, type GuardDay } from '../guard/types
 import {
   createEmptyData,
   defaultSettings,
+  emptyInbox,
   emptyProgress,
+  NOTE_REPLIES,
   SCHEMA_VERSION,
   type AppData,
   type BadgeSet,
   type Find,
   type HubLink,
   type IdeaVote,
+  type Inbox,
   type RealReward,
   type TreeFriend,
   type WalkState,
@@ -102,6 +105,10 @@ function reconcile(stored: Partial<AppData>, fallbackLanguage: Language): AppDat
           .slice(-GUARD_HISTORY_DAYS)
       : [],
     hub: isHubLink(stored.hub) ? stored.hub : null,
+    // Every field is rebuilt from `emptyInbox` rather than trusted, so a
+    // stored reply that is no longer one of the four cannot survive an update
+    // and be posted to the hub months later.
+    inbox: reconcileInbox(stored.inbox),
     badges: isBadgeSet(stored.badges) ? stored.badges : null,
     weekGoal: isWeekGoal(stored.weekGoal) ? stored.weekGoal : null,
     ideaVotes: Array.isArray(stored.ideaVotes)
@@ -182,6 +189,39 @@ function isFind(value: unknown): value is Find {
 }
 
 /** Walking totals arrive from an older build, or from a hand edited export. */
+function reconcileInbox(stored: Inbox | undefined): Inbox {
+  if (!stored || typeof stored !== 'object') return { ...emptyInbox };
+  const assignment = stored.assignment;
+  const note = stored.note;
+  const pending = stored.pendingReply;
+  return {
+    assignment:
+      assignment && typeof assignment.taskId === 'string' && assignment.taskId
+        ? {
+            taskId: assignment.taskId,
+            assignedAt: String(assignment.assignedAt ?? ''),
+            // Written before the source existed, so it can only have come
+            // from the hub: that was the only way in at the time.
+            source: assignment.source === 'local' ? 'local' : 'hub',
+          }
+        : null,
+    note:
+      note && typeof note.id === 'string' && typeof note.text === 'string'
+        ? {
+            id: note.id,
+            text: note.text,
+            at: String(note.at ?? ''),
+            source: note.source === 'local' ? 'local' : 'hub',
+          }
+        : null,
+    pendingReply:
+      pending && typeof pending.id === 'string' && NOTE_REPLIES.includes(pending.reply)
+        ? { id: pending.id, reply: pending.reply }
+        : null,
+    pendingTook: typeof stored.pendingTook === 'string' ? stored.pendingTook : null,
+  };
+}
+
 function reconcileWalk(stored: WalkState | undefined): WalkState {
   const safe = (value: unknown) =>
     typeof value === 'number' && Number.isFinite(value) && value >= 0 ? Math.floor(value) : 0;

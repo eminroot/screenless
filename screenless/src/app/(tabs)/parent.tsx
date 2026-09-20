@@ -197,6 +197,7 @@ export default function ParentTab() {
           <Row emoji="🏅" label={t('badges.title')} onPress={() => router.push('/parent/badges')} />
         ) : null}
         <Row emoji="✨" label={t('parent.madeRow')} onPress={() => router.push('/parent/made')} />
+        <Row emoji="📨" label={t('send.title', { name: profile.nickname })} onPress={() => router.push('/parent/send')} />
         <Row emoji="🎁" label={t('prize.title')} onPress={() => router.push('/parent/rewards')} />
         <Row emoji="⏳" label={t('guard.title')} onPress={() => router.push('/parent/screen-time')} />
         <Row emoji="📊" label={t('hub.title')} onPress={() => router.push('/parent/link')} />

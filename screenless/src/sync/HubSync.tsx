@@ -2,8 +2,9 @@ import { useCallback, useEffect, useRef } from 'react';
 import { AppState } from 'react-native';
 import Constants from 'expo-constants';
 
+import { ackBody } from '../inbox/inbox';
 import { useApp } from '../state/app-state';
-import { fetchConfig, sendReport } from './api';
+import { fetchConfig, sendAck, sendReport } from './api';
 import { isHubConfigured } from './config';
 import { applyLimits, limitsDiffer } from './limits';
 import { buildReport, hasSomethingToSend, signatureOf } from './report';
@@ -22,22 +23,32 @@ import { isDue } from './schedule';
  *
  * ## What it does in each direction
  *
- * **Down**: the limits a parent set. Cheap, and compared field by field before
- * anything is applied, because applying a plan restarts the native watcher and
- * a parent pressing save without changing anything should cost nothing.
+ * **Down**: the limits a parent set, plus anything they sent from their own
+ * phone — a mission picked out of the library, a reward promised, a line
+ * typed. Limits are compared field by field before anything is applied,
+ * because applying a plan restarts the native watcher and a parent pressing
+ * save without changing anything should cost nothing.
  *
  * **Up**: the day's counters, and every finished day still in the queue. It is
  * skipped entirely when nothing has moved since the last send, so a phone
- * sitting on a shelf never wakes the radio.
+ * sitting on a shelf never wakes the radio. Plus the acknowledgement, which is
+ * two ids and an enum and goes whenever one is owed.
+ *
+ * ## The delay
+ *
+ * Everything the parent sends arrives on the next pass of this loop, which is
+ * a foreground event or a ten minute timer — not a push. The hub has no way to
+ * wake a phone. A note written at nine is read when the child next opens the
+ * app, and that is worth knowing when reading the parent app's copy.
  */
 export function HubSync() {
-  const { data, patchHub, unlinkHub, setGuardConfig } = useApp();
+  const { data, patchHub, unlinkHub, setGuardConfig, receiveFromHub, clearAcked } = useApp();
   const hub = data.hub;
 
   // Read inside the callback so the effect below can stay subscribed once.
-  const latest = useRef({ data, hub, patchHub, unlinkHub, setGuardConfig });
+  const latest = useRef({ data, hub, patchHub, unlinkHub, setGuardConfig, receiveFromHub, clearAcked });
   useEffect(() => {
-    latest.current = { data, hub, patchHub, unlinkHub, setGuardConfig };
+    latest.current = { data, hub, patchHub, unlinkHub, setGuardConfig, receiveFromHub, clearAcked };
   });
 
   /** Guards against the foreground event and the timer overlapping. */
@@ -70,11 +81,59 @@ export function HubSync() {
           if (limits.revision !== link.revision) {
             current.patchHub({ revision: limits.revision });
           }
+
+          // The rest of what a parent sent. Idempotent on the state side, so
+          // the same payload arriving on every pass costs a render and
+          // nothing else.
+          current.receiveFromHub({
+            assignment: config.value.assignment
+              ? {
+                  taskId: config.value.assignment.taskId,
+                  assignedAt: new Date(config.value.assignment.assignedAt).toISOString(),
+                }
+              : null,
+            note: config.value.note
+              ? {
+                  id: config.value.note.id,
+                  text: config.value.note.text,
+                  at: new Date(config.value.note.createdAt).toISOString(),
+                }
+              : null,
+            rewards: (config.value.rewards ?? []).map((reward) => ({
+              id: reward.id,
+              stars: reward.stars,
+              label: reward.label,
+              emoji: reward.emoji,
+              createdAt: new Date(reward.createdAt).toISOString(),
+              givenAt: reward.givenAt ? new Date(reward.givenAt).toISOString() : undefined,
+              origin: 'hub' as const,
+            })),
+          });
         } else if (config.error === 'unlinked') {
           // The parent removed this phone from their account. Forget the token
           // rather than retrying forever with a credential that is gone.
           current.unlinkHub();
           return;
+        }
+
+        /* --------------------------------------- what this phone owes back */
+
+        // Sent before the counters, because it is two ids and an enum and a
+        // child who has just tapped an answer should not wait on a report.
+        const body = ackBody(latest.current.data.inbox);
+        if (body) {
+          const acked = await sendAck(link.token, body);
+          // A refusal counts as heard. The hub answers `false` when the note
+          // was already answered or the mission already replaced, and holding
+          // the debt open for either would re-send the same two ids every ten
+          // minutes for the life of the install. What is cleared is what was
+          // sent, so an answer the child tapped while this was in the air
+          // survives to go out on the next pass.
+          if (acked.ok) current.clearAcked({ tookTaskId: body.tookTaskId, noteId: body.note?.id });
+          else if (acked.error === 'unlinked') {
+            current.unlinkHub();
+            return;
+          }
         }
 
         /* ------------------------------------------------------- the numbers */

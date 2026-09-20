@@ -1,0 +1,3458 @@
+[
+  {
+    "id": "animals-1",
+    "emoji": "🐦",
+    "category": "outdoor",
+    "minutes": 12,
+    "stars": 12,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kuş sayımı",
+      "en": "Bird count",
+      "az": "Quş sayımı"
+    }
+  },
+  {
+    "id": "animals-2",
+    "emoji": "🐸",
+    "category": "move",
+    "minutes": 8,
+    "stars": 8,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Hayvan yürüyüşü",
+      "en": "Animal walk",
+      "az": "Heyvan yerişi"
+    }
+  },
+  {
+    "id": "animals-3",
+    "emoji": "🖍️",
+    "category": "create",
+    "minutes": 15,
+    "stars": 14,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bugünün hayvanını çiz",
+      "en": "Draw today’s animal",
+      "az": "Bugünkü heyvanı çək"
+    }
+  },
+  {
+    "id": "animals-4",
+    "emoji": "🦁",
+    "category": "social",
+    "minutes": 10,
+    "stars": 10,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Hayvanımı bil",
+      "en": "Guess my animal",
+      "az": "Heyvanımı tap"
+    }
+  },
+  {
+    "id": "bike-1",
+    "emoji": "🚲",
+    "category": "outdoor",
+    "minutes": 20,
+    "stars": 18,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "On tur",
+      "en": "Ten laps",
+      "az": "On dövrə"
+    }
+  },
+  {
+    "id": "bike-2",
+    "emoji": "🐢",
+    "category": "outdoor",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yavaş yarış",
+      "en": "The slow race",
+      "az": "Yavaş yarış"
+    }
+  },
+  {
+    "id": "bike-3",
+    "emoji": "🧽",
+    "category": "create",
+    "minutes": 15,
+    "stars": 14,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bisiklet bakımı",
+      "en": "Bike check",
+      "az": "Velosiped baxışı"
+    }
+  },
+  {
+    "id": "bike-4",
+    "emoji": "🗺️",
+    "category": "outdoor",
+    "minutes": 20,
+    "stars": 18,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bilmediğin bir sokak",
+      "en": "A street you do not know",
+      "az": "Tanımadığın bir küçə"
+    }
+  },
+  {
+    "id": "books-1",
+    "emoji": "📖",
+    "category": "social",
+    "minutes": 12,
+    "stars": 12,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Sesli oku",
+      "en": "Read out loud",
+      "az": "Uca səslə oxu"
+    }
+  },
+  {
+    "id": "books-2",
+    "emoji": "✨",
+    "category": "create",
+    "minutes": 12,
+    "stars": 12,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yeni bir son",
+      "en": "A new ending",
+      "az": "Yeni bir son"
+    }
+  },
+  {
+    "id": "books-3",
+    "emoji": "🧩",
+    "category": "create",
+    "minutes": 15,
+    "stars": 14,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Beş şeyden hikâye",
+      "en": "Story from five things",
+      "az": "Beş şeydən nağıl"
+    }
+  },
+  {
+    "id": "books-4",
+    "emoji": "🪑",
+    "category": "calm",
+    "minutes": 15,
+    "stars": 14,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Sessiz köşe",
+      "en": "Quiet corner",
+      "az": "Sakit künc"
+    }
+  },
+  {
+    "id": "building-1",
+    "emoji": "🗼",
+    "category": "create",
+    "minutes": 15,
+    "stars": 15,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "En yüksek kule",
+      "en": "The tallest tower",
+      "az": "Ən hündür qüllə"
+    }
+  },
+  {
+    "id": "building-2",
+    "emoji": "🌉",
+    "category": "create",
+    "minutes": 15,
+    "stars": 15,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Dayanan bir köprü",
+      "en": "A bridge that holds",
+      "az": "Dayanan körpü"
+    }
+  },
+  {
+    "id": "building-3",
+    "emoji": "🏰",
+    "category": "create",
+    "minutes": 20,
+    "stars": 18,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yastık kalesi",
+      "en": "Cushion fort",
+      "az": "Yastıq qalası"
+    }
+  },
+  {
+    "id": "building-4",
+    "emoji": "🔧",
+    "category": "social",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Birlikte tamir et",
+      "en": "Fix it together",
+      "az": "Birlikdə düzəlt"
+    }
+  },
+  {
+    "id": "cooking-1",
+    "emoji": "🍽️",
+    "category": "social",
+    "minutes": 10,
+    "stars": 11,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Sofrayı kur",
+      "en": "Set the table",
+      "az": "Süfrəni hazırla"
+    }
+  },
+  {
+    "id": "cooking-2",
+    "emoji": "🍓",
+    "category": "create",
+    "minutes": 12,
+    "stars": 12,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Meyve suratı",
+      "en": "Fruit face",
+      "az": "Meyvə sifəti"
+    }
+  },
+  {
+    "id": "cooking-3",
+    "emoji": "🥄",
+    "category": "social",
+    "minutes": 15,
+    "stars": 14,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Mutfak yardımcısı",
+      "en": "Kitchen helper",
+      "az": "Mətbəx köməkçisi"
+    }
+  },
+  {
+    "id": "cooking-4",
+    "emoji": "🥕",
+    "category": "social",
+    "minutes": 8,
+    "stars": 8,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yıka ve ayır",
+      "en": "Wash and sort",
+      "az": "Yu və ayır"
+    }
+  },
+  {
+    "id": "dance-1",
+    "emoji": "🕺",
+    "category": "social",
+    "minutes": 10,
+    "stars": 11,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bir hareket icat et",
+      "en": "Invent a move",
+      "az": "Bir hərəkət icad et"
+    }
+  },
+  {
+    "id": "dance-2",
+    "emoji": "⏱️",
+    "category": "move",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Altmış saniye, üç kez",
+      "en": "Sixty seconds, three times",
+      "az": "Altmış saniyə, üç dəfə"
+    }
+  },
+  {
+    "id": "dance-3",
+    "emoji": "🪞",
+    "category": "social",
+    "minutes": 8,
+    "stars": 9,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Ayna ol",
+      "en": "Mirror me",
+      "az": "Güzgü ol"
+    }
+  },
+  {
+    "id": "dance-4",
+    "emoji": "🐌",
+    "category": "move",
+    "minutes": 6,
+    "stars": 7,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Ağır çekim dans",
+      "en": "Slow motion dance",
+      "az": "Ağır çəkim rəqs"
+    }
+  },
+  {
+    "id": "drawing-1",
+    "emoji": "🪟",
+    "category": "create",
+    "minutes": 15,
+    "stars": 14,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Pencerenin gördüğü",
+      "en": "What the window sees",
+      "az": "Pəncərənin gördüyü"
+    }
+  },
+  {
+    "id": "drawing-2",
+    "emoji": "🙈",
+    "category": "create",
+    "minutes": 10,
+    "stars": 10,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bakmadan çiz",
+      "en": "Draw without looking",
+      "az": "Baxmadan çək"
+    }
+  },
+  {
+    "id": "drawing-3",
+    "emoji": "🟡",
+    "category": "create",
+    "minutes": 12,
+    "stars": 12,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Renk avı",
+      "en": "Colour hunt",
+      "az": "Rəng ovu"
+    }
+  },
+  {
+    "id": "drawing-4",
+    "emoji": "🖌️",
+    "category": "outdoor",
+    "minutes": 15,
+    "stars": 15,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kocaman tebeşir resmi",
+      "en": "Big chalk drawing",
+      "az": "Nəhəng təbaşir rəsmi"
+    }
+  },
+  {
+    "id": "duo-colour",
+    "emoji": "🎨",
+    "category": "social",
+    "minutes": 8,
+    "stars": 9,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Aynı renkten beş tane",
+      "en": "Five of one colour",
+      "az": "Eyni rəngdən beş dənə"
+    }
+  },
+  {
+    "id": "duo-course",
+    "emoji": "🏁",
+    "category": "move",
+    "minutes": 12,
+    "stars": 15,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Yastık parkuru",
+      "en": "Cushion course",
+      "az": "Yastıq marşrutu"
+    }
+  },
+  {
+    "id": "duo-hide",
+    "emoji": "🔍",
+    "category": "social",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Saklanan oyuncak",
+      "en": "The hidden toy",
+      "az": "Gizlədilmiş oyuncaq"
+    }
+  },
+  {
+    "id": "duo-kitchen",
+    "emoji": "🍽️",
+    "category": "social",
+    "minutes": 15,
+    "stars": 15,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Sofra ekibi",
+      "en": "Table crew",
+      "az": "Süfrə komandası"
+    }
+  },
+  {
+    "id": "duo-mirror",
+    "emoji": "🪞",
+    "category": "move",
+    "minutes": 8,
+    "stars": 9,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Aynayı taklit et",
+      "en": "Copy the mirror",
+      "az": "Güzgünü təkrarla"
+    }
+  },
+  {
+    "id": "duo-plane",
+    "emoji": "✈️",
+    "category": "create",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Kimin uçağı kazanır",
+      "en": "Whose plane wins",
+      "az": "Kimin təyyarəsi udur"
+    }
+  },
+  {
+    "id": "duo-story",
+    "emoji": "📖",
+    "category": "calm",
+    "minutes": 12,
+    "stars": 12,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Sen küçükken",
+      "en": "When you were small",
+      "az": "Sən balaca olanda"
+    }
+  },
+  {
+    "id": "duo-tower",
+    "emoji": "🗼",
+    "category": "create",
+    "minutes": 12,
+    "stars": 14,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "En yüksek kule",
+      "en": "Tallest tower",
+      "az": "Ən hündür qüllə"
+    }
+  },
+  {
+    "id": "football-1",
+    "emoji": "⚽",
+    "category": "move",
+    "minutes": 10,
+    "stars": 10,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yere düşürme",
+      "en": "Keep it up",
+      "az": "Yerə salma"
+    }
+  },
+  {
+    "id": "football-2",
+    "emoji": "🥅",
+    "category": "outdoor",
+    "minutes": 12,
+    "stars": 12,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Ayakkabı kalesi",
+      "en": "Shoe goal",
+      "az": "Ayaqqabı qapısı"
+    }
+  },
+  {
+    "id": "football-3",
+    "emoji": "🔻",
+    "category": "move",
+    "minutes": 12,
+    "stars": 12,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Slalom parkuru",
+      "en": "Slalom run",
+      "az": "Slalom marşrutu"
+    }
+  },
+  {
+    "id": "football-4",
+    "emoji": "🤝",
+    "category": "social",
+    "minutes": 10,
+    "stars": 11,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yirmi pas",
+      "en": "Twenty passes",
+      "az": "İyirmi pas"
+    }
+  },
+  {
+    "id": "general-1",
+    "emoji": "🦘",
+    "category": "move",
+    "minutes": 5,
+    "stars": 6,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Otuz zıplama",
+      "en": "Thirty jumps",
+      "az": "Otuz tullanma"
+    }
+  },
+  {
+    "id": "general-2",
+    "emoji": "🙆",
+    "category": "calm",
+    "minutes": 6,
+    "stars": 6,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kocaman gerin",
+      "en": "Big stretch",
+      "az": "Yaxşıca gərnəş"
+    }
+  },
+  {
+    "id": "general-3",
+    "emoji": "🙈",
+    "category": "social",
+    "minutes": 15,
+    "stars": 15,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Saklambaç",
+      "en": "Hide and seek",
+      "az": "Gizlənqaç"
+    }
+  },
+  {
+    "id": "general-4",
+    "emoji": "🧺",
+    "category": "create",
+    "minutes": 8,
+    "stars": 8,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Beş şey yerine",
+      "en": "Five things home",
+      "az": "Beş şey yerinə"
+    }
+  },
+  {
+    "id": "general-5",
+    "emoji": "🫁",
+    "category": "calm",
+    "minutes": 5,
+    "stars": 5,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "On yavaş nefes",
+      "en": "Ten slow breaths",
+      "az": "On yavaş nəfəs"
+    }
+  },
+  {
+    "id": "general-6",
+    "emoji": "🦩",
+    "category": "move",
+    "minutes": 6,
+    "stars": 7,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Flamingo",
+      "en": "Flamingo",
+      "az": "Flaminqo"
+    }
+  },
+  {
+    "id": "general-7",
+    "emoji": "💛",
+    "category": "social",
+    "minutes": 5,
+    "stars": 6,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Teşekkür et",
+      "en": "Say thank you",
+      "az": "Təşəkkür et"
+    }
+  },
+  {
+    "id": "general-8",
+    "emoji": "👟",
+    "category": "outdoor",
+    "minutes": 15,
+    "stars": 15,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bir tur at",
+      "en": "Round the block",
+      "az": "Bir dövrə vur"
+    }
+  },
+  {
+    "id": "junior-adventure-badge",
+    "emoji": "🏅",
+    "category": "move",
+    "minutes": 6,
+    "stars": 8,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Saklanan rozeti bul",
+      "en": "Find the hidden badge",
+      "az": "Gizlədilmiş nişanı tap"
+    }
+  },
+  {
+    "id": "junior-adventure-clues",
+    "emoji": "🔎",
+    "category": "move",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Üç ipucu",
+      "en": "Three clues",
+      "az": "Üç ipucu"
+    }
+  },
+  {
+    "id": "junior-adventure-map",
+    "emoji": "🗺️",
+    "category": "create",
+    "minutes": 12,
+    "stars": 14,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Evin hazine haritası",
+      "en": "A treasure map of home",
+      "az": "Evin xəzinə xəritəsi"
+    }
+  },
+  {
+    "id": "junior-adventure-route",
+    "emoji": "🧭",
+    "category": "move",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kâşif rotası",
+      "en": "Explorer's route",
+      "az": "Kəşfiyyatçı marşrutu"
+    }
+  },
+  {
+    "id": "junior-adventure-shapes",
+    "emoji": "🔺",
+    "category": "move",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Beş şekil avı",
+      "en": "Five shapes hunt",
+      "az": "Beş forma ovu"
+    }
+  },
+  {
+    "id": "junior-book-ending",
+    "emoji": "✨",
+    "category": "create",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yeni bir son",
+      "en": "A new ending",
+      "az": "Yeni son"
+    }
+  },
+  {
+    "id": "junior-book-hero",
+    "emoji": "🎨",
+    "category": "create",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kahramanı çiz",
+      "en": "Draw the hero",
+      "az": "Qəhrəmanı çək"
+    }
+  },
+  {
+    "id": "junior-book-read",
+    "emoji": "📖",
+    "category": "calm",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kitapla on dakika",
+      "en": "Ten minutes with a book",
+      "az": "Kitabla on dəqiqə"
+    }
+  },
+  {
+    "id": "junior-book-tell",
+    "emoji": "🗣️",
+    "category": "social",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Okuduğunu birine anlat",
+      "en": "Tell someone what you read",
+      "az": "Oxuduğunu birinə danış"
+    }
+  },
+  {
+    "id": "junior-book-words",
+    "emoji": "🔤",
+    "category": "calm",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Üç yeni kelime",
+      "en": "Three new words",
+      "az": "Üç yeni söz"
+    }
+  },
+  {
+    "id": "junior-home-bed",
+    "emoji": "🛏️",
+    "category": "calm",
+    "minutes": 6,
+    "stars": 8,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yatağını kendin topla",
+      "en": "Make your own bed",
+      "az": "Öz yatağını düzəlt"
+    }
+  },
+  {
+    "id": "junior-home-clothes",
+    "emoji": "👕",
+    "category": "calm",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Temiz kıyafetleri ayır",
+      "en": "Sort the clean clothes",
+      "az": "Təmiz paltarları qruplaşdır"
+    }
+  },
+  {
+    "id": "junior-home-help",
+    "emoji": "🤝",
+    "category": "social",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yardım teklif et",
+      "en": "Offer a hand",
+      "az": "Kömək təklif et"
+    }
+  },
+  {
+    "id": "junior-home-shelf",
+    "emoji": "📚",
+    "category": "calm",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kitap rafını düzenle",
+      "en": "Tidy the bookshelf",
+      "az": "Kitab rəfini səliqəyə sal"
+    }
+  },
+  {
+    "id": "junior-home-table",
+    "emoji": "🍽️",
+    "category": "social",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Sofrayı kurmaya yardım et",
+      "en": "Help set the table",
+      "az": "Yemək masasını hazırlamağa kömək et"
+    }
+  },
+  {
+    "id": "junior-kind-note",
+    "emoji": "💌",
+    "category": "social",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Teşekkür notu",
+      "en": "A thank you note",
+      "az": "Təşəkkür qeydi"
+    }
+  },
+  {
+    "id": "junior-kind-pet",
+    "emoji": "🐾",
+    "category": "social",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Birlikte evcil hayvana bak",
+      "en": "Look after a pet together",
+      "az": "Birlikdə ev heyvanına bax"
+    }
+  },
+  {
+    "id": "junior-kind-share",
+    "emoji": "🧸",
+    "category": "social",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bir oyuncağını paylaş",
+      "en": "Share a toy",
+      "az": "Oyuncağını paylaş"
+    }
+  },
+  {
+    "id": "junior-kind-sibling",
+    "emoji": "🧒",
+    "category": "social",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Küçük birine yardım et",
+      "en": "Help someone smaller",
+      "az": "Kiçik birinə kömək et"
+    }
+  },
+  {
+    "id": "junior-kind-word",
+    "emoji": "💬",
+    "category": "social",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Güzel bir söz",
+      "en": "A kind word",
+      "az": "Xoş bir söz"
+    }
+  },
+  {
+    "id": "junior-make-blocks",
+    "emoji": "🏢",
+    "category": "create",
+    "minutes": 12,
+    "stars": 14,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Üç katlı bina",
+      "en": "Three floors high",
+      "az": "Üç mərtəbəli bina"
+    }
+  },
+  {
+    "id": "junior-make-bridge",
+    "emoji": "🌉",
+    "category": "create",
+    "minutes": 12,
+    "stars": 14,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kağıttan köprü",
+      "en": "A paper bridge",
+      "az": "Kağızdan körpü"
+    }
+  },
+  {
+    "id": "junior-make-pencil-pot",
+    "emoji": "✏️",
+    "category": "create",
+    "minutes": 15,
+    "stars": 16,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Atık malzemeden kalemlik",
+      "en": "Pencil pot from the recycling",
+      "az": "Təkrar materialdan qələm qabı"
+    }
+  },
+  {
+    "id": "junior-make-plane",
+    "emoji": "✈️",
+    "category": "create",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kağıt uçak test uçuşu",
+      "en": "Paper plane test flight",
+      "az": "Kağız təyyarənin sınaq uçuşu"
+    }
+  },
+  {
+    "id": "junior-make-tower",
+    "emoji": "🗼",
+    "category": "create",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "On eşyalık kule",
+      "en": "Tower of ten things",
+      "az": "On əşyalıq qüllə"
+    }
+  },
+  {
+    "id": "junior-move-ball",
+    "emoji": "⚽",
+    "category": "move",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Beş dakika top",
+      "en": "Five minutes of ball",
+      "az": "Beş dəqiqə top oyunu"
+    }
+  },
+  {
+    "id": "junior-move-dance",
+    "emoji": "💃",
+    "category": "move",
+    "minutes": 7,
+    "stars": 9,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Aile dansı",
+      "en": "Family dance",
+      "az": "Ailə rəqsi"
+    }
+  },
+  {
+    "id": "junior-move-jumps",
+    "emoji": "🦘",
+    "category": "move",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "20 zıplama",
+      "en": "20 jumps",
+      "az": "20 tullanma"
+    }
+  },
+  {
+    "id": "junior-move-obstacle",
+    "emoji": "🚧",
+    "category": "move",
+    "minutes": 12,
+    "stars": 14,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Üç hareketli engel parkuru",
+      "en": "Three-move obstacle course",
+      "az": "Üç hərəkətli maneə yolu"
+    }
+  },
+  {
+    "id": "junior-move-steps",
+    "emoji": "👣",
+    "category": "move",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "300 adım",
+      "en": "300 steps",
+      "az": "300 addım"
+    }
+  },
+  {
+    "id": "junior-play-ball-friend",
+    "emoji": "🏐",
+    "category": "outdoor",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Arkadaşınla top",
+      "en": "Ball with a friend",
+      "az": "Dostunla top"
+    }
+  },
+  {
+    "id": "junior-play-board",
+    "emoji": "🎲",
+    "category": "social",
+    "minutes": 15,
+    "stars": 16,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Biriyle oyun",
+      "en": "A game with someone",
+      "az": "Biri ilə oyun"
+    }
+  },
+  {
+    "id": "junior-play-story-turns",
+    "emoji": "📜",
+    "category": "social",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Sırayla hikâye",
+      "en": "A story, one line each",
+      "az": "Növbəli hekayə"
+    }
+  },
+  {
+    "id": "junior-play-team-task",
+    "emoji": "🛠️",
+    "category": "social",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "On dakikalık takım işi",
+      "en": "A ten minute team job",
+      "az": "On dəqiqəlik komanda işi"
+    }
+  },
+  {
+    "id": "junior-play-wordchain",
+    "emoji": "🔗",
+    "category": "social",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Kelime zinciri",
+      "en": "Word chain",
+      "az": "Söz zənciri"
+    }
+  },
+  {
+    "id": "junior-team-bookweek",
+    "emoji": "📚",
+    "category": "calm",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Bu hafta üç kitap saati",
+      "en": "Three book hours this week",
+      "az": "Bu həftə üç kitab saatı"
+    }
+  },
+  {
+    "id": "junior-team-kindweek",
+    "emoji": "💚",
+    "category": "social",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Bu hafta beş iyilik",
+      "en": "Five kind things this week",
+      "az": "Bu həftə beş yaxşılıq"
+    }
+  },
+  {
+    "id": "junior-team-room",
+    "emoji": "🧹",
+    "category": "social",
+    "minutes": 15,
+    "stars": 16,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Takımca bir odayı topla",
+      "en": "Tidy a room as a team",
+      "az": "Komanda ilə otağı səliqəyə sal"
+    }
+  },
+  {
+    "id": "junior-team-screenfree",
+    "emoji": "📵",
+    "category": "social",
+    "minutes": 30,
+    "stars": 26,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Yarım saat, ekransız",
+      "en": "Half an hour, no screens",
+      "az": "Yarım saat, ekransız"
+    }
+  },
+  {
+    "id": "junior-team-steps",
+    "emoji": "👟",
+    "category": "move",
+    "minutes": 15,
+    "stars": 16,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Takımca bin adım",
+      "en": "A thousand steps as a team",
+      "az": "Komanda ilə min addım"
+    }
+  },
+  {
+    "id": "junior-think-maze",
+    "emoji": "🌀",
+    "category": "calm",
+    "minutes": 12,
+    "stars": 14,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Labirent çiz",
+      "en": "Draw a maze",
+      "az": "Labirint çək"
+    }
+  },
+  {
+    "id": "junior-think-pattern",
+    "emoji": "🔁",
+    "category": "calm",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Eşyalardan örüntü",
+      "en": "A pattern of things",
+      "az": "Əşyalardan ardıcıllıq"
+    }
+  },
+  {
+    "id": "junior-think-riddle",
+    "emoji": "❓",
+    "category": "social",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bir büyüğe bilmece",
+      "en": "A riddle for a grown up",
+      "az": "Valideynə tapmaca"
+    }
+  },
+  {
+    "id": "junior-think-sort",
+    "emoji": "📏",
+    "category": "calm",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "En küçükten en büyüğe",
+      "en": "Smallest to biggest",
+      "az": "Ən kiçikdən ən böyüyə"
+    }
+  },
+  {
+    "id": "junior-think-ten",
+    "emoji": "🔟",
+    "category": "calm",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Üç yoldan on",
+      "en": "Ten, three ways",
+      "az": "Üç üsulla 10"
+    }
+  },
+  {
+    "id": "little-animal-voice",
+    "emoji": "🐮",
+    "category": "social",
+    "minutes": 6,
+    "stars": 8,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Bir hayvan ol",
+      "en": "Be an animal",
+      "az": "Bir heyvan ol"
+    }
+  },
+  {
+    "id": "little-big-small",
+    "emoji": "📏",
+    "category": "calm",
+    "minutes": 6,
+    "stars": 8,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Büyük olan ve küçük olan",
+      "en": "The big one and the little one",
+      "az": "Böyük olan və kiçik olan"
+    }
+  },
+  {
+    "id": "little-book-together",
+    "emoji": "📖",
+    "category": "calm",
+    "minutes": 5,
+    "stars": 8,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Beş dakika kitap",
+      "en": "Five minutes of book",
+      "az": "Beş dəqiqə kitab"
+    }
+  },
+  {
+    "id": "little-books-shelf",
+    "emoji": "📚",
+    "category": "calm",
+    "minutes": 6,
+    "stars": 8,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kitaplar rafa",
+      "en": "Books back on the shelf",
+      "az": "Kitablar rəfə"
+    }
+  },
+  {
+    "id": "little-cheer-toy",
+    "emoji": "🧸",
+    "category": "social",
+    "minutes": 6,
+    "stars": 8,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Oyuncağın üzgün",
+      "en": "Your toy is sad",
+      "az": "Oyuncağın kədərlidir"
+    }
+  },
+  {
+    "id": "little-clothes-basket",
+    "emoji": "🧺",
+    "category": "move",
+    "minutes": 5,
+    "stars": 6,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Sepete",
+      "en": "Into the basket",
+      "az": "Səbətə"
+    }
+  },
+  {
+    "id": "little-colour-blue",
+    "emoji": "🔵",
+    "category": "move",
+    "minutes": 6,
+    "stars": 8,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Üç mavi şey",
+      "en": "Three blue things",
+      "az": "Üç mavi şey"
+    }
+  },
+  {
+    "id": "little-colour-family",
+    "emoji": "🎨",
+    "category": "create",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Hepsi tek renk",
+      "en": "All one colour",
+      "az": "Hamısı bir rəng"
+    }
+  },
+  {
+    "id": "little-colour-sort",
+    "emoji": "🔴",
+    "category": "create",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kırmızı öbek, sarı öbek",
+      "en": "Red pile, yellow pile",
+      "az": "Qırmızı topa, sarı topa"
+    }
+  },
+  {
+    "id": "little-finish-story",
+    "emoji": "✨",
+    "category": "social",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Sonunu sen getir",
+      "en": "You finish it",
+      "az": "Sonunu sən gətir"
+    }
+  },
+  {
+    "id": "little-free-dance",
+    "emoji": "💃",
+    "category": "move",
+    "minutes": 2,
+    "stars": 6,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Müziksiz dans",
+      "en": "Dancing with no music",
+      "az": "Musiqisiz rəqs"
+    }
+  },
+  {
+    "id": "little-fruit-plate",
+    "emoji": "🍎",
+    "category": "create",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Bir tabak meyve",
+      "en": "A plate of fruit",
+      "az": "Bir boşqab meyvə"
+    }
+  },
+  {
+    "id": "little-good-thing",
+    "emoji": "💛",
+    "category": "social",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Bugünün en güzel anı",
+      "en": "The best bit of today",
+      "az": "Bu günün ən gözəl anı"
+    }
+  },
+  {
+    "id": "little-guess-touch",
+    "emoji": "🙈",
+    "category": "social",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Gözün kapalı bil",
+      "en": "Guess with your eyes shut",
+      "az": "Gözün bağlı tap"
+    }
+  },
+  {
+    "id": "little-happy-face",
+    "emoji": "😀",
+    "category": "social",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Yüzünü göster",
+      "en": "Show me the face",
+      "az": "Üzünü göstər"
+    }
+  },
+  {
+    "id": "little-hop-bunny",
+    "emoji": "🐰",
+    "category": "move",
+    "minutes": 5,
+    "stars": 8,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "On tavşan zıplaması",
+      "en": "Ten bunny hops",
+      "az": "On dovşan tullanması"
+    }
+  },
+  {
+    "id": "little-how-today",
+    "emoji": "🎭",
+    "category": "calm",
+    "minutes": 5,
+    "stars": 6,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Bugün nasıldı?",
+      "en": "How was today?",
+      "az": "Bu gün necə idi?"
+    }
+  },
+  {
+    "id": "little-hug-thanks",
+    "emoji": "🤗",
+    "category": "social",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Bir sarılma ve bir teşekkür",
+      "en": "A hug and a thank you",
+      "az": "Bir qucaq və bir təşəkkür"
+    }
+  },
+  {
+    "id": "little-line-walk",
+    "emoji": "🧦",
+    "category": "move",
+    "minutes": 8,
+    "stars": 9,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Çizgide yürü",
+      "en": "Walk the line",
+      "az": "Xətt boyunca yeri"
+    }
+  },
+  {
+    "id": "little-made-up-animal",
+    "emoji": "🖍️",
+    "category": "create",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kimsenin görmediği bir hayvan",
+      "en": "An animal nobody has seen",
+      "az": "Heç kimin görmədiyi heyvan"
+    }
+  },
+  {
+    "id": "little-napkin-table",
+    "emoji": "🍽️",
+    "category": "social",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Herkese bir peçete",
+      "en": "A napkin for everyone",
+      "az": "Hər kəsə bir salfet"
+    }
+  },
+  {
+    "id": "little-one-leg",
+    "emoji": "🦩",
+    "category": "move",
+    "minutes": 5,
+    "stars": 8,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Leylek",
+      "en": "Stork",
+      "az": "Leylək"
+    }
+  },
+  {
+    "id": "little-paper-shape",
+    "emoji": "📄",
+    "category": "create",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Katlayıp bir şey yap",
+      "en": "Fold it into something",
+      "az": "Qatlayıb bir şey düzəlt"
+    }
+  },
+  {
+    "id": "little-reach-sky",
+    "emoji": "🙌",
+    "category": "move",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Elinin yettiği kadar uzan",
+      "en": "Reach as high as you go",
+      "az": "Əlin çatan qədər uzan"
+    }
+  },
+  {
+    "id": "little-shape-round",
+    "emoji": "⭕",
+    "category": "move",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yuvarlak iki şey",
+      "en": "Two round things",
+      "az": "Yumru iki şey"
+    }
+  },
+  {
+    "id": "little-share-good-feeling",
+    "emoji": "💛",
+    "category": "social",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Güzel duyguya ad ver",
+      "en": "Name the good feeling",
+      "az": "Gözəl duyğuya ad ver"
+    }
+  },
+  {
+    "id": "little-sing-together",
+    "emoji": "🎤",
+    "category": "social",
+    "minutes": 5,
+    "stars": 8,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Birlikte söyleyin",
+      "en": "Sing it together",
+      "az": "Birlikdə oxuyun"
+    }
+  },
+  {
+    "id": "little-sock-puppet",
+    "emoji": "🧦",
+    "category": "create",
+    "minutes": 10,
+    "stars": 11,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Konuşan çorap",
+      "en": "The sock that talks",
+      "az": "Danışan corab"
+    }
+  },
+  {
+    "id": "little-soft-hard",
+    "emoji": "🧸",
+    "category": "calm",
+    "minutes": 6,
+    "stars": 8,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yumuşak olan, sert olan",
+      "en": "Soft one, hard one",
+      "az": "Yumşaq olan, sərt olan"
+    }
+  },
+  {
+    "id": "little-story-no-pictures",
+    "emoji": "📖",
+    "category": "social",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Resimsiz bir hikaye",
+      "en": "A story with no pictures",
+      "az": "Şəkilsiz bir hekayə"
+    }
+  },
+  {
+    "id": "little-texture-line",
+    "emoji": "🪨",
+    "category": "create",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "En yumuşaktan en pürüzlüye",
+      "en": "Softest to roughest",
+      "az": "Ən yumşaqdan ən kobuda"
+    }
+  },
+  {
+    "id": "little-three-breaths",
+    "emoji": "🫁",
+    "category": "calm",
+    "minutes": 3,
+    "stars": 6,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Üç yavaş nefes",
+      "en": "Three slow breaths",
+      "az": "Üç yavaş nəfəs"
+    }
+  },
+  {
+    "id": "little-three-sentences",
+    "emoji": "🧸",
+    "category": "social",
+    "minutes": 6,
+    "stars": 8,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Onunla ilgili üç şey",
+      "en": "Three things about it",
+      "az": "Onun haqqında üç şey"
+    }
+  },
+  {
+    "id": "little-three-sounds",
+    "emoji": "👂",
+    "category": "calm",
+    "minutes": 6,
+    "stars": 8,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Üç ses",
+      "en": "Three sounds",
+      "az": "Üç səs"
+    }
+  },
+  {
+    "id": "little-three-toys-away",
+    "emoji": "🧹",
+    "category": "move",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Üç oyuncak yerine",
+      "en": "Three toys home",
+      "az": "Üç oyuncaq yerinə"
+    }
+  },
+  {
+    "id": "little-tower-together",
+    "emoji": "🧱",
+    "category": "create",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Bir kule, iki kişi",
+      "en": "One tower, two people",
+      "az": "Bir qüllə, iki nəfər"
+    }
+  },
+  {
+    "id": "little-toy-house",
+    "emoji": "🏠",
+    "category": "create",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Tek oyuncaklık bir ev",
+      "en": "A house for one toy",
+      "az": "Bir oyuncaqlıq ev"
+    }
+  },
+  {
+    "id": "little-toy-scene",
+    "emoji": "🎭",
+    "category": "create",
+    "minutes": 10,
+    "stars": 11,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Üç oyuncak, bir hikaye",
+      "en": "Three toys, one story",
+      "az": "Üç oyuncaq, bir hekayə"
+    }
+  },
+  {
+    "id": "little-warm-cool",
+    "emoji": "🪟",
+    "category": "calm",
+    "minutes": 6,
+    "stars": 8,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Serin olan, ılık olan",
+      "en": "Cool one, warm one",
+      "az": "Sərin olan, ilıq olan"
+    }
+  },
+  {
+    "id": "little-water-plant",
+    "emoji": "🪴",
+    "category": "calm",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "3-5"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Bitkiyi sula",
+      "en": "Water the plant",
+      "az": "Bitkini sula"
+    }
+  },
+  {
+    "id": "motion-jump-15",
+    "emoji": "🦘",
+    "category": "move",
+    "minutes": 5,
+    "stars": 8,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "On beş zıplama",
+      "en": "Fifteen jumps",
+      "az": "On beş tullanma"
+    }
+  },
+  {
+    "id": "motion-jump-frog",
+    "emoji": "🐸",
+    "category": "move",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "On kurbağa zıplaması",
+      "en": "Ten frog hops",
+      "az": "On qurbağa tullanması"
+    }
+  },
+  {
+    "id": "motion-jump-rocket",
+    "emoji": "🚀",
+    "category": "move",
+    "minutes": 6,
+    "stars": 10,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kalkış sayımı",
+      "en": "Launch countdown",
+      "az": "Buraxılış sayımı"
+    }
+  },
+  {
+    "id": "motion-shake-25",
+    "emoji": "🫨",
+    "category": "move",
+    "minutes": 5,
+    "stars": 8,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Salla bakalım",
+      "en": "Shake it out",
+      "az": "Silkələ görək"
+    }
+  },
+  {
+    "id": "motion-shake-dance",
+    "emoji": "💃",
+    "category": "move",
+    "minutes": 6,
+    "stars": 9,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Otuz ritim",
+      "en": "Thirty beats",
+      "az": "Otuz ritm"
+    }
+  },
+  {
+    "id": "motion-spin-8",
+    "emoji": "🪐",
+    "category": "move",
+    "minutes": 5,
+    "stars": 8,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Sekiz tur",
+      "en": "Eight orbits",
+      "az": "Səkkiz dövrə"
+    }
+  },
+  {
+    "id": "music-1",
+    "emoji": "🥁",
+    "category": "create",
+    "minutes": 10,
+    "stars": 10,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Mutfak orkestrası",
+      "en": "Kitchen band",
+      "az": "Mətbəx orkestri"
+    }
+  },
+  {
+    "id": "music-2",
+    "emoji": "🎶",
+    "category": "move",
+    "minutes": 10,
+    "stars": 11,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Heykel dansı",
+      "en": "Freeze dance",
+      "az": "Heykəl rəqsi"
+    }
+  },
+  {
+    "id": "music-3",
+    "emoji": "🎤",
+    "category": "social",
+    "minutes": 8,
+    "stars": 9,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yüksek sesle söyle",
+      "en": "Sing it loud",
+      "az": "Ucadan oxu"
+    }
+  },
+  {
+    "id": "music-4",
+    "emoji": "👂",
+    "category": "calm",
+    "minutes": 8,
+    "stars": 8,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Beş ses",
+      "en": "Five sounds",
+      "az": "Beş səs"
+    }
+  },
+  {
+    "id": "nature-1",
+    "emoji": "🍃",
+    "category": "outdoor",
+    "minutes": 15,
+    "stars": 15,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Beş farklı yaprak",
+      "en": "Five different leaves",
+      "az": "Beş fərqli yarpaq"
+    }
+  },
+  {
+    "id": "nature-2",
+    "emoji": "☁️",
+    "category": "calm",
+    "minutes": 10,
+    "stars": 10,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bulut şekilleri",
+      "en": "Cloud shapes",
+      "az": "Bulud formaları"
+    }
+  },
+  {
+    "id": "nature-3",
+    "emoji": "🌱",
+    "category": "outdoor",
+    "minutes": 8,
+    "stars": 9,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Ayağının altında çimen",
+      "en": "Grass under your feet",
+      "az": "Ayağının altında ot"
+    }
+  },
+  {
+    "id": "nature-4",
+    "emoji": "💧",
+    "category": "calm",
+    "minutes": 8,
+    "stars": 8,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bir bitkiye bak",
+      "en": "Look after a plant",
+      "az": "Bir bitkiyə bax"
+    }
+  },
+  {
+    "id": "photo-books",
+    "emoji": "📚",
+    "category": "calm",
+    "minutes": 8,
+    "stars": 9,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kitap merdiveni",
+      "en": "Book staircase",
+      "az": "Kitab pilləkəni"
+    }
+  },
+  {
+    "id": "photo-picnic",
+    "emoji": "🧸",
+    "category": "create",
+    "minutes": 10,
+    "stars": 11,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Oyuncak pikniği",
+      "en": "Toy picnic",
+      "az": "Oyuncaq piknik"
+    }
+  },
+  {
+    "id": "photo-shoes",
+    "emoji": "👟",
+    "category": "move",
+    "minutes": 8,
+    "stars": 9,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Ayakkabı geçidi",
+      "en": "Shoe parade",
+      "az": "Ayaqqabı paradı"
+    }
+  },
+  {
+    "id": "photo-tower",
+    "emoji": "🧱",
+    "category": "create",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "On parçalık kule",
+      "en": "Ten block tower",
+      "az": "On hissəli qüllə"
+    }
+  },
+  {
+    "id": "science-1",
+    "emoji": "🫧",
+    "category": "create",
+    "minutes": 15,
+    "stars": 14,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Batar mı yüzer mi",
+      "en": "Sink or float",
+      "az": "Batır yoxsa üzür"
+    }
+  },
+  {
+    "id": "science-2",
+    "emoji": "🌞",
+    "category": "outdoor",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Gölge saati",
+      "en": "Shadow clock",
+      "az": "Kölgə saatı"
+    }
+  },
+  {
+    "id": "science-3",
+    "emoji": "🧊",
+    "category": "create",
+    "minutes": 12,
+    "stars": 12,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Buz yarışı",
+      "en": "The ice race",
+      "az": "Buz yarışı"
+    }
+  },
+  {
+    "id": "science-4",
+    "emoji": "❓",
+    "category": "social",
+    "minutes": 10,
+    "stars": 10,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Üç neden",
+      "en": "Three whys",
+      "az": "Üç niyə"
+    }
+  },
+  {
+    "id": "space-1",
+    "emoji": "🌕",
+    "category": "move",
+    "minutes": 8,
+    "stars": 8,
+    "ageBands": [
+      "3-5",
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Ay yürüyüşü",
+      "en": "Moon walk",
+      "az": "Ay yerişi"
+    }
+  },
+  {
+    "id": "space-2",
+    "emoji": "⭐",
+    "category": "calm",
+    "minutes": 10,
+    "stars": 10,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yıldız izleme",
+      "en": "Star watch",
+      "az": "Ulduz izləmə"
+    }
+  },
+  {
+    "id": "space-3",
+    "emoji": "🚀",
+    "category": "create",
+    "minutes": 20,
+    "stars": 18,
+    "ageBands": [
+      "3-5",
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Roket yap",
+      "en": "Build a rocket",
+      "az": "Raket düzəlt"
+    }
+  },
+  {
+    "id": "space-4",
+    "emoji": "🪐",
+    "category": "social",
+    "minutes": 12,
+    "stars": 12,
+    "ageBands": [
+      "6-9",
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Gezegen uzmanı",
+      "en": "Planet expert",
+      "az": "Planet mütəxəssisi"
+    }
+  },
+  {
+    "id": "teen-body-ball",
+    "emoji": "🏀",
+    "category": "move",
+    "minutes": 15,
+    "stars": 16,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Biriyle top oyunu",
+      "en": "Ball game with someone",
+      "az": "Biri ilə top oyunu"
+    }
+  },
+  {
+    "id": "teen-body-break",
+    "emoji": "🔄",
+    "category": "move",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Oturmayı böl",
+      "en": "Break the sitting",
+      "az": "Oturmağı böl"
+    }
+  },
+  {
+    "id": "teen-body-steps",
+    "emoji": "👣",
+    "category": "move",
+    "minutes": 15,
+    "stars": 16,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "1.500 adım",
+      "en": "1,500 steps",
+      "az": "1.500 addım"
+    }
+  },
+  {
+    "id": "teen-body-stretch",
+    "emoji": "🧘",
+    "category": "calm",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "On dakika esneme",
+      "en": "Ten minutes of stretching",
+      "az": "On dəqiqə dartınma"
+    }
+  },
+  {
+    "id": "teen-body-walk",
+    "emoji": "🚶",
+    "category": "move",
+    "minutes": 15,
+    "stars": 16,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "On beş dakika, hızlı tempo",
+      "en": "Fifteen minutes, quick pace",
+      "az": "On beş dəqiqə, sürətli temp"
+    }
+  },
+  {
+    "id": "teen-calm-breath",
+    "emoji": "🫁",
+    "category": "calm",
+    "minutes": 5,
+    "stars": 8,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Üç dakika nefes",
+      "en": "Three minutes of breathing",
+      "az": "Üç dəqiqə nəfəs"
+    }
+  },
+  {
+    "id": "teen-calm-express",
+    "emoji": "🖤",
+    "category": "create",
+    "minutes": 12,
+    "stars": 14,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kafandan çıkar",
+      "en": "Get it out of your head",
+      "az": "Başından çıxar"
+    }
+  },
+  {
+    "id": "teen-calm-quiet20",
+    "emoji": "🚫",
+    "category": "calm",
+    "minutes": 22,
+    "stars": 22,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yirmi dakika, hiçbir şey titremiyor",
+      "en": "Twenty minutes, nothing buzzing",
+      "az": "İyirmi dəqiqə, heç nə titrəmir"
+    }
+  },
+  {
+    "id": "teen-calm-wait",
+    "emoji": "⏱️",
+    "category": "calm",
+    "minutes": 5,
+    "stars": 9,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Önce beş dakika bekle",
+      "en": "Wait five minutes first",
+      "az": "Əvvəlcə beş dəqiqə gözlə"
+    }
+  },
+  {
+    "id": "teen-calm-walk",
+    "emoji": "🚶",
+    "category": "move",
+    "minutes": 15,
+    "stars": 16,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yürüyerek at",
+      "en": "Walk it off",
+      "az": "Yeriyərək at"
+    }
+  },
+  {
+    "id": "teen-family-roomplan",
+    "emoji": "🛏️",
+    "category": "calm",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kendi odan için bir plan",
+      "en": "A plan for your own room",
+      "az": "Öz otağın üçün plan"
+    }
+  },
+  {
+    "id": "teen-family-screenfree",
+    "emoji": "📵",
+    "category": "social",
+    "minutes": 30,
+    "stars": 26,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Ekransız bir saat yönet",
+      "en": "Run a screen free hour",
+      "az": "Ekransız bir saat təşkil et"
+    }
+  },
+  {
+    "id": "teen-family-table",
+    "emoji": "🍽️",
+    "category": "social",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yemekten sonra topla",
+      "en": "Clear up after the meal",
+      "az": "Yeməkdən sonra yığışdır"
+    }
+  },
+  {
+    "id": "teen-family-tutor",
+    "emoji": "📐",
+    "category": "social",
+    "minutes": 20,
+    "stars": 20,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Küçük biriyle otur",
+      "en": "Sit with a younger one",
+      "az": "Kiçik biri ilə otur"
+    }
+  },
+  {
+    "id": "teen-family-unprompted",
+    "emoji": "🫱",
+    "category": "social",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kimse söylemeden bir iş",
+      "en": "One job, nobody asked",
+      "az": "Heç kim deməmiş bir iş"
+    }
+  },
+  {
+    "id": "teen-goal-focus",
+    "emoji": "⏳",
+    "category": "calm",
+    "minutes": 25,
+    "stars": 24,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "20 dakikalık odak bloğu",
+      "en": "A 20 minute focus block",
+      "az": "20 dəqiqəlik fokus bloku"
+    }
+  },
+  {
+    "id": "teen-goal-habit",
+    "emoji": "🪫",
+    "category": "calm",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Zamanını yiyen alışkanlık",
+      "en": "The habit that eats your time",
+      "az": "Vaxtını yeyən vərdiş"
+    }
+  },
+  {
+    "id": "teen-goal-plan",
+    "emoji": "🗒️",
+    "category": "calm",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yarın, kağıt üstünde",
+      "en": "Tomorrow, on paper",
+      "az": "Sabah, kağız üzərində"
+    }
+  },
+  {
+    "id": "teen-goal-screenfree",
+    "emoji": "📉",
+    "category": "calm",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Ekransız hedefini belirle",
+      "en": "Set your screen free target",
+      "az": "Ekransız hədəfini təyin et"
+    }
+  },
+  {
+    "id": "teen-goal-three",
+    "emoji": "🎯",
+    "category": "calm",
+    "minutes": 5,
+    "stars": 7,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bugün için üç hedef",
+      "en": "Three goals for today",
+      "az": "Bu gün üçün üç məqsəd"
+    }
+  },
+  {
+    "id": "teen-make-comic",
+    "emoji": "🗯️",
+    "category": "create",
+    "minutes": 25,
+    "stars": 24,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bir sayfa çizgi roman",
+      "en": "One page of comic",
+      "az": "Bir səhifə komiks"
+    }
+  },
+  {
+    "id": "teen-make-game",
+    "emoji": "🎲",
+    "category": "create",
+    "minutes": 25,
+    "stars": 24,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Kuralları uydur",
+      "en": "Invent the rules",
+      "az": "Qaydaları uydur"
+    }
+  },
+  {
+    "id": "teen-make-rhythm",
+    "emoji": "🥁",
+    "category": "create",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Uygulamasız bir ritim",
+      "en": "A rhythm with no app",
+      "az": "Tətbiqsiz bir ritm"
+    }
+  },
+  {
+    "id": "teen-make-scene",
+    "emoji": "🪟",
+    "category": "create",
+    "minutes": 12,
+    "stars": 14,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Fotoğrafını çekmek yerine anlat",
+      "en": "Describe it instead of photographing it",
+      "az": "Şəklini çəkmək yerinə təsvir et"
+    }
+  },
+  {
+    "id": "teen-make-write",
+    "emoji": "✍️",
+    "category": "create",
+    "minutes": 20,
+    "stars": 20,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Şu şeyi yaz",
+      "en": "Write the thing",
+      "az": "O şeyi yaz"
+    }
+  },
+  {
+    "id": "teen-project-budget",
+    "emoji": "💰",
+    "category": "create",
+    "minutes": 15,
+    "stars": 16,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Sana ait bir bütçe",
+      "en": "A budget that is yours",
+      "az": "Sənə aid büdcə"
+    }
+  },
+  {
+    "id": "teen-project-cook",
+    "emoji": "🍳",
+    "category": "create",
+    "minutes": 30,
+    "stars": 26,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Bir yetişkinle pişir",
+      "en": "Cook it with an adult",
+      "az": "Böyüklə birlikdə bişir"
+    }
+  },
+  {
+    "id": "teen-project-desk",
+    "emoji": "🗂️",
+    "category": "create",
+    "minutes": 20,
+    "stars": 20,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Masanı yeniden kur",
+      "en": "Rebuild your desk",
+      "az": "Masanı yenidən qur"
+    }
+  },
+  {
+    "id": "teen-project-recycle",
+    "emoji": "♻️",
+    "category": "create",
+    "minutes": 20,
+    "stars": 20,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Çöpten çıkan işe yarar bir şey",
+      "en": "Something useful out of the bin",
+      "az": "Zibildən çıxan faydalı bir şey"
+    }
+  },
+  {
+    "id": "teen-project-rota",
+    "emoji": "📋",
+    "category": "social",
+    "minutes": 15,
+    "stars": 16,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Ailenin kullanacağı bir çizelge",
+      "en": "A rota the family will use",
+      "az": "Ailənin istifadə edəcəyi cədvəl"
+    }
+  },
+  {
+    "id": "teen-read-advert",
+    "emoji": "📣",
+    "category": "calm",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Reklam sana nasıl çalışıyor",
+      "en": "How the advert works on you",
+      "az": "Reklam sənə necə işləyir"
+    }
+  },
+  {
+    "id": "teen-read-character",
+    "emoji": "🎭",
+    "category": "calm",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Sen olsan yapar mıydın?",
+      "en": "Would you have done that?",
+      "az": "Sən olsan edərdin?"
+    }
+  },
+  {
+    "id": "teen-read-claim",
+    "emoji": "🔍",
+    "category": "calm",
+    "minutes": 12,
+    "stars": 14,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bu gerçekten doğru mu?",
+      "en": "Is that actually true?",
+      "az": "Bu həqiqətən doğrudur?"
+    }
+  },
+  {
+    "id": "teen-read-fifteen",
+    "emoji": "📖",
+    "category": "calm",
+    "minutes": 20,
+    "stars": 20,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "On beş dakika, üç fikir",
+      "en": "Fifteen minutes, three ideas",
+      "az": "On beş dəqiqə, üç fikir"
+    }
+  },
+  {
+    "id": "teen-read-sources",
+    "emoji": "⚖️",
+    "category": "calm",
+    "minutes": 15,
+    "stars": 16,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "İki kaynak, tek soru",
+      "en": "Two sources, one question",
+      "az": "İki mənbə, bir sual"
+    }
+  },
+  {
+    "id": "teen-screen-before",
+    "emoji": "🌀",
+    "category": "calm",
+    "minutes": 8,
+    "stars": 10,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Uzun olandan önce ne vardı",
+      "en": "What came before the long one",
+      "az": "Uzun olandan əvvəl nə var idi"
+    }
+  },
+  {
+    "id": "teen-screen-delay",
+    "emoji": "⏸️",
+    "category": "calm",
+    "minutes": 30,
+    "stars": 26,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yarım saat sonra aç",
+      "en": "Open it half an hour later",
+      "az": "Yarım saat sonra aç"
+    }
+  },
+  {
+    "id": "teen-screen-quiet",
+    "emoji": "🔕",
+    "category": "calm",
+    "minutes": 30,
+    "stars": 26,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bildirimler kapalı, gerçekten",
+      "en": "Notifications off, properly",
+      "az": "Bildirişlər bağlı, əməlli"
+    }
+  },
+  {
+    "id": "teen-screen-swap",
+    "emoji": "🔁",
+    "category": "move",
+    "minutes": 15,
+    "stars": 16,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Yerine başka bir şey koy",
+      "en": "Swap it for something else",
+      "az": "Yerinə başqa bir şey qoy"
+    }
+  },
+  {
+    "id": "teen-screen-why",
+    "emoji": "🤔",
+    "category": "calm",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Telefonu aldığın üç an",
+      "en": "Three times you picked it up",
+      "az": "Telefonu götürdüyün üç an"
+    }
+  },
+  {
+    "id": "teen-talk-boardgame",
+    "emoji": "♟️",
+    "category": "social",
+    "minutes": 30,
+    "stars": 26,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Masa başında bir oyun",
+      "en": "A game across a table",
+      "az": "Masa arxasında bir oyun"
+    }
+  },
+  {
+    "id": "teen-talk-family",
+    "emoji": "🫖",
+    "category": "social",
+    "minutes": 12,
+    "stars": 14,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "On dakika, telefon yok",
+      "en": "Ten minutes, no phones",
+      "az": "On dəqiqə, telefonsuz"
+    }
+  },
+  {
+    "id": "teen-talk-ifeel",
+    "emoji": "💬",
+    "category": "social",
+    "minutes": 10,
+    "stars": 13,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "\"Ben hissettim\" diye söyle",
+      "en": "Say it as \"I felt\"",
+      "az": "\"Mən hiss etdim\" kimi de"
+    }
+  },
+  {
+    "id": "teen-talk-invite",
+    "emoji": "🤙",
+    "category": "social",
+    "minutes": 10,
+    "stars": 12,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bir şey yapmaya çağır",
+      "en": "Ask them out to do something",
+      "az": "Nəyəsə dəvət et"
+    }
+  },
+  {
+    "id": "teen-talk-memory",
+    "emoji": "📻",
+    "category": "social",
+    "minutes": 15,
+    "stars": 16,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Nasıl biri olduğunu sor",
+      "en": "Ask them what they were like",
+      "az": "Necə biri olduğunu soruş"
+    }
+  },
+  {
+    "id": "teen-team-books",
+    "emoji": "📦",
+    "category": "social",
+    "minutes": 20,
+    "stars": 20,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": true,
+    "title": {
+      "tr": "Başka yerde olması gereken kitaplar",
+      "en": "Books that should be somewhere else",
+      "az": "Başqa yerdə olmalı kitablar"
+    }
+  },
+  {
+    "id": "teen-team-eco",
+    "emoji": "🌱",
+    "category": "outdoor",
+    "minutes": 20,
+    "stars": 20,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Küçük bir yeşil iş planla",
+      "en": "Plan one small green thing",
+      "az": "Kiçik bir yaşıl iş planlaşdır"
+    }
+  },
+  {
+    "id": "teen-team-game",
+    "emoji": "🏐",
+    "category": "social",
+    "minutes": 30,
+    "stars": 28,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bir oyun kurdur",
+      "en": "Get a game going",
+      "az": "Bir oyun qurdur"
+    }
+  },
+  {
+    "id": "teen-team-idea",
+    "emoji": "🏙️",
+    "category": "outdoor",
+    "minutes": 20,
+    "stars": 20,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bu sokağı düzeltecek bir şey",
+      "en": "One thing that would fix this street",
+      "az": "Bu küçəni düzəldəcək bir şey"
+    }
+  },
+  {
+    "id": "teen-team-week",
+    "emoji": "🤝",
+    "category": "social",
+    "minutes": 10,
+    "stars": 14,
+    "ageBands": [
+      "10-13"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Grubunun çevrimdışı geçirdiği hafta",
+      "en": "The week your group went offline",
+      "az": "Qrupunun oflayn keçirdiyi həftə"
+    }
+  }
+]

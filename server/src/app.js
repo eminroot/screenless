@@ -68,9 +68,21 @@ function createApp({ store, clock = () => Date.now(), limiter = createLimiter(cl
     { method: 'GET', pattern: /^\/v1\/children\/([^/]+)\/limits$/, parent: true, run: readLimits },
     { method: 'PUT', pattern: /^\/v1\/children\/([^/]+)\/limits$/, parent: true, run: writeLimits },
 
+    { method: 'GET', pattern: /^\/v1\/children\/([^/]+)\/assignment$/, parent: true, run: readAssignment },
+    { method: 'PUT', pattern: /^\/v1\/children\/([^/]+)\/assignment$/, parent: true, run: writeAssignment },
+
+    { method: 'GET', pattern: /^\/v1\/children\/([^/]+)\/rewards$/, parent: true, run: listRewards },
+    { method: 'POST', pattern: /^\/v1\/children\/([^/]+)\/rewards$/, parent: true, run: addReward },
+    { method: 'PATCH', pattern: /^\/v1\/children\/([^/]+)\/rewards\/([^/]+)$/, parent: true, run: editReward },
+    { method: 'DELETE', pattern: /^\/v1\/children\/([^/]+)\/rewards\/([^/]+)$/, parent: true, run: removeReward },
+
+    { method: 'GET', pattern: /^\/v1\/children\/([^/]+)\/notes$/, parent: true, run: listNotes },
+    { method: 'POST', pattern: /^\/v1\/children\/([^/]+)\/notes$/, parent: true, run: addNote },
+
     { method: 'POST', pattern: /^\/v1\/devices$/, run: pair },
     { method: 'GET', pattern: /^\/v1\/devices\/me$/, device: true, run: deviceConfig },
     { method: 'POST', pattern: /^\/v1\/devices\/me\/reports$/, device: true, run: report },
+    { method: 'POST', pattern: /^\/v1\/devices\/me\/ack$/, device: true, run: acknowledge },
     { method: 'DELETE', pattern: /^\/v1\/devices\/me$/, device: true, run: unpair },
   ];
 
@@ -362,6 +374,100 @@ function createApp({ store, clock = () => Date.now(), limiter = createLimiter(cl
     return ok({ limits });
   }
 
+  /* ------------------------------------------- what a parent sends down */
+
+  /**
+   * The three handlers below all write into the same half of the database: a
+   * mission the parent picked, a reward they promised, a line they typed.
+   *
+   * None of them can reach a phone on their own. The hub has no way to wake a
+   * device, so all three wait in `deviceConfig` until the child's app next
+   * syncs and collects them. That is a real limitation and worth knowing about
+   * rather than papering over: a note written at nine in the morning is read
+   * when the child next opens the app, not when it is sent.
+   */
+
+  function readAssignment({ parent, params }) {
+    const child = ownedChild(parent, params[0]);
+    if (!child) return fail(404, 'notFound');
+    return ok({ assignment: store.getAssignment(child.id) });
+  }
+
+  /**
+   * A mission id travels, not a mission.
+   *
+   * Both apps ship the same library, so the title and the steps are already on
+   * the child's phone in the child's language. Sending the key is smaller,
+   * cannot go stale against a translation, and means this server never holds a
+   * line of the mission text.
+   */
+  function writeAssignment({ parent, params, body }) {
+    const child = ownedChild(parent, params[0]);
+    if (!child) return fail(404, 'notFound');
+
+    const taskId = body && body.taskId;
+    if (taskId === null) {
+      store.clearAssignment(child.id);
+      return ok({ assignment: null });
+    }
+    if (!rules.checkTaskId(taskId)) return fail(400, 'invalid', 'taskId');
+    return ok({ assignment: store.setAssignment(child.id, taskId) });
+  }
+
+  function listRewards({ parent, params }) {
+    const child = ownedChild(parent, params[0]);
+    if (!child) return fail(404, 'notFound');
+    return ok({ rewards: store.listRewards(child.id) });
+  }
+
+  function addReward({ parent, params, body }) {
+    const child = ownedChild(parent, params[0]);
+    if (!child) return fail(404, 'notFound');
+    if (store.countRewards(child.id) >= rules.MAX_REWARDS) return fail(409, 'tooMany');
+
+    const cleaned = rules.cleanReward(body);
+    if (!cleaned.label) return fail(400, 'invalid', 'label');
+
+    const reward = store.addReward(child.id, {
+      id: auth.newRewardId(),
+      stars: cleaned.stars,
+      label: cleaned.label,
+      emoji: cleaned.emoji || '⭐',
+    });
+    return ok({ reward }, 201);
+  }
+
+  function editReward({ parent, params, body }) {
+    const child = ownedChild(parent, params[0]);
+    if (!child) return fail(404, 'notFound');
+    const reward = store.setRewardGiven(child.id, params[1], body && body.given === true);
+    if (!reward) return fail(404, 'notFound');
+    return ok({ reward });
+  }
+
+  function removeReward({ parent, params }) {
+    const child = ownedChild(parent, params[0]);
+    if (!child) return fail(404, 'notFound');
+    if (!store.deleteReward(child.id, params[1])) return fail(404, 'notFound');
+    return ok({ deleted: true });
+  }
+
+  function listNotes({ parent, params }) {
+    const child = ownedChild(parent, params[0]);
+    if (!child) return fail(404, 'notFound');
+    return ok({ notes: store.listNotes(child.id) });
+  }
+
+  function addNote({ parent, params, body }) {
+    const child = ownedChild(parent, params[0]);
+    if (!child) return fail(404, 'notFound');
+
+    const text = rules.cleanNoteText(body && body.text);
+    if (!text) return fail(400, 'invalid', 'text');
+
+    return ok({ note: store.addNote(child.id, { id: auth.newNoteId(), text }) }, 201);
+  }
+
   /* --------------------------------------------------------------- devices */
 
   /**
@@ -415,12 +521,36 @@ function createApp({ store, clock = () => Date.now(), limiter = createLimiter(cl
    * nothing at all unless it moved.
    */
   function deviceConfig({ child }) {
+    const assignment = store.getAssignment(child.id);
     return ok({
       childId: child.id,
       ageBand: child.ageBand,
       limits: store.getLimits(child.id),
+      // A mission the phone has already collected is not sent again, so a
+      // child who dismissed one does not find it back every ten minutes.
+      assignment: assignment && !assignment.takenAt ? assignment : null,
+      rewards: store.listRewards(child.id),
+      note: store.openNote(child.id),
       serverTime: new Date(clock()).toISOString(),
     });
+  }
+
+  /**
+   * What the phone says back about any of it.
+   *
+   * Deliberately the smallest handler here. Everything it can write is an id
+   * this server issued or one of four fixed replies, both checked by
+   * `cleanAck` before they arrive — there is no path through this function
+   * that puts a string a child typed into the database.
+   */
+  function acknowledge({ ip, child, body }) {
+    if (!limiter.take('report', ip)) return fail(429, 'rateLimited');
+    const ack = rules.cleanAck(body);
+
+    const took = ack.tookTaskId ? store.takeAssignment(child.id, ack.tookTaskId) : false;
+    const answered = ack.note ? store.answerNote(child.id, ack.note.id, ack.note.reply) : false;
+
+    return ok({ took, answered });
   }
 
   function report({ ip, child, body }) {

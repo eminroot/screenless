@@ -739,6 +739,60 @@ export type RealReward = {
   createdAt: string;
   /** Set when the parent confirms the child actually got it. */
   givenAt?: string;
+  /**
+   * Where it came from.
+   *
+   * Absent means a grown up typed it on this phone, behind the PIN, and this
+   * phone owns it. `hub` means they typed it in the parent app on their own
+   * phone, and the hub owns it — the sync replaces every `hub` reward on each
+   * pass, so editing one here would be undone within ten minutes.
+   */
+  origin?: 'hub';
+};
+
+/** One of the four things a child can answer a parent's note with. */
+export const NOTE_REPLIES = ['ok', 'done', 'thanks', 'later'] as const;
+export type NoteReply = (typeof NOTE_REPLIES)[number];
+
+/**
+ * What a grown up sent from the parent app, waiting to be seen.
+ *
+ * Three things arrive this way and all three are the parent's, not the
+ * child's: a mission they picked out of the library, a line they typed, and
+ * the rewards they promised (those are merged straight into `realRewards`, so
+ * they are not repeated here).
+ *
+ * The two `pending` fields are this phone's side of the conversation, held
+ * until the next sync can deliver them. Both are ids and enums. There is no
+ * field on this type, or on the hub, that a child's own sentence could go in.
+ */
+/**
+ * Where something in the inbox came from.
+ *
+ * `hub` is a parent on their own phone. `local` is a parent who picked up this
+ * phone, unlocked the parent area and chose something — which is how most
+ * families will use it, because most families share a device. The two behave
+ * differently in exactly two places: a local item is never sent to the hub and
+ * never owes an acknowledgement, and a hub sync cannot clear one.
+ */
+export type InboxSource = 'hub' | 'local';
+
+export type Inbox = {
+  /** A library key the parent chose, or null when they have not chosen one. */
+  assignment: { taskId: string; assignedAt: string; source: InboxSource } | null;
+  /** The line a parent typed, until one of the four replies is tapped. */
+  note: { id: string; text: string; at: string; source: InboxSource } | null;
+  /** An answer tapped while offline, owed to the hub. Never set for a local note. */
+  pendingReply: { id: string; reply: NoteReply } | null;
+  /** A mission accepted here, owed to the hub so it stops being sent. */
+  pendingTook: string | null;
+};
+
+export const emptyInbox: Inbox = {
+  assignment: null,
+  note: null,
+  pendingReply: null,
+  pendingTook: null,
 };
 
 export type ChatRole = 'user' | 'buddy';
@@ -824,6 +878,8 @@ export type AppData = {
   guardHistory: GuardDay[];
   /** The parent's account this phone reports to, or null if it was never linked. */
   hub: HubLink | null;
+  /** What the parent has sent down and not had an answer to. */
+  inbox: Inbox;
   /** Treasure badges a parent set up, or null before they did. */
   badges: BadgeSet | null;
   /** The 10-13 screen free target for this week, if they set one. */
@@ -832,7 +888,7 @@ export type AppData = {
   ideaVotes: IdeaVote[];
 };
 
-export const SCHEMA_VERSION = 9;
+export const SCHEMA_VERSION = 10;
 
 export const emptySocial: Social = {
   mode: 'unset',
@@ -888,6 +944,7 @@ export function createEmptyData(language: Language): AppData {
     guardDay: emptyGuardDay(''),
     guardHistory: [],
     hub: null,
+    inbox: { ...emptyInbox },
     badges: null,
     weekGoal: null,
     ideaVotes: [],

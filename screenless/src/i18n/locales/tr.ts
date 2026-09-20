@@ -418,6 +418,48 @@ export const tr: Translation = {
     toNextZone: 'Sonraki yerin açılmasına {{count}} yıldız',
   },
 
+  inbox: {
+    title: 'Büyüğünden',
+    replyOk: 'Tamam',
+    replyDone: 'Yaptım',
+    replyThanks: 'Teşekkürler',
+    replyLater: 'Şimdi değil',
+    missionTitle: 'Bunu senin için seçti',
+    take: 'Listeme ekle',
+    minutes: '{{minutes}} dk',
+    stars: '{{stars}} yıldız',
+  },
+
+  send: {
+    title: '{{name}} için bir şey bırak',
+    subtitle: '{{name}} ana ekranında görünür. Almak isteyip istemediğine kendisi karar verir.',
+
+    waitingTitle: 'Şu anda onu bekliyor',
+    waitingMission: 'Seçtiğiniz bir görev.',
+    takeBackMission: 'Görevi geri al',
+    takeBackNote: 'Notu geri al',
+    sentMission: '{{name}} için bırakıldı. Şimdi ana ekranında.',
+    sentNote: '{{name}} için bırakıldı.',
+
+    noteTitle: 'Ona bir satır',
+    noteBody: 'Dört dokunuştan biriyle cevap verebilir. Yazı yazamaz, böylece yazdığı hiçbir şey bir yere gitmez.',
+    notePlaceholder: 'Altıda evde ol, sonra parka gideriz',
+    leaveNote: 'Notu bırak',
+
+    missionTitle: 'Bir görev',
+    missionBody: 'En kısalar önce. {{name}} yine de kabul etmeli; görev kendiliğinden başlamaz.',
+    minutes: '{{minutes}} dk',
+    stars: '{{stars}} yıldız',
+    footnote: 'Bu telefonda kalır. Buradan hiçbir yere bir şey gönderilmez ve ebeveyn paneli olsa da olmasa da çalışır.',
+
+    catAll: 'Hepsi',
+    catMove: 'Hareket',
+    catOutdoor: 'Dışarıda',
+    catCreate: 'Yapma',
+    catSocial: 'İnsanlarla',
+    catCalm: 'Sakin',
+  },
+
   chat: {
     title: '{{buddy}} ile konuş',
     placeholder: 'Bir şey söyle',

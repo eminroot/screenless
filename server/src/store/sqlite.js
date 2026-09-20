@@ -23,7 +23,7 @@ const { CATEGORIES, defaultLimits } = require('../rules');
  * is no migration tool and there does not need to be one.
  */
 
-const SCHEMA = 1;
+const SCHEMA = 2;
 
 function open(file) {
   if (file !== ':memory:') fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -130,6 +130,50 @@ function migrate(db) {
       PRIMARY KEY (child_id, date)
     );
     CREATE INDEX IF NOT EXISTS days_child_date ON days(child_id, date DESC);
+
+    /*
+     * The three tables below are the other direction.
+     *
+     * Everything above this line is what a child's phone measured and sent
+     * up. Everything below it is what a parent wrote and is waiting to go
+     * down: a mission they picked, a reward they promised, a line they typed.
+     * The split matters, because the rule for the two halves is not the same.
+     * A child's sentences never reach this file. A parent's do, for the same
+     * reason the child's name already does — they typed it, into their own
+     * account, about their own child.
+     *
+     * What comes back up from these is ids and enums: which mission was taken,
+     * which note was answered and with which of four fixed replies. There is
+     * no column here a phone can put free text into.
+     */
+
+    CREATE TABLE IF NOT EXISTS assignments (
+      child_id    TEXT PRIMARY KEY REFERENCES children(id) ON DELETE CASCADE,
+      task_id     TEXT NOT NULL,
+      assigned_at INTEGER NOT NULL,
+      taken_at    INTEGER
+    );
+
+    CREATE TABLE IF NOT EXISTS rewards (
+      id          TEXT PRIMARY KEY,
+      child_id    TEXT NOT NULL REFERENCES children(id) ON DELETE CASCADE,
+      stars       INTEGER NOT NULL,
+      label       TEXT NOT NULL,
+      emoji       TEXT NOT NULL,
+      created_at  INTEGER NOT NULL,
+      given_at    INTEGER
+    );
+    CREATE INDEX IF NOT EXISTS rewards_child ON rewards(child_id, created_at DESC);
+
+    CREATE TABLE IF NOT EXISTS notes (
+      id          TEXT PRIMARY KEY,
+      child_id    TEXT NOT NULL REFERENCES children(id) ON DELETE CASCADE,
+      text        TEXT NOT NULL,
+      created_at  INTEGER NOT NULL,
+      reply       TEXT,
+      replied_at  INTEGER
+    );
+    CREATE INDEX IF NOT EXISTS notes_child ON notes(child_id, created_at DESC);
   `);
 
   db.exec(`PRAGMA user_version = ${SCHEMA}`);
@@ -158,6 +202,37 @@ function rowToChild(row) {
     tzOffsetMin: row.tz_offset_min,
     appVersion: row.app_version || null,
     lastReport: row.last_report || null,
+  };
+}
+
+function rowToAssignment(row) {
+  if (!row) return null;
+  return {
+    taskId: row.task_id,
+    assignedAt: row.assigned_at,
+    takenAt: row.taken_at || null,
+  };
+}
+
+function rowToReward(row) {
+  return {
+    id: row.id,
+    stars: row.stars,
+    label: row.label,
+    emoji: row.emoji,
+    createdAt: row.created_at,
+    givenAt: row.given_at || null,
+  };
+}
+
+function rowToNote(row) {
+  if (!row) return null;
+  return {
+    id: row.id,
+    text: row.text,
+    createdAt: row.created_at,
+    reply: row.reply || null,
+    repliedAt: row.replied_at || null,
   };
 }
 
@@ -303,6 +378,45 @@ function createStore({ file = ':memory:', clock = () => Date.now() } = {}) {
       'SELECT * FROM days WHERE child_id = ? AND date >= ? AND date <= ? ORDER BY date ASC',
     ),
     dayOf: db.prepare('SELECT * FROM days WHERE child_id = ? AND date = ?'),
+    getAssignment: db.prepare('SELECT * FROM assignments WHERE child_id = ?'),
+    putAssignment: db.prepare(
+      `INSERT INTO assignments (child_id, task_id, assigned_at, taken_at)
+       VALUES (?, ?, ?, NULL)
+       ON CONFLICT(child_id) DO UPDATE SET
+         task_id = excluded.task_id,
+         assigned_at = excluded.assigned_at,
+         taken_at = NULL`,
+    ),
+    clearAssignment: db.prepare('DELETE FROM assignments WHERE child_id = ?'),
+    takeAssignment: db.prepare(
+      'UPDATE assignments SET taken_at = ? WHERE child_id = ? AND task_id = ? AND taken_at IS NULL',
+    ),
+
+    rewardsOf: db.prepare('SELECT * FROM rewards WHERE child_id = ? ORDER BY created_at ASC'),
+    rewardById: db.prepare('SELECT * FROM rewards WHERE id = ? AND child_id = ?'),
+    countRewards: db.prepare('SELECT COUNT(*) AS n FROM rewards WHERE child_id = ?'),
+    insertReward: db.prepare(
+      'INSERT INTO rewards (id, child_id, stars, label, emoji, created_at, given_at) VALUES (?, ?, ?, ?, ?, ?, NULL)',
+    ),
+    setRewardGiven: db.prepare('UPDATE rewards SET given_at = ? WHERE id = ? AND child_id = ?'),
+    deleteReward: db.prepare('DELETE FROM rewards WHERE id = ? AND child_id = ?'),
+
+    notesOf: db.prepare('SELECT * FROM notes WHERE child_id = ? ORDER BY created_at DESC LIMIT ?'),
+    latestUnanswered: db.prepare(
+      'SELECT * FROM notes WHERE child_id = ? AND reply IS NULL ORDER BY created_at DESC LIMIT 1',
+    ),
+    insertNote: db.prepare(
+      'INSERT INTO notes (id, child_id, text, created_at, reply, replied_at) VALUES (?, ?, ?, ?, NULL, NULL)',
+    ),
+    answerNote: db.prepare(
+      'UPDATE notes SET reply = ?, replied_at = ? WHERE id = ? AND child_id = ? AND reply IS NULL',
+    ),
+    trimNotes: db.prepare(
+      `DELETE FROM notes WHERE child_id = ? AND id NOT IN (
+         SELECT id FROM notes WHERE child_id = ? ORDER BY created_at DESC LIMIT ?
+       )`,
+    ),
+
     countParents: db.prepare('SELECT COUNT(*) AS n FROM parents'),
     countChildren: db.prepare('SELECT COUNT(*) AS n FROM children'),
     countDays: db.prepare('SELECT COUNT(*) AS n FROM days'),
@@ -311,6 +425,56 @@ function createStore({ file = ':memory:', clock = () => Date.now() } = {}) {
   return {
     db,
     close: () => db.close(),
+
+    /* --------------------------------------------------------- parents */
+
+    /* --------------------------- what a parent sent down to a child */
+
+    getAssignment: (childId) => rowToAssignment(q.getAssignment.get(childId)),
+    setAssignment(childId, taskId) {
+      q.putAssignment.run(childId, taskId, clock());
+      return rowToAssignment(q.getAssignment.get(childId));
+    },
+    clearAssignment: (childId) => {
+      q.clearAssignment.run(childId);
+    },
+    /**
+     * Marks the mission as landed. Keyed on the task id as well as the child,
+     * so an acknowledgement for a mission the parent has already replaced
+     * does not silently mark the new one as taken.
+     */
+    takeAssignment(childId, taskId) {
+      const result = q.takeAssignment.run(clock(), childId, taskId);
+      return result.changes > 0;
+    },
+
+    listRewards: (childId) => q.rewardsOf.all(childId).map(rowToReward),
+    countRewards: (childId) => q.countRewards.get(childId).n,
+    addReward(childId, reward) {
+      q.insertReward.run(reward.id, childId, reward.stars, reward.label, reward.emoji, clock());
+      return rowToReward(q.rewardById.get(reward.id, childId));
+    },
+    setRewardGiven(childId, rewardId, given) {
+      const result = q.setRewardGiven.run(given ? clock() : null, rewardId, childId);
+      if (result.changes === 0) return null;
+      return rowToReward(q.rewardById.get(rewardId, childId));
+    },
+    deleteReward(childId, rewardId) {
+      return q.deleteReward.run(rewardId, childId).changes > 0;
+    },
+
+    listNotes: (childId, limit = 20) => q.notesOf.all(childId, limit).map(rowToNote),
+    /** The one the child's phone still owes an answer to, newest first. */
+    openNote: (childId) => rowToNote(q.latestUnanswered.get(childId)),
+    addNote(childId, note, keep = 50) {
+      q.insertNote.run(note.id, childId, note.text, clock());
+      q.trimNotes.run(childId, childId, keep);
+      return rowToNote(q.notesOf.all(childId, 1)[0]);
+    },
+    /** Refuses a second answer to the same note, so a retry cannot overwrite. */
+    answerNote(childId, noteId, reply) {
+      return q.answerNote.run(reply, clock(), noteId, childId).changes > 0;
+    },
 
     /* --------------------------------------------------------- parents */
 

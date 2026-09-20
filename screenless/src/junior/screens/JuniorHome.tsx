@@ -17,6 +17,7 @@ import {
   starsToNextLevel,
 } from '../../engine/progress';
 import { buildRoomMission } from '../../engine/room-engine';
+import { InboxCard } from '../components/InboxCard';
 import { pickTask } from '../../engine/task-engine';
 import { useI18n } from '../../i18n';
 import type { TKey } from '../../i18n/shape';
@@ -177,6 +178,9 @@ export function JuniorHome() {
           accent="green"
         />
       </Card>
+
+      {/* ------------------------------------------ what a grown up sent down */}
+      <InboxCard />
 
       {/* --------------------------------------------------- today's mission */}
       <Stamp accent="flame" style={{ marginTop: space.xxl }}>{t('junior.missionStamp')}</Stamp>

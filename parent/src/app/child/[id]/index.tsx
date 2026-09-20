@@ -306,6 +306,18 @@ export default function ChildDashboard() {
             />
           </Card>
 
+          {/* ------------------------------------------- the other direction */}
+          {/* Sits under the limit rather than at the top of the screen: the
+              first thing a parent opens this app for is the week, and a
+              compose box above the chart would suggest otherwise. */}
+          <Button
+            label={t('send.open')}
+            tone="quiet"
+            size="md"
+            onPress={() => router.push(`/child/${child.id}/send`)}
+            style={{ marginTop: spacing.lg }}
+          />
+
           {/* -------------------------------------------- day of the week */}
           <Eyebrow style={{ marginTop: spacing.xl }}>{t('dash.weekdayTitle')}</Eyebrow>
           <Card style={{ gap: spacing.md }}>

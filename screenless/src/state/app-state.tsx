@@ -19,6 +19,16 @@ import { addSteps, decayGoalStreak, type WalkDelta } from '../engine/walk';
 import { clampRewardStars, MAX_REAL_REWARDS, MAX_REWARD_LABEL, rewardsCrossed } from '../engine/rewards';
 import { GUARD_HISTORY_DAYS, type GuardConfig, type GuardDay } from '../guard/types';
 import { creditNudge } from '../guard/nudge';
+import {
+  answer as answerInbox,
+  receive as receiveInbox,
+  sendMission as sendMissionInbox,
+  sendNote as sendNoteInbox,
+  settle as settleInbox,
+  take as takeInbox,
+  withdraw as withdrawInbox,
+  type AckSent,
+} from '../inbox/inbox';
 import { buy, coinsForMission, grant, takeOffAll, toggle } from '../engine/wardrobe';
 import { createBadgeKey } from '../engine/badges';
 import { nextRating } from '../engine/taste';
@@ -45,6 +55,8 @@ import {
   type OnlineAccount,
   type RealReward,
   type Rating,
+  emptyInbox,
+  type NoteReply,
   type RoomScan,
   type Settings,
   type SkipReason,
@@ -94,6 +106,13 @@ export type SubmitResult =
 const MAX_NICKNAME = 24;
 /** Two years of fortnightly visits, which is more than anyone will manage. */
 const MAX_CHECK_INS = 60;
+/**
+ * A note is a line, not a letter.
+ *
+ * Long enough for "back by six, then the park" and short enough that a six
+ * year old reads it rather than looking at it. The hub uses the same ceiling.
+ */
+export const MAX_NOTE_TEXT = 140;
 /**
  * Cap on the collection. Trimming happens here rather than in the save path
  * because dropping a find has to take its photograph off the disk with it, and
@@ -153,6 +172,30 @@ type AppStateValue = {
   linkHub: (hub: HubLink) => void;
   patchHub: (patch: Partial<HubLink>) => void;
   unlinkHub: () => void;
+
+  /** Folds in the mission, note and rewards a parent sent from their phone. */
+  receiveFromHub: (incoming: {
+    assignment: { taskId: string; assignedAt: string } | null;
+    note: { id: string; text: string; at: string } | null;
+    rewards: RealReward[];
+  }) => void;
+  /** One of the four replies to the parent's note. */
+  answerNote: (reply: NoteReply) => void;
+  /** The child accepted the mission a parent picked. */
+  takeAssignment: () => void;
+  /** The hub confirmed it heard, so the debt can be dropped. */
+  clearAcked: (sent: AckSent) => void;
+  /**
+   * A grown up picked a mission or left a note on *this* phone.
+   *
+   * The path for the family that has one device between them, which is most
+   * of them. Nothing here touches the network and none of it needs a hub
+   * link: it writes into the same inbox the hub would, so the child sees the
+   * identical card.
+   */
+  sendLocalMission: (taskId: string) => void;
+  sendLocalNote: (text: string) => void;
+  withdrawLocal: (what: 'mission' | 'note') => void;
   setTeenSkin: (skin: 'dark' | 'light') => void;
 
   /** The parent said no to a username, or took it away. The door to the board shuts. */
@@ -397,7 +440,92 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const unlinkHub = useCallback(() => {
-    setData((d) => ({ ...d, hub: null }));
+    // The inbox goes with the link. Everything in it belongs to an account
+    // this phone no longer reports to, and a note from a parent who unlinked
+    // should not still be sitting on the child's Today screen next week.
+    setData((d) => ({
+      ...d,
+      hub: null,
+      inbox: { ...emptyInbox },
+      realRewards: d.realRewards.filter((r) => r.origin !== 'hub'),
+    }));
+  }, []);
+
+  /**
+   * Folds in whatever the parent has sent down.
+   *
+   * Called on every sync with the whole config, so it has to be idempotent:
+   * the same payload arriving ten times running must leave the same state.
+   * Hence the guards — a note already answered is not reopened, and a mission
+   * already accepted is not handed back.
+   *
+   * Rewards are replaced rather than merged, because the hub owns every one
+   * that came from it. Rewards a grown up typed on this phone have no origin
+   * and are left exactly where they are.
+   */
+  const receiveFromHub = useCallback(
+    (incoming: {
+      assignment: { taskId: string; assignedAt: string } | null;
+      note: { id: string; text: string; at: string } | null;
+      rewards: RealReward[];
+    }) => {
+      setData((d) => {
+        // The rules live in `inbox/inbox.ts` and are unit tested. What is left
+        // here is the one thing that is not about the inbox: a parent's
+        // promises arrive from two places, and the hub's copy must not take
+        // the local ones with it.
+        const inbox = receiveInbox(d.inbox, incoming);
+        const local = d.realRewards.filter((r) => r.origin !== 'hub');
+        const fromHub = incoming.rewards.map((r) => ({ ...r, origin: 'hub' as const }));
+
+        return { ...d, inbox, realRewards: [...local, ...fromHub] };
+      });
+    },
+    [],
+  );
+
+  /**
+   * The child tapped one of the four replies.
+   *
+   * The note leaves the screen straight away and the answer is parked in
+   * `pendingReply` for the next sync, so tapping it in a tunnel still works
+   * and the child never sees a spinner over something this small.
+   */
+  const answerNote = useCallback((reply: NoteReply) => {
+    setData((d) => ({ ...d, inbox: answerInbox(d.inbox, reply) }));
+  }, []);
+
+  /** The child accepted the mission a parent picked. Same offline handling. */
+  const takeAssignment = useCallback(() => {
+    setData((d) => ({ ...d, inbox: takeInbox(d.inbox) }));
+  }, []);
+
+  /**
+   * The hub answered, so the debt is paid.
+   *
+   * Keyed on what was sent rather than on whether the hub agreed. It answers
+   * "no" when the mission it was told about is not the one it holds, and none
+   * of the reasons for that are reasons to ask again.
+   */
+  const clearAcked = useCallback((sent: AckSent) => {
+    setData((d) => ({ ...d, inbox: settleInbox(d.inbox, sent) }));
+  }, []);
+
+  const sendLocalMission = useCallback((taskId: string) => {
+    setData((d) => ({ ...d, inbox: sendMissionInbox(d.inbox, taskId, new Date().toISOString()) }));
+  }, []);
+
+  const sendLocalNote = useCallback((text: string) => {
+    const trimmed = text.trim().slice(0, MAX_NOTE_TEXT);
+    if (!trimmed) return;
+    setData((d) => ({
+      ...d,
+      inbox: sendNoteInbox(d.inbox, makeId('note'), trimmed, new Date().toISOString()),
+    }));
+  }, []);
+
+  const withdrawLocal = useCallback((what: 'mission' | 'note') => {
+    setData((d) => ({ ...d, inbox: withdrawInbox(d.inbox, what) }));
   }, []);
 
   const goOffline = useCallback(() => {
@@ -1032,6 +1160,13 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       linkHub,
       patchHub,
       unlinkHub,
+      receiveFromHub,
+      answerNote,
+      takeAssignment,
+      clearAcked,
+      sendLocalMission,
+      sendLocalNote,
+      withdrawLocal,
       goOffline,
       goOnline,
       updateAccount,
@@ -1092,6 +1227,13 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       linkHub,
       patchHub,
       unlinkHub,
+      receiveFromHub,
+      answerNote,
+      takeAssignment,
+      clearAcked,
+      sendLocalMission,
+      sendLocalNote,
+      withdrawLocal,
       goOffline,
       goOnline,
       updateAccount,

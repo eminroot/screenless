@@ -41,6 +41,14 @@ function newDeviceId() {
   return `dev_${randomKey(9)}`;
 }
 
+function newRewardId() {
+  return `rew_${randomKey(9)}`;
+}
+
+function newNoteId() {
+  return `not_${randomKey(9)}`;
+}
+
 function newToken() {
   return randomKey(32);
 }
@@ -124,8 +132,10 @@ module.exports = {
   hashToken,
   newChildId,
   newDeviceId,
+  newNoteId,
   newPairCode,
   newParentId,
+  newRewardId,
   newToken,
   normaliseCode,
   randomKey,

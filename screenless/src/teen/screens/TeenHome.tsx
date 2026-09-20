@@ -15,6 +15,7 @@ import { Bar, Stat, StatRow, WeekStrip } from '../components/Stat';
 import { BuddyNote } from '../components/BuddyNote';
 import { Button, Chip, IconButton } from '../components/Button';
 import { Dot, Label, Panel, PanelButton, Rule } from '../components/Surface';
+import { InboxCard } from '../components/InboxCard';
 import { RewardGoalPanel } from '../components/RewardGoalPanel';
 import { TScreen } from '../components/TScreen';
 import { TText } from '../components/TText';
@@ -212,6 +213,9 @@ export function TeenHome() {
           {t(zone.nameKey)}
         </TText>
       </Panel>
+
+      {/* ------------------------------------------ what a grown up sent down */}
+      <InboxCard />
 
       {/* --------------------------------------------------------- the challenge */}
       <Label accent="acid" style={{ marginTop: space.xxl }}>

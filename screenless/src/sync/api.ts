@@ -58,10 +58,56 @@ export type HubLimits = {
   watched: string[];
 };
 
+/**
+ * A mission a parent picked, as a library key.
+ *
+ * The title and the steps are not here and never will be: both apps ship the
+ * same library, so the hub sends the key and this phone looks the rest up in
+ * its own language. A key the library does not know is ignored.
+ */
+export type HubAssignment = {
+  taskId: string;
+  assignedAt: number;
+  takenAt: number | null;
+};
+
+/** A reward a parent promised, in their own words. */
+export type HubReward = {
+  id: string;
+  stars: number;
+  label: string;
+  emoji: string;
+  createdAt: number;
+  givenAt: number | null;
+};
+
+/** A line a parent typed, waiting for one of four answers. */
+export type HubNote = {
+  id: string;
+  text: string;
+  createdAt: number;
+  reply: NoteReply | null;
+  repliedAt: number | null;
+};
+
+/**
+ * Everything a child is allowed to say back.
+ *
+ * Four buttons rather than a text box, and that is deliberate: a typed reply
+ * would put a child's sentence on a server, which is the one thing the whole
+ * sync contract exists to prevent. `later` is in the set because a list of
+ * canned replies with no way to decline is a receipt, not an answer.
+ */
+export const NOTE_REPLIES = ['ok', 'done', 'thanks', 'later'] as const;
+export type NoteReply = (typeof NOTE_REPLIES)[number];
+
 export type DeviceConfig = {
   childId: string;
   ageBand: string;
   limits: HubLimits;
+  assignment: HubAssignment | null;
+  rewards: HubReward[];
+  note: HubNote | null;
   serverTime: string;
 };
 
@@ -125,6 +171,21 @@ export function sendReport(
   report: Report,
 ): Promise<HubResult<{ stored: number; limits: HubLimits }>> {
   return call('POST', '/v1/devices/me/reports', { token, body: report });
+}
+
+/**
+ * What this phone says back about what the parent sent.
+ *
+ * The counterpart to `sendReport`, and the same rule applies: ids and enums
+ * only. `tookTaskId` is a library key the hub sent down in the first place and
+ * `reply` is one of four fixed words, so there is no shape this function can
+ * be handed that would carry a sentence a child wrote.
+ */
+export function sendAck(
+  token: string,
+  ack: { tookTaskId?: string; note?: { id: string; reply: NoteReply } },
+): Promise<HubResult<{ took: boolean; answered: boolean }>> {
+  return call('POST', '/v1/devices/me/ack', { token, body: ack });
 }
 
 /** A parent unlinking this phone from the child's side. */
