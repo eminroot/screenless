@@ -66,7 +66,7 @@ sayı taşır.
 
 | | Ne yapar | Nerede çalışır |
 |---|---|---|
-| **`screenless/`** | Çocuğun uygulaması. Yaşa göre üç ayrı arayüz, 209 görev, ekran sayacı, arkadaş, koleksiyon | Çocuğun (veya ailenin) telefonu |
+| **`screenless/`** | Çocuğun uygulaması. Yaşa göre üç ayrı arayüz, 214 görev, ekran sayacı, arkadaş, koleksiyon | Çocuğun (veya ailenin) telefonu |
 | **`parent/`** | Ebeveyn paneli. Grafikler, günlük limit, mesaj, görev atama | Ebeveynin telefonu |
 | **`server/`** | Hub. Bağımlılığı olmayan Node + tek SQLite dosyası | Contabo · `eminbaxishli.online` |
 
@@ -227,7 +227,7 @@ cd server     && npm test                                # 53 test, ağ yok
 
 | Paket | Ne kanıtlıyor |
 |---|---|
-| `test-tasks` | 209 görevin tamamı, yaş bandı ve doğrulama kuralları · 7398 kontrol |
+| `test-tasks` | 214 görevin tamamı, yaş bandı ve doğrulama kuralları · 7603 kontrol |
 | `test-sync` | Telefondan ne çıktığı ve velinin limitlerinin ne yaptığı · 70 |
 | `test-inbox` | Veliden gelenin kuralları; iki hata bu dosyayı yazdırdı · 57 |
 | `test-nudge` | Hatırlatmalar ve üç dildeki metinleri · 66 |

@@ -55,9 +55,19 @@ descriptor.
 
 ## App content → Target audience and content
 
-- **Target age groups:** 5 and under, 6–8, 9–12. (The app's own groups are 3–5, 6–8 and 9–11, which sit inside these.)
+- **Target age groups:** 5 and under, 6–8, 9–12, **13–15**. The app's own bands are
+  3–5, 6–9 and 10–13 (`AGE_BANDS` in `src/state/types.ts`), and a thirteen year old
+  falls in Play's 13–15 bucket. Ticking only up to 9–12 would be a misdeclaration.
 - **Appeals to children:** yes. Do not fight this — cartoon buddies, star rewards and a mission map are unambiguously child appealing, and claiming otherwise gets caught.
 - Because children are in the target audience the app enters the **Families programme** and Families policy applies in full.
+
+> **Read this with `SCREEN-GUARD.md` open.** Ticking 13–15 alongside the younger
+> buckets makes this a **mixed audience** app rather than a children-only one, and
+> mixed audience is exactly the footing that document's route 2 describes for
+> shipping Screen Guard. The two declarations have to agree: an app declared
+> children-only that ships usage access, an overlay and a foreground service is the
+> combination that gets pulled. Decide the route once, then make the target
+> audience, the permission declarations and the age screen all say the same thing.
 
 ## App content → Data safety
 
@@ -209,7 +219,7 @@ YAPAY ZEKÂ HAKKINDA
 Görev kütüphanesi kurallara dayalıdır ve çevrimdışı çalışır; ebeveyn her görevi önceden görebilir. Üç yerde dil modeli kullanılır: karakterle sohbet, ebeveyn danışma ekranı ve "sürpriz görev". Üçü de gönderim öncesi filtre, katı güvenlik eşikleri ve cevap sonrası ikinci bir kontrolden geçer.
 
 Türkçe, İngilizce ve Azerbaycanca.
-3-11 yaş için tasarlandı. Kurulumu ebeveyn yapar.
+3-13 yaş için tasarlandı. Kurulumu ebeveyn yapar.
 ```
 
 **English**
@@ -244,7 +254,7 @@ ABOUT THE AI
 The mission library is rule based and works offline, and a parent can read every mission in it. A language model is used in three places: the buddy chat, the parent coach and the "surprise mission". All three run behind an input filter, strict safety thresholds and a second check on the reply before a child sees it.
 
 Turkish, English and Azerbaijani.
-Designed for ages 3 to 11. Set up by a parent.
+Designed for ages 3 to 13. Set up by a parent.
 ```
 
 ### Category and tags
@@ -253,3 +263,52 @@ Designed for ages 3 to 11. Set up by a parent.
 - Tags: Education, Parenting, Family, Creativity
 - Contact email: `eminbaxishli514@gmail.com` (must match the privacy policy)
 - Website: the GitHub Pages url is acceptable
+
+---
+
+## Release notes → "What's new in this release"
+
+Play keeps these per language and per release, with a 500 character ceiling each.
+The text below is for **1.1.0 (versionCode 4)**. Keep it about what a family would
+notice; version numbers and refactors mean nothing to a parent reading the store.
+
+**Turkish**
+
+```
+Yeni görev dalı: Doğa dedektifleri. 6-9 yaş için beş görev — yaprak karşılaştırma, dışarıdaki sesleri tanıma, bulut çizme, kuş gözlemi ve bir bitkiyi üç gün izleme. Evden çıkan her görevde veli onayı zorunlu; konum bilgisi hiçbir zaman kaydedilmiyor, ses hiçbir zaman kaydedilmiyor.
+
+Ayrıca: çocuğun beğenmediği bir görev türü artık tamamen kaybolmuyor, yalnızca seyrekleşiyor.
+```
+
+**English**
+
+```
+A new strand of missions: Nature detectives. Five missions for ages 6-9 — comparing leaves, naming the sounds outside, drawing clouds, watching birds, and following one plant for three days. Every mission that leaves the house needs a parent's code. No location is ever recorded and no sound is ever recorded.
+
+Also: a kind of mission your child turned down is now thinned out rather than dropped altogether.
+```
+
+**Azerbaijani**
+
+```
+Yeni tapşırıq qrupu: Təbiət detektivləri. 6-9 yaş üçün beş tapşırıq — yarpaqları müqayisə etmək, çöldəki səsləri tanımaq, buludları çəkmək, quşları müşahidə etmək və bir bitkini üç gün izləmək. Evdən kənara çıxan hər tapşırıqda valideyn təsdiqi məcburidir. Yer məlumatı heç vaxt saxlanmır, səs heç vaxt yazılmır.
+
+Bundan başqa: uşağın bəyənmədiyi tapşırıq növü artıq tamamilə yox olmur, sadəcə seyrəkləşir.
+```
+
+---
+
+## Mission library, for a reviewer who asks
+
+The full list lives in `src/data/` and is checked by `scripts/test-tasks.ts`
+(`npm run test:tasks`). **214 missions**, of which 140 are the age curriculum:
+
+| Band | Strands | Missions | Who checks it |
+| --- | --- | --- | --- |
+| 3–5 | 8 (colour and shape, movement, senses, making, talking, with a grown up, small jobs, feelings) | 40 | The parent confirms every one. Nothing is approved without them |
+| 6–9 | 10 (adventure, movement games, make and build, home hero, thinking, books, family games, **nature detectives**, kindness, super team) | 50 | The phone checks the ordinary case; the parent audits a sample. Nature missions that go outside always need the parent code |
+| 10–13 | 10 (goals, physical wellbeing, real life projects, contributing at home, reading and critical thinking, creativity, social connection, digital self-awareness, attention and emotion, doing something for others) | 50 | Self-report plus behaviour data, with the parent reading the log afterwards rather than approving item by item |
+
+The remaining 74 are 56 interest-led missions shared across bands, ten activity
+missions and eight parent-and-child missions. Every mission is locked to the bands listed on
+it, so no child is ever offered one written for another age.

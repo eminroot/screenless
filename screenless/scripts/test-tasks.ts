@@ -350,9 +350,20 @@ section('the 6-9 self checks are well formed');
 
 section('the 6-9 curriculum is the one that was written');
 {
-  // Nine strands, five missions each, as supplied. A mission added to the
+  // Ten strands, five missions each, as supplied. A mission added to the
   // curriculum off the author's list belongs somewhere else in the library.
-  const strands = ['adventure', 'move', 'make', 'home', 'think', 'book', 'play', 'kind', 'team'];
+  const strands = [
+    'adventure',
+    'move',
+    'make',
+    'home',
+    'think',
+    'book',
+    'play',
+    'nature',
+    'kind',
+    'team',
+  ];
   ok('five missions per strand, and nothing else', juniorTasks.length === strands.length * 5);
   for (const strand of strands) {
     ok(

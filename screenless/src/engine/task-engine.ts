@@ -11,6 +11,24 @@ const RECENT_WINDOW = 14;
 const CATEGORY_WINDOW = 5;
 
 /**
+ * How long a kind of mission may go unoffered before it is pulled back in.
+ *
+ * A thumbs down is meant to thin a kind of mission, never to delete it: a
+ * child who says no to moving about should still be sent outside now and
+ * then, or the app has quietly agreed with them. Taste alone cannot promise
+ * that. Enough thumbs plus an unlucky library and a category drops to nothing,
+ * which is what `test-spark.ts` watches for and what this holds up.
+ *
+ * Thirty missions is about a month of them, so this is a floor rather than a
+ * second opinion: it does nothing at all to a child who is being offered a bit
+ * of everything, and the pull is no larger than the interests a parent ticked
+ * at setup, so a thumbs down still decides how often a kind of mission comes
+ * round. All it settles is that the answer is never never.
+ */
+const STARVED_WINDOW = 30;
+const STARVED_PULL = 8;
+
+/**
  * How hard taste pulls the pick, against the interests a parent ticked at
  * setup (worth 6 to 10 points here).
  *
@@ -67,6 +85,16 @@ export function pickTask(
   const recentCategories = missions
     .slice(-CATEGORY_WINDOW)
     .map((m) => m.task.category as TaskCategory);
+  // Kinds of mission that have not come up in a long time, once there is a
+  // long time to look back over. Below that everything is starved and the
+  // pull would mean nothing.
+  const starved = new Set<TaskCategory>();
+  if (missions.length >= STARVED_WINDOW) {
+    const seen = new Set(missions.slice(-STARVED_WINDOW).map((m) => m.task.category));
+    for (const task of pool) {
+      if (!seen.has(task.category)) starved.add(task.category);
+    }
+  }
 
   const skipCounts = new Map<string, number>();
   const boredCounts = new Map<string, number>();
@@ -97,6 +125,9 @@ export function pickTask(
 
     const repeats = recentCategories.filter((c) => c === task.category).length;
     score -= repeats * (options.favourVariety ? 4 : 2);
+
+    // Thinned, not deleted.
+    if (starved.has(task.category)) score += STARVED_PULL;
 
     score -= (skipCounts.get(task.id) ?? 0) * 4;
     score -= (boredCounts.get(task.id) ?? 0) * 6;

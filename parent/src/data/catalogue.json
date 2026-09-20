@@ -1317,6 +1317,86 @@
     }
   },
   {
+    "id": "junior-nature-birds",
+    "emoji": "🐦",
+    "category": "outdoor",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "İki farklı kuş",
+      "en": "Two different birds",
+      "az": "İki fərqli quş"
+    }
+  },
+  {
+    "id": "junior-nature-clouds",
+    "emoji": "☁️",
+    "category": "create",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bulutları çiz",
+      "en": "Draw the clouds",
+      "az": "Buludları çək"
+    }
+  },
+  {
+    "id": "junior-nature-leaves",
+    "emoji": "🍂",
+    "category": "outdoor",
+    "minutes": 12,
+    "stars": 13,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Üç farklı yaprak",
+      "en": "Three different leaves",
+      "az": "Üç fərqli yarpaq"
+    }
+  },
+  {
+    "id": "junior-nature-plant",
+    "emoji": "🌱",
+    "category": "calm",
+    "minutes": 8,
+    "stars": 9,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Bir bitkiyi izle",
+      "en": "Watch one plant",
+      "az": "Bir bitkini izlə"
+    }
+  },
+  {
+    "id": "junior-nature-sounds",
+    "emoji": "🔊",
+    "category": "outdoor",
+    "minutes": 10,
+    "stars": 11,
+    "ageBands": [
+      "6-9"
+    ],
+    "duo": false,
+    "title": {
+      "tr": "Dışarıda beş ses",
+      "en": "Five sounds outside",
+      "az": "Çöldə beş səs"
+    }
+  },
+  {
     "id": "junior-play-ball-friend",
     "emoji": "🏐",
     "category": "outdoor",

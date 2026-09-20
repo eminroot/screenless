@@ -5,9 +5,10 @@ import type { LibraryTask } from './tasks';
  *
  * Emin's strands, five missions each: adventure and exploring, movement games,
  * making and building, home hero, thinking and puzzles, books and stories,
- * friends and family games, kindness, and the super team. Five to fifteen
- * minutes apiece (the team's screen free half hour is the one exception), a
- * game rather than a chore, and never more than a handful of choices on screen.
+ * friends and family games, nature detectives, kindness, and the super team.
+ * Five to fifteen minutes apiece (the team's screen free half hour is the one
+ * exception), a game rather than a chore, and never more than a handful of
+ * choices on screen.
  *
  * The big difference from the 3-5 library is who checks. At this age the
  * parent no longer confirms every mission; the phone does, and the parent
@@ -29,6 +30,11 @@ import type { LibraryTask } from './tasks';
  *
  * - **Books** are checked by the reading timer, which is the phone lying face
  *   down, plus one plain question about what was read.
+ * - **Nature** goes outside, so it is the one strand where the grown up's code
+ *   is required rather than offered: "evdən kənar" is the whole reason. Nothing
+ *   records a location and nothing records a sound; what is kept is the time
+ *   away from the screen, what the child ticked, and a photo when there is
+ *   something to photograph.
  * - **Family games** and **kindness** are the missions somebody else was part
  *   of, so the grown up who was there can say yes on the spot with their code,
  *   and the child says who it was for. Kindness is never scored by how much or
@@ -1410,7 +1416,297 @@ export const juniorTasks: LibraryTask[] = [
     ],
   },
 
-  /* ================================================= kindness missions */
+  /* ============================================ 2.8 nature detectives */
+  {
+    id: 'junior-nature-leaves',
+    category: 'outdoor',
+    minutes: 12,
+    stars: 13,
+    emoji: '🍂',
+    interests: ['nature'],
+    ageBands: ['6-9'],
+    place: 'outdoor',
+    title: { en: 'Three different leaves', tr: 'Üç farklı yaprak', az: 'Üç fərqli yarpaq' },
+    body: {
+      en: 'Go outside with a grown up and find three leaves that are not the same. Lay them side by side and look at what is different.',
+      tr: 'Bir büyükle dışarı çık ve birbirinin aynısı olmayan üç yaprak bul. Yan yana diz ve nelerin farklı olduğuna bak.',
+      az: 'Bir böyüklə çölə çıx və bir-birinin eyni olmayan üç yarpaq tap. Yan-yana düz və nələrin fərqli olduğuna bax.',
+    },
+    steps: [
+      {
+        en: 'Find three leaves that look different from each other.',
+        tr: 'Birbirinden farklı görünen üç yaprak bul.',
+        az: 'Bir-birindən fərqli görünən üç yarpaq tap.',
+      },
+      {
+        en: 'Lay them out from the biggest to the smallest.',
+        tr: 'En büyükten en küçüğe diz.',
+        az: 'Ən böyükdən ən kiçiyə düz.',
+      },
+      {
+        en: 'Tick what is different about them.',
+        tr: 'Aralarındaki farkları işaretle.',
+        az: 'Aralarındakı fərqləri işarələ.',
+      },
+    ],
+    tip: {
+      en: 'Leaves already on the ground. Nothing gets pulled off a tree.',
+      tr: 'Yerdeki yapraklar. Ağaçtan hiçbir şey koparmıyoruz.',
+      az: 'Yerdəki yarpaqlar. Ağacdan heç nə qoparılmır.',
+    },
+    pick: {
+      question: {
+        en: 'What is different about them?',
+        tr: 'Aralarındaki fark ne?',
+        az: 'Aralarındakı fərq nədir?',
+      },
+      options: [
+        { en: 'The shape', tr: 'Şekli', az: 'Forması' },
+        { en: 'The size', tr: 'Boyu', az: 'Ölçüsü' },
+        { en: 'The colour', tr: 'Rengi', az: 'Rəngi' },
+        { en: 'The edges', tr: 'Kenarları', az: 'Kənarları' },
+        { en: 'How they feel', tr: 'Dokusu', az: 'Toxunuşu' },
+      ],
+      min: 2,
+    },
+    // "Evdən kənar tapşırıqlar üçün valideyn təsdiqi məcburidir": every mission
+    // in this strand that leaves the house asks for the parent code on the
+    // spot, and it is never offered as the alternative to something else.
+    checks: [
+      { kind: 'clock', minutes: 6 },
+      { kind: 'picked', count: 2 },
+      { kind: 'photo' },
+      { kind: 'grownup' },
+    ],
+  },
+  {
+    id: 'junior-nature-sounds',
+    category: 'outdoor',
+    minutes: 10,
+    stars: 11,
+    emoji: '🔊',
+    interests: ['nature'],
+    ageBands: ['6-9'],
+    place: 'outdoor',
+    title: { en: 'Five sounds outside', tr: 'Dışarıda beş ses', az: 'Çöldə beş səs' },
+    body: {
+      en: 'Stand still outside with a grown up, put the phone down and listen. Tick every different sound you hear.',
+      tr: 'Bir büyükle dışarıda kıpırdamadan dur, telefonu bırak ve dinle. Duyduğun her farklı sesi işaretle.',
+      az: 'Bir böyüklə çöldə tərpənmədən dur, telefonu yerə qoy və qulaq as. Eşitdiyin hər fərqli səsi işarələ.',
+    },
+    steps: [
+      {
+        en: 'Put the phone down and stay still.',
+        tr: 'Telefonu bırak ve kıpırdama.',
+        az: 'Telefonu qoy və tərpənmə.',
+      },
+      {
+        en: 'Listen for as long as you can without talking.',
+        tr: 'Konuşmadan, dayanabildiğin kadar dinle.',
+        az: 'Danışmadan, bacardığın qədər qulaq as.',
+      },
+      {
+        en: 'Tick the five you are sure about.',
+        tr: 'Emin olduğun beş tanesini işaretle.',
+        az: 'Əmin olduğun beşini işarələ.',
+      },
+    ],
+    tip: {
+      en: 'Nothing is recorded. The phone is not listening, you are.',
+      tr: 'Hiçbir ses kaydedilmiyor. Dinleyen telefon değil, sensin.',
+      az: 'Heç bir səs yazılmır. Qulaq asan telefon deyil, sənsən.',
+    },
+    pick: {
+      question: {
+        en: 'What did you hear?',
+        tr: 'Ne duydun?',
+        az: 'Nə eşitdin?',
+      },
+      options: [
+        { en: 'A bird', tr: 'Bir kuş', az: 'Bir quş' },
+        { en: 'The wind', tr: 'Rüzgar', az: 'Külək' },
+        { en: 'Leaves', tr: 'Yapraklar', az: 'Yarpaqlar' },
+        { en: 'Water', tr: 'Su', az: 'Su' },
+        { en: 'An insect', tr: 'Bir böcek', az: 'Bir həşərat' },
+        { en: 'Rain', tr: 'Yağmur', az: 'Yağış' },
+        { en: 'An animal', tr: 'Bir hayvan', az: 'Bir heyvan' },
+        { en: 'Something else', tr: 'Başka bir şey', az: 'Başqa bir şey' },
+      ],
+      min: 5,
+    },
+    checks: [
+      { kind: 'away', minutes: 5 },
+      { kind: 'picked', count: 5 },
+      { kind: 'grownup' },
+    ],
+  },
+  {
+    id: 'junior-nature-clouds',
+    category: 'create',
+    minutes: 12,
+    stars: 13,
+    emoji: '☁️',
+    interests: ['nature', 'drawing'],
+    ageBands: ['6-9'],
+    place: 'outdoor',
+    title: { en: 'Draw the clouds', tr: 'Bulutları çiz', az: 'Buludları çək' },
+    body: {
+      en: 'Go outside with a grown up and look up. Draw the shape of one cloud exactly as you see it, then give it a name.',
+      tr: 'Bir büyükle dışarı çık ve yukarı bak. Bir bulutun şeklini gördüğün gibi çiz, sonra ona bir isim ver.',
+      az: 'Bir böyüklə çölə çıx və yuxarı bax. Bir buludun formasını gördüyün kimi çək, sonra ona ad ver.',
+    },
+    steps: [
+      {
+        en: 'Find a cloud that looks like something.',
+        tr: 'Bir şeye benzeyen bir bulut bul.',
+        az: 'Bir şeyə bənzəyən bir bulud tap.',
+      },
+      {
+        en: 'Draw its shape before it changes.',
+        tr: 'Şekli değişmeden çiz.',
+        az: 'Forması dəyişmədən çək.',
+      },
+      {
+        en: 'Write the name you gave it underneath.',
+        tr: 'Verdiğin ismi altına yaz.',
+        az: 'Verdiyin adı altına yaz.',
+      },
+    ],
+    check: {
+      question: {
+        en: 'What did your cloud look like?',
+        tr: 'Bulutun neye benziyordu?',
+        az: 'Buludun nəyə bənzəyirdi?',
+      },
+      options: [
+        { en: 'An animal', tr: 'Bir hayvana', az: 'Bir heyvana' },
+        { en: 'A face', tr: 'Bir yüze', az: 'Bir üzə' },
+        { en: 'A mountain', tr: 'Bir dağa', az: 'Bir dağa' },
+        {
+          en: 'Nothing anyone has seen',
+          tr: 'Kimsenin görmediği bir şeye',
+          az: 'Heç kimin görmədiyi bir şeyə',
+        },
+      ],
+    },
+    checks: [
+      { kind: 'clock', minutes: 6 },
+      { kind: 'photo' },
+      { kind: 'answer' },
+      { kind: 'grownup' },
+    ],
+  },
+  {
+    id: 'junior-nature-birds',
+    category: 'outdoor',
+    minutes: 12,
+    stars: 13,
+    emoji: '🐦',
+    interests: ['nature', 'animals'],
+    ageBands: ['6-9'],
+    place: 'outdoor',
+    title: { en: 'Two different birds', tr: 'İki farklı kuş', az: 'İki fərqli quş' },
+    body: {
+      en: 'From a spot a grown up picked, wait quietly until you have seen two birds that are not the same. Watch them, do not follow them.',
+      tr: 'Bir büyüğün seçtiği bir yerden, birbirinin aynısı olmayan iki kuş görene kadar sessizce bekle. İzle, peşlerinden gitme.',
+      az: 'Bir böyüyün seçdiyi bir yerdən, bir-birinin eyni olmayan iki quş görənə qədər səssizcə gözlə. İzlə, arxalarınca getmə.',
+    },
+    steps: [
+      {
+        en: 'Sit or stand somewhere you can see the sky.',
+        tr: 'Gökyüzünü görebileceğin bir yere otur ya da dur.',
+        az: 'Səmanı görə biləcəyin bir yerdə otur və ya dayan.',
+      },
+      {
+        en: 'Wait for the first bird, then a different one.',
+        tr: 'İlk kuşu bekle, sonra farklı bir tane daha.',
+        az: 'Birinci quşu gözlə, sonra fərqli birini.',
+      },
+      {
+        en: 'Tick what they did while you watched.',
+        tr: 'İzlerken ne yaptıklarını işaretle.',
+        az: 'İzləyərkən nə etdiklərini işarələ.',
+      },
+    ],
+    tip: {
+      en: 'Stay where the grown up can see you the whole time.',
+      tr: 'Büyüğün seni görebileceği yerde kal.',
+      az: 'Böyüyün səni görə biləcəyi yerdə qal.',
+    },
+    pick: {
+      question: {
+        en: 'What did the birds do?',
+        tr: 'Kuşlar ne yaptı?',
+        az: 'Quşlar nə etdi?',
+      },
+      options: [
+        { en: 'Flew past', tr: 'Uçup geçti', az: 'Uçub keçdi' },
+        { en: 'Hopped on the ground', tr: 'Yerde zıpladı', az: 'Yerdə hoppandı' },
+        { en: 'Sat still', tr: 'Kıpırdamadan durdu', az: 'Tərpənmədən durdu' },
+        { en: 'Ate something', tr: 'Bir şey yedi', az: 'Bir şey yedi' },
+        { en: 'Made a sound', tr: 'Ses çıkardı', az: 'Səs çıxardı' },
+      ],
+      min: 2,
+    },
+    checks: [
+      { kind: 'away', minutes: 5 },
+      { kind: 'picked', count: 2 },
+      { kind: 'grownup' },
+    ],
+  },
+  {
+    id: 'junior-nature-plant',
+    category: 'calm',
+    minutes: 8,
+    stars: 9,
+    emoji: '🌱',
+    interests: ['nature', 'science'],
+    ageBands: ['6-9'],
+    place: 'indoor',
+    title: { en: 'Watch one plant', tr: 'Bir bitkiyi izle', az: 'Bir bitkini izlə' },
+    body: {
+      en: 'Pick one plant at home. Draw exactly what it looks like today and write the date on it. Keep the drawing: in three days you draw it again and compare.',
+      tr: 'Evdeki bir bitkiyi seç. Bugün nasıl göründüğünü olduğu gibi çiz ve üzerine tarihi yaz. Çizimi sakla: üç gün sonra tekrar çizip karşılaştıracaksın.',
+      az: 'Evdəki bir bitkini seç. Bugün necə göründüyünü olduğu kimi çək və üzərinə tarixi yaz. Rəsmi saxla: üç gün sonra yenidən çəkib müqayisə edəcəksən.',
+    },
+    steps: [
+      {
+        en: 'Choose one plant you can visit every day.',
+        tr: 'Her gün bakabileceğin bir bitki seç.',
+        az: 'Hər gün baxa biləcəyin bir bitki seç.',
+      },
+      {
+        en: 'Count its leaves and draw it exactly.',
+        tr: 'Yapraklarını say ve olduğu gibi çiz.',
+        az: 'Yarpaqlarını say və olduğu kimi çək.',
+      },
+      {
+        en: 'Write the date and put the drawing somewhere safe.',
+        tr: 'Tarihi yaz ve çizimi güvenli bir yere koy.',
+        az: 'Tarixi yaz və rəsmi etibarlı bir yerə qoy.',
+      },
+    ],
+    check: {
+      question: {
+        en: 'What will you look for in three days?',
+        tr: 'Üç gün sonra neye bakacaksın?',
+        az: 'Üç gün sonra nəyə baxacaqsan?',
+      },
+      options: [
+        { en: 'New leaves', tr: 'Yeni yapraklara', az: 'Yeni yarpaqlara' },
+        { en: 'Whether it grew', tr: 'Büyüyüp büyümediğine', az: 'Böyüyüb-böyümədiyinə' },
+        { en: 'The colour', tr: 'Rengine', az: 'Rənginə' },
+        { en: 'If it needs water', tr: 'Suya ihtiyacı var mı', az: 'Suya ehtiyacı var, ya yox' },
+      ],
+    },
+    checks: [
+      { kind: 'clock', minutes: 4 },
+      { kind: 'photo' },
+      { kind: 'answer' },
+    ],
+  },
+
+  /* ================================================= 2.9 kindness missions */
   {
     id: 'junior-kind-note',
     category: 'social',
