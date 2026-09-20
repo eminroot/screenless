@@ -27,7 +27,6 @@ export default function Consent() {
         <Point emoji="📱" title={t('consent.point1Title')} body={t('consent.point1Body')} />
         <Point emoji="🙈" title={t('consent.point2Title')} body={t('consent.point2Body')} />
         <Point emoji="🔑" title={t('consent.point3Title')} body={t('consent.point3Body')} />
-        <Point emoji="💬" title={t('consent.point4Title')} body={t('consent.point4Body')} />
       </View>
 
       <Sticker

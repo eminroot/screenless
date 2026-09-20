@@ -50,9 +50,6 @@ export const en = {
     point2Body: 'A first name and an age range. No photo, no school, no location. The name never leaves this phone.',
     point3Title: 'You are the account holder',
     point3Body: 'The account belongs to you as the parent, and every mission is confirmed by you.',
-    point4Title: 'The chat buddy uses Google Gemini',
-    point4Body:
-      'When your child chats with the buddy, the message is sent to Google to write a reply. Never type personal details into the chat.',
     kvkkTitle: 'KVKK consent',
     kvkkBody:
       'Under Personal Data Protection Law no. 6698, the parent consents to the processing of the name, age range and interest categories entered here, which stay on this device. If you give your child a username, the username and the numbers on the friends board are stored on our server in the EU.',

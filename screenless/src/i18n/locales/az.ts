@@ -52,9 +52,6 @@ export const az: Translation = {
     point2Body: 'Ad və yaş aralığı. Şəkil yoxdur, məktəb yoxdur, məkan yoxdur. Ad bu telefondan heç vaxt çıxmır.',
     point3Title: 'Hesab sizindir',
     point3Body: 'Hesab valideyn kimi sizə aiddir və hər tapşırığı siz təsdiqləyirsiniz.',
-    point4Title: 'Söhbət dostu Google Gemini istifadə edir',
-    point4Body:
-      'Uşağınız dostu ilə söhbət edəndə mesaj cavab yazılması üçün Google-a göndərilir. Söhbətə şəxsi məlumat yazmayın.',
     kvkkTitle: 'KVKK razılığı',
     kvkkBody:
       '6698 saylı Şəxsi Məlumatların Qorunması Qanunu çərçivəsində valideyn, burada daxil edilən ad, yaş aralığı və maraq kateqoriyalarının emalına razılıq verir. Bu məlumatlar cihazda qalır. Uşağınız üçün istifadəçi adı seçsəniz, istifadəçi adı və ulduz lövhəsindəki rəqəmlər Aİ-dəki serverimizdə saxlanılır.',
